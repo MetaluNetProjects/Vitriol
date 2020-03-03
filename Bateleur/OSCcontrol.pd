@@ -1,32 +1,32 @@
-#N canvas 215 161 730 494 12;
+#N canvas 30 388 730 494 12;
 #X obj 20 16 hsl 200 30 0 1 0 0 \$0-control-noise-snd \$0-control-noise-rcv
 noise 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 50 hsl 200 30 0 1 0 0 \$0-control-mix_retard-snd \$0-control-mix_retard-rcv
 mix_retard 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 84 hsl 200 30 0 1 0 0 \$0-control-mix_chocs-snd \$0-control-mix_chocs-rcv
-mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 4400 1;
+mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 118 hsl 200 30 0 1 0 0 \$0-control-formant-snd \$0-control-formant-rcv
 formant 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 229 16 tgl 30 0 \$0-control-freeze-snd \$0-control-freeze-rcv
-freeze 32 15 0 14 -262144 -1 -1 0 1;
+freeze 32 15 0 14 -262144 -1 -1 1 1;
 #X obj 20 152 hsl 200 30 0 1 0 0 \$0-control-delai-snd \$0-control-delai-rcv
 delai 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 19 209 tgl 30 0 \$0-control-sampleur-snd \$0-control-sampleur-rcv
 sampleur 32 15 0 14 -262144 -1 -1 0 1;
-#X obj 22 242 hsl 80 30 0 1 0 0 \$0-control-sample_threshold-snd \$0-control-sample_threshold-rcv
+#X obj 123 210 hsl 80 30 0 1 0 0 \$0-control-sample_threshold-snd \$0-control-sample_threshold-rcv
 threshold 5 15 0 14 -260097 -1 -1 3100 1;
-#X obj 143 211 tgl 50 0 empty \$0-control-sample_detect detect 5 25
+#X obj 211 210 tgl 50 0 empty \$0-control-sample_detect detect 5 25
 0 12 -260097 -1 -1 0 1;
-#X obj 199 228 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-control-sample_last
+#X obj 264 210 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-control-sample_last
 last 0 -8 0 10 -260097 -1 -1 0 256;
 #X obj 232 85 hsl 80 30 0 1 0 0 \$0-control-choc_sens-snd \$0-control-choc_sens-rcv
-sens 5 15 0 14 -4032 -1 -1 3500 1;
-#X obj 317 85 bng 30 250 50 0 \$0-choc \$0-choc empty 17 7 0 10 -262144
--1 -1;
+sens 5 15 0 14 -4032 -1 -1 4100 1;
+#X obj 317 85 bng 30 100 50 0 \$0-choc-snd \$0-choc-rcv empty 17 7
+0 10 -262144 -258699 -1;
 #X obj 382 16 hsl 200 30 0 1 0 0 \$0-control-lum-snd \$0-control-lum-rcv
-lum 20 15 0 14 -261682 -1 -1 19900 1;
+lum 20 15 0 14 -261682 -1 -1 16200 1;
 #X obj 382 50 hsl 200 30 0 1 0 0 \$0-control-contrast-snd \$0-control-contrast-rcv
-contrast 20 15 0 14 -1 -262144 -262144 2100 1;
+contrast 20 15 0 14 -1 -262144 -262144 11300 1;
 #X obj 382 83 hsl 200 30 0 1 0 0 \$0-control-sat-snd \$0-control-sat-rcv
 sat 20 15 0 14 -4034 -1 -1 0 1;
 #X obj 379 254 tgl 30 0 \$0-control-tigre-snd \$0-control-tigre-rcv
@@ -58,7 +58,7 @@ solar 20 15 0 14 -203904 -1 -1 0 1;
 poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 229 51 tgl 30 0 \$0-control-fb-snd \$0-control-fb-rcv feedback
 32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 141 487 886 704 guts 0;
+#N canvas 246 148 1033 704 guts 1;
 #X obj 20 133 netsend -u -b;
 #X obj 46 80 loadbang;
 #X msg 46 104 connect chose.local 7654;
@@ -113,21 +113,36 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 47 395 MORPHgroup \$0-MASTER B;
 #X obj 250 247 2ctl \$0 sampleur A;
 #X obj 302 301 r \$0-savepatterns-snd;
-#X obj 646 328 r \$0-control-sampleur_bank-snd;
-#X obj 646 352 sel 0 1 2;
-#X obj 763 385 - 2;
-#X msg 646 386 rec;
-#X msg 677 386 hold;
-#X msg 717 386 noise;
-#X msg 763 409 bank_\$1;
-#X obj 646 443 symbol;
-#X msg 646 467 label \$1;
-#X obj 646 491 s \$0-control-sampleur_bank-rcv;
+#X obj 642 331 r \$0-control-sampleur_bank-snd;
+#X obj 642 355 sel 0 1 2;
+#X obj 759 388 - 2;
+#X msg 642 389 rec;
+#X msg 673 389 hold;
+#X msg 713 389 noise;
+#X msg 759 412 bank_\$1;
+#X obj 642 446 symbol;
+#X msg 642 470 label \$1;
+#X obj 642 494 s \$0-control-sampleur_bank-rcv;
 #X obj 471 249 2ctli \$0 sampleur_bank A;
-#X obj 656 149 r \$0-choc;
-#X obj 656 209 s toCONTROL;
-#X msg 656 185 list choc 0.5 0.5;
+#X obj 697 254 s toCONTROL;
+#X msg 697 230 list choc 0.5 0.5;
 #X obj 249 14 2ctl \$0 freeze Z;
+#X obj 470 12 2ctl \$0 audiomaster Z;
+#X obj 697 206 r \$0-choc-snd;
+#X obj 661 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 709 23 netreceive -u 7656;
+#X obj 672 173 s \$0-choc-rcv;
+#X obj 709 72 b;
+#X obj 662 82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 672 147 color 13 0 22;
+#X msg 709 120 color 0 13 22;
+#X obj 709 95 del 100;
+#X obj 709 47 route choc sample;
+#X obj 782 74 route sample detect;
+#X obj 847 100 s \$0-control-sample_detect;
+#X obj 817 125 s \$0-control-sample_last;
 #X connect 1 0 2 0;
 #X connect 2 0 0 0;
 #X connect 3 0 4 0;
@@ -167,8 +182,20 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X connect 57 0 58 0;
 #X connect 58 0 59 0;
 #X connect 59 0 60 0;
-#X connect 62 0 64 0;
-#X connect 64 0 63 0;
+#X connect 63 0 62 0;
+#X connect 66 0 63 0;
+#X connect 68 0 75 0;
+#X connect 70 0 72 0;
+#X connect 70 0 74 0;
+#X connect 71 0 70 0;
+#X connect 72 0 69 0;
+#X connect 73 0 69 0;
+#X connect 74 0 73 0;
+#X connect 75 0 67 0;
+#X connect 75 0 70 0;
+#X connect 75 1 76 0;
+#X connect 76 0 78 0;
+#X connect 76 1 77 0;
 #X restore 606 17 pd guts;
 #X obj 22 412 MORPHgroup \$0-MASTER A;
 #X obj 21 364 hradio 30 1 0 16 \$0-pattern-snd \$0-pattern-rcv empty
@@ -176,6 +203,8 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 24 329 hsl 200 30 0 1 0 0 \$0-fade_time-snd \$0-fade_time-rcv
 fade_time:0.9_s 20 15 0 14 -262144 -1 -1 1800 1;
 #X obj 20 291 hradio 30 1 0 7 \$0-control-sampleur_bank-snd \$0-control-sampleur_bank-rcv
-bank_1 0 -8 0 14 -99865 -258113 -1 3;
+noise 0 -8 0 14 -99865 -258113 -1 2;
 #X obj 314 431 bng 30 250 50 0 \$0-savepatterns-snd \$0-savepatterns-rcv
 SAVE 32 15 0 14 -258113 -1 -1;
+#X obj 447 305 hsl 200 30 0 1 0 0 \$0-control-audiomaster-snd \$0-control-audiomaster-rcv
+audiomaster 20 15 0 14 -258113 -1 -1 6800 1;

@@ -1,13 +1,17 @@
-#N canvas 1 108 288 361 10;
+#N canvas 1 189 288 361 10;
 #X obj 107 122 hsl 86 15 0 1 0 1 empty empty empty -2 -8 0 10 -258113
--1 -1 5100 1;
+-1 -1 2905 1;
 #X obj 104 157 pow 2;
 #X msg 104 178 \$1 10;
 #X obj 104 199 line~;
 #X obj 105 220 s~ mastervol;
 #X obj 103 262 clone outchan 8;
+#X obj 104 70 route audiomaster;
+#X obj 104 49 r CONTROL;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
+#X connect 6 0 0 0;
+#X connect 7 0 6 0;
 #X coords 0 -1 1 1 100 40 1 100 100;
