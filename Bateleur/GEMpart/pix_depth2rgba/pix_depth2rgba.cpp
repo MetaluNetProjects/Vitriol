@@ -1,0 +1,337 @@
+////////////////////////////////////////////////////////
+//
+// GEM - Graphics Environment for Multimedia
+//
+// zmoelnig@iem.kug.ac.at
+//
+// Implementation file
+//
+//    Copyright (c) 1997-1998 Mark Danks.
+//    Copyright (c) Günther Geiger.
+//    Copyright (c) 2001-2011 IOhannes m zmölnig. forum::für::umläute. IEM. zmoelnig@iem.at
+//    For information on usage and redistribution, and for a DISCLAIMER OF ALL
+//    WARRANTIES, see the file, "GEM.LICENSE.TERMS" in this distribution.
+//
+/////////////////////////////////////////////////////////
+
+
+#include <math.h>
+
+#include "pix_depth2rgba.h"
+
+
+//CPPEXTERN_NEW(pix_depth2rgba);
+CPPEXTERN_NEW_WITH_TWO_ARGS(pix_depth2rgba, t_floatarg, A_DEFFLOAT, t_floatarg, A_DEFFLOAT);
+
+#define XtoZ 1.111466646194458
+#define YtoZ 0.833599984645844
+
+// user colors
+float Colors[][3] =
+{
+	{255,255,255},
+	{0,255,255},
+	{0,0,255},
+	{0,255,0},
+	{255,255,0},
+	{255,0,0},
+	{255,127,0},
+	{127,255,0},
+	{0,127,255},
+	{127,0,255},
+	{255,255,127}
+};
+int nColors = 10;
+
+#define UPDATE_MULT t_mult = 2048.0 / (m_hi_thresh - m_lo_thresh)
+/////////////////////////////////////////////////////////
+//
+// pix_depth2rgba
+//
+/////////////////////////////////////////////////////////
+// Constructor
+//
+/////////////////////////////////////////////////////////
+pix_depth2rgba :: pix_depth2rgba(t_floatarg hi_thresh, t_floatarg lo_thresh)
+{
+    inlet_new(this->x_obj, &this->x_obj->ob_pd, gensym("float"), gensym("mode"));
+    inlet_new(this->x_obj, &this->x_obj->ob_pd, gensym("float"), gensym("hi_thresh"));
+    inlet_new(this->x_obj, &this->x_obj->ob_pd, gensym("float"), gensym("lo_thresh"));
+		
+    if (hi_thresh > 0)
+	{
+		m_hi_thresh = hi_thresh;
+	} else {
+		m_hi_thresh = 8000.0;
+	}
+    
+    if (lo_thresh > 0)
+    {
+        m_lo_thresh = lo_thresh;
+    } else {
+        m_lo_thresh = 10.1;
+    }
+    
+    m_active = true;
+	m_mode = true;
+	m_gray = false;
+	//t_mult = 2048.0 / (m_hi_thresh - m_lo_thresh); //1530.0 / m_hi_thresh ;
+	UPDATE_MULT;
+		
+	//depth map representation curve
+	int i;
+	for (i=0; i<10000; i++) {
+	  	float v = i/2048.0;
+	  	v = powf(v, 3)* 6;
+	  	t_gamma[i] = v*6*256;
+	}
+}
+
+/////////////////////////////////////////////////////////
+// Destructor
+//
+/////////////////////////////////////////////////////////
+pix_depth2rgba :: ~pix_depth2rgba()
+{ }
+
+/////////////////////////////////////////////////////////
+// processImage
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: processRGBAImage(imageStruct &image)
+{
+	if (!m_active) return;
+	int datasize = image.xsize * image.ysize;
+
+	unsigned char *base = image.data;
+	uint16_t value = 0;
+	while(datasize--)
+	{
+		value = ((int)base[chRed] << 8) + (int)base[chGreen];
+		
+		// first check if value is in range
+		if (value <=  m_lo_thresh) 
+		{
+			/*if(m_gray) {
+				base[chRed] = 255;
+				base[chGreen] = 255;
+				base[chBlue] = 255;
+				base[chAlpha] = 255;
+			} else*/ {
+				base[chRed] = 0;
+				base[chGreen] = 0;
+				base[chBlue] = 0;
+				base[chAlpha] = 0; // alpha null for anything without depth value
+			}
+		} else if (value >  m_hi_thresh) 
+		{
+			if(m_gray) {
+				base[chRed] = 0;
+				base[chGreen] = 0;
+				base[chBlue] = 0;
+				base[chAlpha] = 0;
+			} else {
+				base[chRed] = 0;
+				base[chGreen] = 0;
+				base[chBlue] = 0;
+				base[chAlpha] = 0; // alpha null for anything without depth value
+			}
+		} else { // don't need to map out-of-bounds value...
+			
+			int pval;
+			if (m_mode)
+			{
+				//pval = t_gamma[value/4];
+				// t_mult = 1530.0 / m_hi_thresh; // do it when changed
+				//pval = value / 6; // linear mapping
+				pval = (int)(((float)value-m_lo_thresh) * t_mult); // linear mapping
+				
+			} else {
+				pval = t_gamma[value];
+			}						
+			int lb = pval & 0xff;
+
+			//base[chAlpha] = 255; // default alpha value
+			
+	
+			int nColorID = base[chBlue]; // get user id from blue channel
+			
+			if (nColorID > 0) // if user id present display color
+			{
+				base[chRed] = Colors[nColorID][0];
+				base[chGreen] = Colors[nColorID][1];
+				base[chBlue] = Colors[nColorID][2];
+				//base[chAlpha] = 255; // don't overwrite alpha!
+			} else {
+				if(m_gray) {
+					pval = (int)((float)pval/8.0);
+					if(pval < 0) pval = 0;
+					else if(pval > 255) pval = 255;
+					pval = 255 -pval;
+					base[chRed] = base[chGreen] = base[chBlue] = pval;
+					base[chAlpha] = 255;
+				} else {
+					switch (pval>>8) {
+						case 0:
+						base[chRed] = 255;
+						base[chGreen] = (255-lb);
+						base[chBlue] = (255-lb);
+						break;
+						case 1:
+						base[chRed] = 255;
+						base[chGreen] = lb;
+						base[chBlue] = 0;
+						break;
+						case 2:
+						base[chRed] = (255-lb);
+						base[chGreen] = 255;
+						base[chBlue] = 0;
+						break;
+						case 3:
+						base[chRed] = 0;
+						base[chGreen] = 255;
+						base[chBlue] = lb;
+						break;
+						case 4:
+						base[chRed] = 0;
+						base[chGreen] = (255-lb);
+						base[chBlue] = 255;
+						break;
+						case 5:
+						base[chRed] = 0;
+						base[chGreen] = 0;
+						base[chBlue] = (255-lb);
+						break;
+						default:
+						base[chRed] = 0;
+						base[chGreen] = 0;
+						base[chBlue] = 0;
+						// base[chAlpha] = 0; // don't overwrite alpha!
+						break;
+					}
+				}
+			}
+		}
+		base += 4;
+	}
+}
+/////////////////////////////////////////////////////////
+// YUV Depth Image --> Has to be corrected
+//
+/////////////////////////////////////////////////////////
+/*
+void pix_depth2rgba :: processYUVImage(imageStruct &image)
+{
+
+}
+*/
+/////////////////////////////////////////////////////////
+// floatHiThreshMess
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: floatHiThreshMess(float arg)
+{
+    if (arg > 0.0)
+    {
+			m_hi_thresh = arg;
+			// verbose (1, "high threshold set to %f", m_hi_thresh);
+			//t_mult = 1530.0 / m_hi_thresh; //recalc mult.
+			//t_mult = 1530.0 / (m_hi_thresh - m_lo_thresh);
+			UPDATE_MULT;
+
+		}
+}
+
+/////////////////////////////////////////////////////////
+// floatLoThreshMess
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: floatLoThreshMess(float arg)
+{
+    if (arg >= 0)
+    {
+			m_lo_thresh = arg;
+			//post ("low threshold set to %f", m_lo_thresh);
+			// verbose (1, "low threshold set to %f", m_lo_thresh);
+            //t_mult = 1530.0 / (m_hi_thresh - m_lo_thresh);
+            UPDATE_MULT;
+		}
+}
+
+/////////////////////////////////////////////////////////
+// floatActiveMess
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: floatActiveMess(float arg)
+{
+	if (arg < 0.5)
+	{
+		m_active = false;
+	} else {
+		m_active = true;
+	}
+}
+/////////////////////////////////////////////////////////
+// floatModeMess
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: floatModeMess(float arg)
+{
+	if (arg < 0.5)
+	{
+		m_mode = false;
+	} else {
+		m_mode = true;
+	}
+}
+/////////////////////////////////////////////////////////
+// floatGrayMess
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: floatGrayMess(float arg)
+{
+	if (arg < 0.5)
+	{
+		m_gray = false;
+	} else {
+		m_gray = true;
+	}
+}
+
+/////////////////////////////////////////////////////////
+// static member function
+//
+/////////////////////////////////////////////////////////
+void pix_depth2rgba :: obj_setupCallback(t_class *classPtr)
+{
+	class_addfloat(classPtr, reinterpret_cast<t_method>(&pix_depth2rgba::floatActiveMessCallback));
+	class_addmethod(classPtr, reinterpret_cast<t_method>(&pix_depth2rgba::floatLoThreshMessCallback),
+		gensym("lo_thresh"), A_FLOAT, A_NULL);
+	class_addmethod(classPtr, reinterpret_cast<t_method>(&pix_depth2rgba::floatHiThreshMessCallback),
+		gensym("hi_thresh"), A_FLOAT, A_NULL);
+	class_addmethod(classPtr, reinterpret_cast<t_method>(&pix_depth2rgba::floatModeMessCallback),
+		gensym("mode"), A_FLOAT, A_NULL);
+	class_addmethod(classPtr, reinterpret_cast<t_method>(&pix_depth2rgba::floatGrayMessCallback),
+		gensym("gray"), A_FLOAT, A_NULL);
+}
+void pix_depth2rgba :: floatLoThreshMessCallback(void *data, t_floatarg arg)
+{
+    GetMyClass(data)->floatLoThreshMess((float)arg);
+}
+void pix_depth2rgba :: floatHiThreshMessCallback(void *data, t_floatarg arg)
+{
+    GetMyClass(data)->floatHiThreshMess((float)arg);
+}
+void pix_depth2rgba :: floatActiveMessCallback(void *data, t_floatarg arg)
+{
+    GetMyClass(data)->floatActiveMess((float)arg);
+}
+void pix_depth2rgba :: floatModeMessCallback(void *data, t_floatarg arg)
+{
+    GetMyClass(data)->floatModeMess((float)arg);
+}
+void pix_depth2rgba :: floatGrayMessCallback(void *data, t_floatarg arg)
+{
+    GetMyClass(data)->floatGrayMess((float)arg);
+}
+

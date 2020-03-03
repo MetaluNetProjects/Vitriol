@@ -1,0 +1,3 @@
+#N canvas 298 658 450 300 12;
+#X obj 69 48 2ctl-common \$1 \$2;
+#X obj 68 118 apf \$1-MASTER-\$3 \$2 \$1-control-\$2;

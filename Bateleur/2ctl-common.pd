@@ -1,0 +1,6 @@
+#N canvas 173 656 450 300 12;
+#X obj 144 75 list prepend \$2;
+#X obj 144 99 s toCONTROL;
+#X obj 144 51 r \$1-control-\$2-snd;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;

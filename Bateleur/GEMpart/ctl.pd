@@ -1,0 +1,9 @@
+#N canvas 1 81 450 300 12;
+#X obj 96 145 outlet;
+#X obj 96 48 r CONTROL;
+#X obj 112 106 s \$1-control-\$2;
+#X obj 230 221 print;
+#X obj 96 72 route \$2;
+#X connect 1 0 4 0;
+#X connect 4 0 0 0;
+#X connect 4 0 2 0;

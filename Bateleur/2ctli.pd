@@ -1,0 +1,3 @@
+#N canvas 577 595 450 300 12;
+#X obj 69 49 2ctl-common \$1 \$2;
+#X obj 69 120 api \$1-MASTER-\$3 \$2 \$1-control-\$2;

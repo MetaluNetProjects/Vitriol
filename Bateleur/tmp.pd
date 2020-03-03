@@ -1,0 +1,62 @@
+#N canvas 1 81 653 339 10;
+#X obj 45 33 hsl 128 15 0 1 0 0 \$0-control-noise empty noise -2 -8
+0 10 -262144 -1 -1 0 1;
+#X obj 47 81 hsl 128 15 0 1 0 0 \$0-control-mix_retard empty mix_retard
+-2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 47 124 hsl 128 15 0 1 0 0 \$0-control-mix_chocs empty mix_chocs(zebre)
+-2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 49 168 hsl 128 15 0 1 0 0 \$0-control-formant empty formant
+-2 -8 0 10 -257985 -1 -1 0 1;
+#X obj 214 29 tgl 15 0 \$0-control-freeze empty freeze 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 50 205 hsl 128 15 0 1 0 0 \$0-control-delai empty delai -2 -8
+0 10 -257985 -1 -1 0 1;
+#X obj 47 240 tgl 15 0 \$0-control-sampleur empty sampleur 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 119 240 hsl 80 15 0 1 0 0 \$0-control-sample_threshold empty
+threshold -2 -8 0 10 -260097 -1 -1 0 1;
+#X obj 208 203 tgl 50 0 empty \$0-control-sample_detect detect 17 7
+0 10 -260097 -1 -1 0 1;
+#X obj 203 268 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-control-sample_last
+last 0 -8 0 10 -260097 -1 -1 0 256;
+#X obj 190 125 hsl 80 15 0 1 0 0 \$0-control-choc_sens empty sens -2
+-8 0 10 -4032 -1 -1 0 1;
+#X obj 276 124 bng 15 250 50 0 \$0-choc \$0-choc empty 17 7 0 10 -262144
+-1 -1;
+#X obj 355 34 hsl 128 15 0 1 0 0 \$0-control-lum empty lum -2 -8 0
+10 -261682 -1 -1 0 1;
+#X obj 356 66 hsl 128 15 0 1 0 0 \$0-control-contrast empty contrast
+-2 -8 0 10 -1 -262144 -1 0 1;
+#X obj 356 97 hsl 128 15 0 1 0 0 \$0-control-sat empty sat -2 -8 0
+10 -4034 -1 -1 0 1;
+#X obj 499 155 tgl 15 0 \$0-control-tigre empty tigre 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 352 194 tgl 15 0 \$0-control-solar empty solar 17 7 0 10 -262144
+-1 -1 0 1;
+#N canvas 161 215 777 481 notes_samedi 0;
+#X text 76 104 charger des samples preenregistrés;
+#X text 75 121 classer des samples préenregistrés de gauche à doite:
+exemple de - en - harmoniques, f 84;
+#X text 18 84 sampleur: spatialisation \; timestretch;
+#X text 76 141 (jouer un son preerngistré en pitch droite-gauche /
+polyphonique), f 84;
+#X text 77 157 bruit blanc filtré gauche-droite (formant?) \, enveloppe
+haut-bas - polyphonique, f 79;
+#X restore 398 271 pd notes_samedi;
+#N canvas 1 81 598 261 conduite 0;
+#X text 116 33 rien;
+#X text 114 66 alto: retard video;
+#X text 111 92 saladier blam: négatif couleur;
+#X text 108 117 saladier roule: effets son - enleve video fx - ajout
+freeze;
+#X restore 390 244 pd conduite;
+#X obj 354 135 hsl 128 15 0 1 0 0 \$0-control-mask empty mask -2 -8
+0 10 -228856 -1 -1 0 1;
+#X obj 499 134 hsl 128 15 0 1 0 0 \$0-control-maskbg empty mask-background
+-2 -8 0 10 -228856 -1 -1 0 1;
+#X obj 354 165 hsl 128 15 0 1 0 0 \$0-control-solar empty solar -2
+-8 0 10 -128992 -1 -1 0 1;
+#X obj 354 195 hsl 128 15 0 1 0 0 \$0-control-poster empty poster -2
+-8 0 10 -159808 -1 -1 0 1;
+#X obj 209 78 tgl 15 0 \$0-control-fb empty feedback 17 7 0 10 -262144
+-1 -1 0 1;
