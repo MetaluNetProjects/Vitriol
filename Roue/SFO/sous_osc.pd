@@ -1,0 +1,11 @@
+#N canvas 117 444 730 534 10;
+#X obj 104 185 change;
+#X obj 104 106 inlet;
+#X obj 104 294 send \$1_OSC_x;
+#X obj 277 172 change;
+#X obj 277 106 inlet;
+#X obj 277 294 send \$1_OSC_y;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;

@@ -1,0 +1,11 @@
+#N canvas 329 50 495 630 10;
+#X obj 51 71 catch~ canal_\$1;
+#X obj 280 71 r mutemaster;
+#X obj 176 72 r volmaster;
+#X obj 105 137 SFO_volume;
+#X obj 52 333 dac~ \$1;
+#X connect 0 0 3 0;
+#X connect 1 0 3 2;
+#X connect 2 0 3 1;
+#X connect 3 0 4 0;
+#X coords 0 -1 1 1 85 200 1 100 100;

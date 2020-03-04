@@ -1,0 +1,33 @@
+#N canvas -4 9 959 686 10;
+#X obj 295 373 *~;
+#X obj 105 178 vsl 15 90 -90 0 0 0 empty empty empty 0 -9 0 10 -260097
+-1 -1 8900 1;
+#X obj 313 271 + 100;
+#X obj 313 298 dbtorms;
+#X obj 313 343 line~;
+#X msg 313 320 \$1 50;
+#X obj 127 184 vu 15 80 empty empty -1 -8 0 10 -66577 -1 0 0;
+#X obj 294 413 env~;
+#X obj 294 439 - 97;
+#X obj 112 56 inlet~;
+#X obj 106 276 tgl 15 0 empty empty On 17 7 0 10 -258113 -1 -1 1 1
+;
+#X obj 106 523 *~;
+#X obj 107 562 outlet~;
+#X obj 187 52 inlet;
+#X obj 259 52 inlet;
+#X connect 0 0 7 0;
+#X connect 0 0 11 1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 0 1;
+#X connect 5 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 0 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 13 0 1 0;
+#X connect 14 0 10 0;
+#X coords 0 -1 1 1 50 150 1 100 150;

@@ -1,0 +1,4 @@
+#N canvas 278 211 450 300 12;
+#X obj 48 13 inlet~;
+#X obj 48 37 delwrite~ buffer-\$1;
+#X connect 0 0 1 0;
