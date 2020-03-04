@@ -194,12 +194,12 @@ float hash12(vec2 p, float proba)
 
 void main (void)
 {
-	float sinres = atan(sin(vsinfreq*texcoord0.y + vsinoffset)*(vsinsquare+1.0));
+	float sinres = atan(sin(vsinfreq*(texcoord0.y + vsinoffset))*(vsinsquare+1.0));
 	//float mixval = mixprob;/*hash12(vec2(ivec2((texcoord0.y + mixoffset)*(mixsize+2.0))), mixprob);*/
 	// float mixval = fract(ivec2(texcoord0.y*mixsize));
  
 	vec4 color0 = texture2D(MyTex0, texcoord0 + vec2(vsinamp*sinres, 0));
-	color0.rgb = color0.rgb*(sinres*vsinCamp + 1.0)+(1.0-color0.rgb)*(-sinres*vsinCamp);
+	//color0.rgb = color0.rgb*(sinres*vsinCamp + 1.0)+(1.0-color0.rgb)*(-sinres*vsinCamp);
 	vec4 color1 = texture2D(MyTex1, texcoord1 + vec2(vsinamp*sinres, 0)/*clamp(texcoord1 + offset + vec2(vsinamp*sinres, 0), offsetmin, offsetmax)*/); // delayed
 	//vec4 color1 = texture2D(MyTex1, texcoord1 + offset); 
 	vec4 color2 = texture2D(MyTex2, texcoord2); // profondeur

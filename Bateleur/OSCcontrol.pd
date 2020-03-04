@@ -1,10 +1,10 @@
-#N canvas 30 388 730 494 12;
+#N canvas 21 427 730 535 12;
 #X obj 20 16 hsl 200 30 0 1 0 0 \$0-control-noise-snd \$0-control-noise-rcv
 noise 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 50 hsl 200 30 0 1 0 0 \$0-control-mix_retard-snd \$0-control-mix_retard-rcv
-mix_retard 20 15 0 14 -262144 -1 -1 0 1;
+mix_retard 20 15 0 14 -262144 -1 -1 19900 1;
 #X obj 20 84 hsl 200 30 0 1 0 0 \$0-control-mix_chocs-snd \$0-control-mix_chocs-rcv
-mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 0 1;
+mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 19900 1;
 #X obj 20 118 hsl 200 30 0 1 0 0 \$0-control-formant-snd \$0-control-formant-rcv
 formant 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 229 16 tgl 30 0 \$0-control-freeze-snd \$0-control-freeze-rcv
@@ -12,26 +12,26 @@ freeze 32 15 0 14 -262144 -1 -1 1 1;
 #X obj 20 152 hsl 200 30 0 1 0 0 \$0-control-delai-snd \$0-control-delai-rcv
 delai 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 19 209 tgl 30 0 \$0-control-sampleur-snd \$0-control-sampleur-rcv
-sampleur 32 15 0 14 -262144 -1 -1 0 1;
+sampleur 32 15 0 14 -262144 -1 -1 1 1;
 #X obj 123 210 hsl 80 30 0 1 0 0 \$0-control-sample_threshold-snd \$0-control-sample_threshold-rcv
-threshold 5 15 0 14 -260097 -1 -1 3100 1;
+threshold 5 15 0 14 -260097 -1 -1 0 1;
 #X obj 211 210 tgl 50 0 empty \$0-control-sample_detect detect 5 25
 0 12 -260097 -1 -1 0 1;
 #X obj 264 210 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-control-sample_last
 last 0 -8 0 10 -260097 -1 -1 0 256;
 #X obj 232 85 hsl 80 30 0 1 0 0 \$0-control-choc_sens-snd \$0-control-choc_sens-rcv
-sens 5 15 0 14 -4032 -1 -1 4100 1;
+sens 5 15 0 14 -4032 -1 -1 0 1;
 #X obj 317 85 bng 30 100 50 0 \$0-choc-snd \$0-choc-rcv empty 17 7
 0 10 -262144 -258699 -1;
 #X obj 382 16 hsl 200 30 0 1 0 0 \$0-control-lum-snd \$0-control-lum-rcv
-lum 20 15 0 14 -261682 -1 -1 16200 1;
+lum 20 15 0 14 -261682 -1 -1 15700 1;
 #X obj 382 50 hsl 200 30 0 1 0 0 \$0-control-contrast-snd \$0-control-contrast-rcv
-contrast 20 15 0 14 -1 -262144 -262144 11300 1;
+contrast 20 15 0 14 -1 -262144 -262144 8000 1;
 #X obj 382 83 hsl 200 30 0 1 0 0 \$0-control-sat-snd \$0-control-sat-rcv
 sat 20 15 0 14 -4034 -1 -1 0 1;
 #X obj 379 254 tgl 30 0 \$0-control-tigre-snd \$0-control-tigre-rcv
 tigre 32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 161 215 777 481 notes_samedi 1;
+#N canvas 151 205 777 481 notes_samedi 0;
 #X text 76 111 charger des samples preenregistrés;
 #X text 75 128 classer des samples préenregistrés de gauche à doite:
 exemple de - en - harmoniques, f 84;
@@ -49,7 +49,7 @@ haut-bas - polyphonique, f 79;
 freeze;
 #X restore 604 43 pd conduite;
 #X obj 382 117 hsl 200 30 0 1 0 0 \$0-control-mask-snd \$0-control-mask-rcv
-mask 20 15 0 14 -228856 -1 -1 19900 1;
+mask 20 15 0 14 -228856 -1 -1 0 1;
 #X obj 382 151 hsl 200 30 0 1 0 0 \$0-control-maskbg-snd \$0-control-maskbg-rcv
 mask-background 20 15 0 14 -128992 -1 -1 0 1;
 #X obj 382 185 hsl 200 30 0 1 0 0 \$0-control-solar-snd \$0-control-solar-rcv
@@ -57,8 +57,8 @@ solar 20 15 0 14 -203904 -1 -1 0 1;
 #X obj 382 219 hsl 200 30 0 1 0 0 \$0-control-poster-snd \$0-control-poster-rcv
 poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 229 51 tgl 30 0 \$0-control-fb-snd \$0-control-fb-rcv feedback
-32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 246 148 1033 704 guts 1;
+32 15 0 14 -262144 -1 -1 1 1;
+#N canvas 387 109 1055 671 guts 0;
 #X obj 20 133 netsend -u -b;
 #X obj 46 80 loadbang;
 #X msg 46 104 connect chose.local 7654;
@@ -126,7 +126,6 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 471 249 2ctli \$0 sampleur_bank A;
 #X obj 697 254 s toCONTROL;
 #X msg 697 230 list choc 0.5 0.5;
-#X obj 249 14 2ctl \$0 freeze Z;
 #X obj 470 12 2ctl \$0 audiomaster Z;
 #X obj 697 206 r \$0-choc-snd;
 #X obj 661 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -143,6 +142,73 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 782 74 route sample detect;
 #X obj 847 100 s \$0-control-sample_detect;
 #X obj 817 125 s \$0-control-sample_last;
+#X obj 470 270 2ctli \$0 sampleur_single A;
+#N canvas 1 81 612 280 MIDI 0;
+#X floatatom 201 87 0 0 0 0 - - -;
+#X obj 182 38 notein;
+#X floatatom 182 110 0 0 0 0 - - -;
+#X floatatom 221 64 0 0 0 0 - - -;
+#X text 231 88 velocity;
+#X text 250 66 channel;
+#X floatatom 44 85 0 0 0 0 - - -;
+#X floatatom 28 107 0 0 0 0 - - -;
+#X floatatom 60 62 0 0 0 0 - - -;
+#X obj 28 37 ctlin;
+#X text 59 108 value;
+#X text 91 63 channel;
+#X text 75 85 controller #;
+#X text 212 110 note;
+#X obj 28 135 pack f f f;
+#X obj 182 136 pack f f f;
+#X msg 28 159 ctl \$3 \$2 \$1;
+#X msg 182 160 note \$3 \$1 \$2;
+#X obj 182 218 s MIDIIN;
+#X obj 314 35 r MIDIIN;
+#X obj 314 59 route note;
+#X obj 314 83 unpack f f f;
+#X obj 395 109 != 0;
+#X obj 314 135 pack f f f, f 12;
+#X obj 445 36 r MIDIIN;
+#X obj 445 84 unpack f f f;
+#X obj 445 61 route notetmp;
+#X obj 445 114 pack f f;
+#X obj 445 138 spigot, f 12;
+#X msg 314 161 notetmp \$1 \$2 \$3;
+#X msg 445 162 notetrig \$1 \$2 bang;
+#X connect 0 0 15 1;
+#X connect 1 0 2 0;
+#X connect 1 1 0 0;
+#X connect 1 2 3 0;
+#X connect 2 0 15 0;
+#X connect 3 0 15 2;
+#X connect 6 0 14 1;
+#X connect 7 0 14 0;
+#X connect 8 0 14 2;
+#X connect 9 0 7 0;
+#X connect 9 1 6 0;
+#X connect 9 2 8 0;
+#X connect 14 0 16 0;
+#X connect 15 0 17 0;
+#X connect 16 0 18 0;
+#X connect 17 0 18 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 23 0;
+#X connect 21 1 23 1;
+#X connect 21 2 22 0;
+#X connect 22 0 23 2;
+#X connect 23 0 29 0;
+#X connect 24 0 26 0;
+#X connect 25 0 27 0;
+#X connect 25 1 27 1;
+#X connect 25 2 28 1;
+#X connect 26 0 25 0;
+#X connect 27 0 28 0;
+#X connect 28 0 30 0;
+#X connect 29 0 18 0;
+#X connect 30 0 18 0;
+#X restore 708 539 pd MIDI;
+#X obj 249 14 2ctl \$0 freeze Z notetrig 1 20;
 #X connect 1 0 2 0;
 #X connect 2 0 0 0;
 #X connect 3 0 4 0;
@@ -183,28 +249,74 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X connect 58 0 59 0;
 #X connect 59 0 60 0;
 #X connect 63 0 62 0;
-#X connect 66 0 63 0;
-#X connect 68 0 75 0;
-#X connect 70 0 72 0;
-#X connect 70 0 74 0;
-#X connect 71 0 70 0;
-#X connect 72 0 69 0;
-#X connect 73 0 69 0;
-#X connect 74 0 73 0;
-#X connect 75 0 67 0;
-#X connect 75 0 70 0;
+#X connect 65 0 63 0;
+#X connect 67 0 74 0;
+#X connect 69 0 71 0;
+#X connect 69 0 73 0;
+#X connect 70 0 69 0;
+#X connect 71 0 68 0;
+#X connect 72 0 68 0;
+#X connect 73 0 72 0;
+#X connect 74 0 66 0;
+#X connect 74 0 69 0;
+#X connect 74 1 75 0;
+#X connect 75 0 77 0;
 #X connect 75 1 76 0;
-#X connect 76 0 78 0;
-#X connect 76 1 77 0;
 #X restore 606 17 pd guts;
 #X obj 22 412 MORPHgroup \$0-MASTER A;
 #X obj 21 364 hradio 30 1 0 16 \$0-pattern-snd \$0-pattern-rcv empty
 0 -8 0 10 -262144 -1 -1 0;
 #X obj 24 329 hsl 200 30 0 1 0 0 \$0-fade_time-snd \$0-fade_time-rcv
-fade_time:0.9_s 20 15 0 14 -262144 -1 -1 1800 1;
+fade_time:0.9_s 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 291 hradio 30 1 0 7 \$0-control-sampleur_bank-snd \$0-control-sampleur_bank-rcv
 noise 0 -8 0 14 -99865 -258113 -1 2;
 #X obj 314 431 bng 30 250 50 0 \$0-savepatterns-snd \$0-savepatterns-rcv
 SAVE 32 15 0 14 -258113 -1 -1;
 #X obj 447 305 hsl 200 30 0 1 0 0 \$0-control-audiomaster-snd \$0-control-audiomaster-rcv
-audiomaster 20 15 0 14 -258113 -1 -1 6800 1;
+audiomaster 20 15 0 14 -258113 -1 -1 15900 1;
+#X obj 236 291 tgl 30 0 \$0-control-sampleur_single-snd \$0-control-sampleur_single-rcv
+single 32 15 0 14 -99865 -1 -1 0 1;
+#X obj 525 390 gcanvas 180 80;
+#N canvas 769 129 450 300 choc 0;
+#X obj 59 29 inlet;
+#X obj 141 28 inlet;
+#X obj 244 25 inlet;
+#X obj 41 75 f;
+#X obj 41 99 pack f f;
+#X obj 243 49 b;
+#X obj 41 247 s toCONTROL;
+#X obj 263 245 outlet;
+#X obj 260 155 loadbang;
+#X msg 263 198 size 180 80;
+#X msg 271 223 color grey 0;
+#X obj 41 123 unpack f f;
+#X obj 41 195 pack f f, f 10;
+#X msg 41 223 list choc \$1 \$2;
+#X obj 108 146 / -40;
+#X obj 108 170 + 1;
+#X obj 41 147 / 90;
+#X obj 41 171 - 1;
+#X floatatom -1 204 5 0 0 0 - - -;
+#X connect 0 0 3 1;
+#X connect 1 0 4 1;
+#X connect 2 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 11 0;
+#X connect 5 0 3 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X connect 11 0 16 0;
+#X connect 11 1 14 0;
+#X connect 12 0 13 0;
+#X connect 13 0 6 0;
+#X connect 14 0 15 0;
+#X connect 15 0 12 1;
+#X connect 16 0 17 0;
+#X connect 17 0 12 0;
+#X connect 17 0 18 0;
+#X restore 525 479 pd choc;
+#X f 25;
+#X connect 31 0 32 0;
+#X connect 31 1 32 1;
+#X connect 31 2 32 2;
+#X connect 32 0 31 0;

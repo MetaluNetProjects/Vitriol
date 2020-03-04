@@ -1,0 +1,2 @@
+for i in 0 1 2 3 4 5 6 7 ; do sox bank1/$i.wav --norm=-3 -c 1 bank1-norm/$i.wav ; done
+
