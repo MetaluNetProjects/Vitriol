@@ -1,0 +1,10 @@
+#N canvas 415 199 450 300 12;
+#X obj 165 188 r \$1-\$2-snd;
+#X obj 165 212 list prepend \$2;
+#X obj 165 236 s vox_ctl-\$1;
+#X obj 102 117 tgl 15 0 \$1-\$2-snd \$1-\$2-rcv empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 70 264 api \$1-presets \$2 \$1-\$2 \$3;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 100 35 1 100 100;

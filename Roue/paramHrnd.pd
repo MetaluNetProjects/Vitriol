@@ -1,0 +1,18 @@
+#N canvas 405 189 450 353 12;
+#X obj 106 118 hsl 128 15 0 1 0 0 \$1-\$2-snd \$1-\$2-rcv empty 10
+8 0 12 -262144 -1 -1 3200 1;
+#X obj 105 174 r \$1-\$2-snd;
+#X obj 105 198 list prepend \$2;
+#X obj 105 222 s vox_ctl-\$1;
+#X obj 242 118 hsl 60 15 0 1 0 0 \$1-\$2-rnd-snd \$1-\$2-rnd-rcv random
+10 8 0 12 -257985 -1 -1 1200 1;
+#X obj 232 222 s vox_ctl-\$1;
+#X obj 232 174 r \$1-\$2-rnd-snd;
+#X obj 232 198 list prepend \$2-rnd;
+#X obj 104 288 apf \$1-presets \$2-rnd \$1-\$2-rnd \$3;
+#X obj 105 263 apf \$1-presets \$2 \$1-\$2 \$3;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X coords 0 -1 1 1 210 35 1 100 100;
