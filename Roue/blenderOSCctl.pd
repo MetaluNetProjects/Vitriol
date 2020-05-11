@@ -1,0 +1,60 @@
+#N canvas 158 214 708 460 10;
+#X obj 48 71 netsend -u -b;
+#X msg 65 41 connect localhost 10000;
+#X obj 48 100 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 45 152 oscformat oscControl slider2Dx;
+#N canvas 914 279 288 185 GUI 1;
+#X obj 46 31 hsl 128 15 0 16 0 0 \$0-x-snd \$0-x-rcv x 135 8 0 10 -262144
+-1 -1 9600 1;
+#X obj 46 49 hsl 128 15 0 30 0 0 \$0-y-snd \$0-y-rcv y 135 8 0 10 -262144
+-1 -1 3700 1;
+#X obj 46 74 hsl 128 15 0 30 0 0 \$0-attract-snd \$0-attract-rcv attract
+135 8 0 10 -262144 -1 -1 2300 1;
+#X obj 46 94 hsl 128 15 0 100 0 0 \$0-perturbation-snd \$0-perturbation-rcv
+perturbation 135 8 0 10 -262144 -1 -1 4600 1;
+#X obj 46 113 hsl 128 15 0 20 0 0 \$0-perturbation2-snd \$0-perturbation2-rcv
+perturbation2 135 8 0 10 -262144 -1 -1 1900 1;
+#X obj 46 135 tgl 15 0 \$0-t1-snd \$0-t1-rcv t1 17 7 0 10 -262144 -1
+-1 0 1;
+#X obj 89 134 tgl 15 0 \$0-t2-snd \$0-t2-rcv t2 17 7 0 10 -262144 -1
+-1 1 1;
+#X restore 224 40 pd GUI;
+#X obj 45 130 r \$0-x-snd;
+#X obj 45 193 r \$0-y-snd;
+#X obj 45 215 oscformat oscControl slider2Dy;
+#X obj 48 19 r toBlender;
+#X obj 45 235 s toBlender;
+#X obj 45 173 s toBlender;
+#X obj 44 363 s toBlender;
+#X obj 44 301 s toBlender;
+#X obj 44 258 r \$0-attract-snd;
+#X obj 44 280 oscformat oscControl slider1;
+#X obj 44 343 oscformat oscControl slider2;
+#X obj 44 321 r \$0-perturbation-snd;
+#X obj 41 427 s toBlender;
+#X obj 41 385 r \$0-perturbation2-snd;
+#X obj 41 407 oscformat oscControl slider3;
+#X obj 243 170 s toBlender;
+#X obj 243 149 oscformat oscControl toggle1;
+#X obj 243 127 r \$0-t1-snd;
+#X obj 243 234 s toBlender;
+#X obj 243 191 r \$0-t2-snd;
+#X obj 243 213 oscformat oscControl toggle2;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 10 0;
+#X connect 5 0 3 0;
+#X connect 6 0 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 0 0;
+#X connect 13 0 14 0;
+#X connect 14 0 12 0;
+#X connect 15 0 11 0;
+#X connect 16 0 15 0;
+#X connect 18 0 19 0;
+#X connect 19 0 17 0;
+#X connect 21 0 20 0;
+#X connect 22 0 21 0;
+#X connect 24 0 25 0;
+#X connect 25 0 23 0;
