@@ -1,0 +1,42 @@
+#N canvas 188 165 1176 602 10;
+#X obj 100 121 cnv 15 200 200 empty empty empty 20 12 0 14 -228856
+-66577 0;
+#X obj 175 200 bng 10 250 50 0 \$0-b1-snd \$0-b1-rcv empty 17 7 0 10
+-258113 -1 -1;
+#X obj 290 142 bng 10 250 50 0 \$0-b2-snd \$0-b2-rcv empty 17 7 0 10
+-4034 -1 -1;
+#X obj 143 200 bng 10 250 50 0 \$0-b0-snd \$0-b0-rcv empty 17 7 0 10
+-257985 -1 -1;
+#X obj 290 248 bng 10 250 50 0 \$0-b3-snd \$0-b3-rcv empty 17 7 0 10
+-4032 -1 -1;
+#X obj 426 109 r senpoint-\$1;
+#X obj 426 139 unpack f f f;
+#X obj 518 187 clip 0 1;
+#X obj 518 166 / 760;
+#X obj 460 186 clip 0 1;
+#X obj 460 164 / 1023;
+#X msg 427 375 pos \$1 200;
+#X floatatom 414 349 5 0 0 0 - - -;
+#X obj 460 228 + 100;
+#X obj 426 256 pack f f f \$0, f 18;
+#X msg 426 305 \; \$4-b\$1-rcv pos \$2 \$3;
+#X obj 518 229 + 120;
+#X obj 460 207 * 190;
+#X obj 518 208 * 190;
+#X obj 417 411 s \$0-b1-rcv;
+#X connect 5 0 6 0;
+#X connect 6 0 14 0;
+#X connect 6 1 10 0;
+#X connect 6 2 8 0;
+#X connect 7 0 18 0;
+#X connect 8 0 7 0;
+#X connect 9 0 17 0;
+#X connect 10 0 9 0;
+#X connect 11 0 19 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 1;
+#X connect 14 0 15 0;
+#X connect 16 0 14 2;
+#X connect 17 0 13 0;
+#X connect 18 0 16 0;
+#X coords 0 -1 1 1 200 220 1 100 100;
