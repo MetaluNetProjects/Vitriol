@@ -51,6 +51,7 @@ void SEN0158Service(SEN0158 *dev);
 void SEN0158Send(SEN0158 *dev, byte prefix);
 void SEN01585Set(SEN0158 *dev, byte reg, byte value);
 void SEN01585SetDistanceThreshold(unsigned int thres);
+void SEN0158SetupFromFraise(SEN0158 *dev);
 
 
 #endif	/* _SEN0158_H_ */

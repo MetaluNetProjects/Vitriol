@@ -225,7 +225,7 @@ void SEN0158Send(SEN0158 *dev, byte prefix)
 	fraiseSend(buf,len);
 
 	return;
-	len = 0;
+	/*len = 0;
 	buf[len++] = 'B';
 	buf[len++] = prefix + 1;
 	for(i = 0; i < 4; i++) {
@@ -236,11 +236,33 @@ void SEN0158Send(SEN0158 *dev, byte prefix)
 		buf[len++] = dev->inpoints[i].score;
 	}
 	buf[len++] = '\n';
-	fraiseSend(buf,len);
+	fraiseSend(buf,len);*/
 }
 
 void SEN01585SetDistanceThreshold(unsigned int thres)
 {
 	distance_threshold = thres;
 }
+
+void SEN0158SetupFromFraise(SEN0158 *dev)
+{
+	//SEN0158 TURN ON
+	writeTo(dev->address, 0x30, 0x01); delay(10);
+	writeTo(dev->address, 0x30, 0x08); delay(10);
+	
+	writeTo(dev->address, 0x00, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x01, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x02, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x03, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x04, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x05, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x06, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x07, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x08, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x1A, fraiseGetChar()); delay(10);
+	writeTo(dev->address, 0x1B, fraiseGetChar()); delay(10);
+	
+	writeTo(dev->address, 0x33, 0x33); delay(10);
+}
+
 

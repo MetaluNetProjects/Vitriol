@@ -67,5 +67,7 @@ void fraiseReceive()
 	byte c = fraiseGetChar();
 	if(c == 100) {
 		SEN01585SetDistanceThreshold(fraiseGetInt());
-	}
+	} else if(c == 101) {
+		SEN0158SetupFromFraise(&cam1);
+	} 
 }
