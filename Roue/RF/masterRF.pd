@@ -1,27 +1,27 @@
-#N canvas 1629 703 368 313 10;
+#N canvas 581 159 344 302 10;
 #X declare -path Fraise -stdpath Fraise;
 #X obj 21 38 pied/pied 0 41424;
 #X obj 21 16 declare -path Fraise -stdpath Fraise;
 #X obj 19 141 fruit/fruit 1 masterRF 10 masterRF;
-#N canvas 1079 105 1154 625 tests-master 1;
-#X msg 126 51 L\$1;
-#X obj 126 28 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 1
+#N canvas 201 133 1154 600 master 0;
+#X msg 145 60 L\$1;
+#X obj 145 37 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
 1;
 #X floatatom 33 302 5 0 0 3 radioOK - -;
-#X obj 33 339 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 12 356 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 106 194 spigot;
-#X obj 139 176 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 139 176 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 33 279 unpack f f;
 #X floatatom 90 300 5 0 0 3 available - -;
-#X text 158 40 reset radio;
+#X text 191 42 reset radio;
 #X obj 32 93 fruit/send2 masterRF;
 #X obj 33 125 fruit/receive masterRF;
 #X obj 106 224 print masterRF Rcvd;
 #X obj 72 253 print masterRF_radio;
 #X obj 33 146 route R r, f 25;
-#X obj 316 24 route 30;
+#X obj 316 23 route 30;
 #X floatatom 314 206 8 0 0 0 - - -;
 #X obj 316 145 +, f 10;
 #X obj 276 231 t b b;
@@ -84,24 +84,24 @@
 #X obj 199 351 mavg 5;
 #X msg 484 449 3.84V@2020_6_1::19h_6mn;
 #X obj 314 188 spigot;
-#X obj 350 171 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 350 171 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 852 179 +, f 10;
-#X obj 852 139 unpack f f;
-#X obj 852 159 * 256;
-#X obj 852 220 * 4.096;
-#X floatatom 852 244 7 0 0 1 V(batt) - -;
-#X obj 852 199 / 32768;
-#X floatatom 812 201 5 0 0 0 - - -;
+#X obj 852 145 +, f 10;
+#X obj 852 105 unpack f f;
+#X obj 852 125 * 256;
+#X obj 852 186 * 4.096;
+#X floatatom 852 210 7 0 0 1 V(batt) - -;
+#X obj 852 165 / 32768;
+#X floatatom 812 167 5 0 0 0 - - -;
 #X msg 484 471 3.80788V@2020_6_1::19h_34mn;
 #X text 663 471 -0.052 en 38mn -> -0.6 en 7h20;
-#X obj 850 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 850 231 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 483 505 3.804V@2020_6_2::12h_9mn;
 #X msg 484 525 3.71988V@2020_6_2::13h_35mn;
 #X text 662 525 -0.14 en 124mn -> -0.6 en 8h50mn;
-#X obj 701 85 route 2;
-#X obj 701 118 route 2 0, f 51;
+#X obj 752 19 route 2;
+#X obj 701 84 route 2 0, f 51;
 #N canvas 1 81 415 249 axl 0;
 #X obj 64 41 inlet;
 #X obj 64 62 unpack f f f f f f, f 33;
@@ -120,6 +120,7 @@
 #X obj 85 159 - 65536;
 #X obj 163 159 - 65536;
 #X obj 241 158 - 65536;
+#X floatatom 23 162 5 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 1 1 2 1;
@@ -192,18 +193,18 @@
 #X obj 169 524 change;
 #X obj 208 524 change;
 #X msg 248 470 set -1;
-#X msg 157 55 R;
-#X msg 49 45 O\$1;
-#X obj 50 23 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
-;
-#X msg 13 41 C;
+#X msg 190 57 R;
+#X msg 267 51 O\$1;
+#X obj 268 29 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 116 72 C;
 #X obj 97 9 metro 150;
 #X obj 74 10 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
-#N canvas 527 516 1303 534 tests 1;
+#N canvas 62 209 1303 534 tests 0;
 #X obj 52 199 outlet;
 #X msg 52 71 P\$1;
-#X obj 56 43 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 56 43 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 116 173 r\$1;
 #X msg 84 116 0;
@@ -222,9 +223,9 @@
 #X text 913 311 O=0 \, oui;
 #X msg 301 287 15 63 2 3 95 76 7 66 0 0 231 16 195 196 197 198 231
 0 32 0 0 0 0 16 0 0 0 0 63, f 94;
-#X msg 297 168 14 63 3 3 95 76 7 14 0 0 231 16 195 196 197 198 231
+#X msg 297 179 14 63 3 3 95 76 7 14 0 0 231 16 195 196 197 198 231
 0 32 0 0 0 0 17 0 0 0 0 63, f 83;
-#X msg 296 191 14 63 19 3 95 76 215 14 0 0 150 16 35 228 255 231 175
+#X msg 296 202 14 63 19 3 95 76 215 14 0 0 150 16 35 228 255 231 175
 0 32 41 34 24 36 17 0 0 0 0 63, f 83;
 #X msg 300 269 15 63 2 3 95 76 87 14 0 0 231 16 203 142 255 103 231
 17 32 15 34 26 0 17 0 0 0 0 63, f 83;
@@ -233,8 +234,8 @@
 #X text 859 445 O=1 \, oui!;
 #X msg 251 448 15 63 2 3 95 76 7 66 0 0 231 16 195 196 197 198 231
 0 32 0 0 0 0 16 0 0 0 0 63, f 94;
-#X msg 297 125 15 63 50 3 95 76 6 14 0 0 150 16 35 228 255 103 175
-0 32 43 34 26 38 17 0 0 0 0 63, f 83;
+#X msg 297 125 15 0 2 3 95 76 6 14 0 0 2 0 195 196 197 198 2 32 32
+0 0 0 0 17 0 0 0 0 63, f 85;
 #X obj 281 134 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 230 372 15 63 2 3 95 76 6 66 0 0 226 16 195 196 101 70 103 16
@@ -258,10 +259,10 @@
 #X obj 818 110 list prepend set;
 #X obj 818 131 list trim;
 #X obj 818 64 list split 5, f 38;
-#X msg 818 152 150 229 231 123 247, f 20;
+#X msg 818 152 2 10 153 152 151, f 20;
 #X obj 952 110 list prepend set;
 #X obj 952 131 list trim;
-#X msg 952 152 16 10 153 152 151, f 21;
+#X msg 952 152 0 10 153 152 151, f 21;
 #X obj 952 87 list split 5;
 #X msg 252 475 15 63 2 3 95 76 6 66 0 0 231 16 195 196 197 198 231
 0 32 0 0 0 0 16 0 0 0 0 63, f 83;
@@ -271,13 +272,13 @@
 #X msg 955 174 194 194 194 194 194, f 21;
 #X obj 1097 110 list prepend set;
 #X obj 1097 131 list trim;
-#X msg 1097 152 35 228 255 103;
+#X msg 1097 152 195 196 197 198;
 #X msg 1101 175 195 196 197 198;
 #X msg 251 493 15 63 2 3 95 76 6 14 0 1 231 16 195 196 197 198 231
 0 32 0 0 0 0 17 0 0 0 0 0, f 83;
 #X msg 196 171 5;
 #X text 194 155 flush;
-#X msg 297 143 11 63 2 3 3 2 15 14 0 0 231 16 195 196 197 198 231 0
+#X msg 297 154 11 63 2 3 3 2 15 14 0 0 231 16 195 196 197 198 231 0
 32 0 0 0 0 17 0 0 0 0 63, f 83;
 #X msg 250 515 15 63 50 3 95 76 6 14 0 0 150 16 35 228 255 103 175
 0 32 43 34 26 38 17 0 0 0 0 63, f 83;
@@ -316,13 +317,76 @@
 #X connect 54 0 55 0;
 #X connect 55 0 56 0;
 #X connect 59 0 3 0;
-#X restore 167 79 pd tests;
-#X obj 316 52 route 1 1, f 129;
-#X obj 233 152 print mRF30;
-#X obj 394 22 print mRF;
+#X restore 180 87 pd tests;
+#X obj 394 21 print mRF;
+#X msg 8 35 c 1 c \$1;
+#X msg 8 13 66;
+#X msg 37 13 11;
+#X obj 316 52 route 1 2, f 129;
+#X msg 187 10 20;
+#X msg 47 70 c 2 c \$1;
+#X msg 67 46 0;
+#X msg 97 46 2;
+#X obj 690 177 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 730 256 t b b;
+#X obj 730 277 timer;
+#X floatatom 730 320 5 0 0 0 - - -;
+#X obj 729 299 mavg 5;
+#X msg 216 8 80;
+#X msg 244 8 150;
+#X floatatom 204 30 5 0 0 0 - - -;
+#X obj 1002 215 t b b;
+#X obj 1002 236 timer;
+#X floatatom 1002 263 5 0 0 0 - - -;
+#X obj 597 161 timer;
+#X floatatom 597 188 7 0 0 0 - - -;
+#X obj 593 140 b;
+#X obj 622 139 b;
+#X msg 262 111 p\$1;
+#X obj 262 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 125 45 5;
+#X obj 219 165 print mRF30Cam;
+#X obj 228 147 spigot;
+#X obj 264 130 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 237 204 s camData;
+#X obj 354 431 t b b;
+#X obj 354 452 timer;
+#X floatatom 354 495 5 0 0 0 - - -;
+#X obj 353 474 mavg 5;
+#X obj 610 233 s camBatt;
+#X obj 894 247 s axlBatt;
+#X obj 1001 341 pack f f;
+#X obj 1001 389 s axlData;
+#N canvas 1 81 450 300 smooth 0;
+#X obj 166 14 inlet;
+#X obj 166 138 outlet;
+#X obj 166 35 unpack f f, f 13;
+#X obj 166 77 +;
+#X floatatom 72 100 5 0 0 0 - - -;
+#X obj 166 56 * 0.2;
+#X obj 196 77 * 0.8;
+#X obj 241 77 +;
+#X obj 241 56 * 0.2;
+#X obj 271 77 * 0.8;
+#X obj 166 98 pack f f, f 13;
+#X connect 0 0 2 0;
+#X connect 2 0 5 0;
+#X connect 2 1 8 0;
+#X connect 3 0 6 0;
+#X connect 3 0 10 0;
+#X connect 5 0 3 0;
+#X connect 6 0 3 1;
+#X connect 7 0 9 0;
+#X connect 7 0 10 1;
+#X connect 8 0 7 0;
+#X connect 9 0 7 1;
+#X connect 10 0 1 0;
+#X restore 1001 365 pd smooth;
 #X connect 0 0 9 1;
 #X connect 1 0 0 0;
-#X connect 2 0 3 0;
 #X connect 3 0 125 0;
 #X connect 4 0 11 0;
 #X connect 5 0 4 1;
@@ -332,9 +396,8 @@
 #X connect 13 0 120 0;
 #X connect 13 1 4 0;
 #X connect 13 2 14 0;
-#X connect 14 0 143 0;
-#X connect 14 0 144 0;
-#X connect 14 1 145 0;
+#X connect 14 0 147 0;
+#X connect 14 1 143 0;
 #X connect 16 0 20 0;
 #X connect 16 0 17 0;
 #X connect 16 0 73 0;
@@ -358,6 +421,8 @@
 #X connect 31 0 64 0;
 #X connect 33 0 31 0;
 #X connect 34 0 35 0;
+#X connect 34 0 171 0;
+#X connect 34 0 173 0;
 #X connect 34 1 38 0;
 #X connect 35 0 36 0;
 #X connect 35 1 16 1;
@@ -368,6 +433,7 @@
 #X connect 38 1 37 1;
 #X connect 39 0 37 0;
 #X connect 40 0 41 0;
+#X connect 40 0 178 0;
 #X connect 41 0 43 0;
 #X connect 41 0 44 1;
 #X connect 42 0 40 0;
@@ -406,9 +472,11 @@
 #X connect 77 0 75 0;
 #X connect 78 0 79 0;
 #X connect 79 0 84 0;
+#X connect 79 0 160 0;
+#X connect 79 0 179 0;
 #X connect 80 0 78 0;
-#X connect 88 0 89 0;
 #X connect 89 0 90 0;
+#X connect 89 0 152 0;
 #X connect 89 1 76 0;
 #X connect 90 0 96 0;
 #X connect 90 1 104 0;
@@ -419,6 +487,7 @@
 #X connect 95 0 93 0;
 #X connect 95 0 93 1;
 #X connect 96 0 100 0;
+#X connect 96 0 180 0;
 #X connect 97 0 91 0;
 #X connect 98 0 99 0;
 #X connect 99 0 92 0;
@@ -427,6 +496,7 @@
 #X connect 102 0 106 0;
 #X connect 103 0 95 0;
 #X connect 104 0 108 0;
+#X connect 104 0 180 1;
 #X connect 105 0 102 0;
 #X connect 106 0 107 0;
 #X connect 107 0 103 0;
@@ -463,13 +533,48 @@
 #X connect 138 0 137 0;
 #X connect 139 0 9 1;
 #X connect 140 0 1 0;
+#X connect 140 0 146 0;
 #X connect 141 0 140 0;
 #X connect 142 0 9 1;
-#X connect 143 0 34 0;
-#X connect 143 1 88 0;
-#X restore 252 168 pd tests-master;
-#X obj 18 194 fruit/fruit 1 cameraRF 11 cameraRF;
-#N canvas 659 511 388 544 tests-camera 1;
+#X connect 144 0 9 0;
+#X connect 145 0 144 0;
+#X connect 146 0 144 0;
+#X connect 146 0 165 0;
+#X connect 147 0 34 0;
+#X connect 147 0 174 0;
+#X connect 147 1 89 0;
+#X connect 147 1 153 0;
+#X connect 147 1 166 0;
+#X connect 148 0 159 0;
+#X connect 149 0 9 0;
+#X connect 150 0 149 0;
+#X connect 151 0 149 0;
+#X connect 153 0 154 0;
+#X connect 153 1 154 1;
+#X connect 154 0 156 0;
+#X connect 156 0 155 0;
+#X connect 157 0 159 0;
+#X connect 158 0 159 0;
+#X connect 159 0 140 1;
+#X connect 160 0 161 0;
+#X connect 160 1 161 1;
+#X connect 161 0 162 0;
+#X connect 163 0 164 0;
+#X connect 165 0 163 0;
+#X connect 166 0 163 1;
+#X connect 167 0 9 1;
+#X connect 168 0 167 0;
+#X connect 169 0 149 0;
+#X connect 171 0 170 0;
+#X connect 172 0 171 1;
+#X connect 174 0 175 0;
+#X connect 174 1 175 1;
+#X connect 175 0 177 0;
+#X connect 177 0 176 0;
+#X connect 180 0 182 0;
+#X connect 182 0 181 0;
+#X restore 238 161 pd master;
+#N canvas 1 81 1364 662 camera 0;
 #X msg 183 125 L\$1;
 #X obj 183 102 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
 1;
@@ -495,6 +600,184 @@
 #X obj 86 473 t b b;
 #X obj 86 494 timer;
 #X floatatom 86 515 5 0 0 0 - - -;
+#X msg 623 174 L\$1;
+#X obj 623 151 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
+1;
+#X msg 645 233 I0;
+#X obj 613 97 metro 150;
+#X obj 613 70 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 514 509 print;
+#X obj 514 484 spigot;
+#X obj 547 460 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 502 36 Red - VCC+ Yellow - SDA : K7 Green - SCL : K5 Black
+- GND;
+#X obj 708 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 708 536 clip 0 1;
+#X obj 708 515 / 760;
+#X obj 621 519 clip 0 1;
+#X obj 869 616 change;
+#X obj 621 540 * 120;
+#X obj 621 561 + 10;
+#X obj 621 582 mtof;
+#X obj 620 644 moonlib/ssaw~;
+#X obj 621 497 / 1023;
+#X obj 708 598 mtof;
+#X obj 708 556 * 80;
+#X obj 708 577 + 40;
+#X obj 708 640 line~;
+#X obj 621 623 line~;
+#X msg 621 602 \$1 10;
+#X msg 708 619 \$1 10;
+#X obj 620 665 bob~, f 29;
+#X obj 620 713 *~ 0.3;
+#X obj 615 747 dac~;
+#X obj 869 661 line~;
+#X msg 869 640 \$1 10;
+#X obj 620 686 *~, f 42;
+#X obj 621 474 unpack f f f, f 21;
+#X obj 790 637 sig~ 3.5;
+#X obj 255 289 senpoint \$0 0;
+#X obj 255 310 senpoint \$0 1;
+#X obj 255 350 senpoint \$0 3;
+#X obj 255 330 senpoint \$0 2;
+#X obj 571 401 unpack f f f;
+#X floatatom 566 443 5 0 0 0 - - -;
+#X floatatom 604 444 5 0 0 0 - - -;
+#X floatatom 649 444 5 0 0 0 - - -;
+#X obj 806 545 > 128;
+#X msg 511 169 c 100 i \$1;
+#X floatatom 507 139 5 0 5000 0 - - -;
+#X obj 474 90 vsl 15 128 21 2100 1 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 568 422 change;
+#X obj 604 422 change;
+#X obj 648 423 change;
+#X obj 703 407 unpack f f f;
+#X floatatom 698 449 5 0 0 0 - - -;
+#X floatatom 736 450 5 0 0 0 - - -;
+#X floatatom 779 452 5 0 0 0 - - -;
+#X obj 700 428 change;
+#X obj 736 428 change;
+#X obj 780 429 change;
+#X obj 374 287 senpoint \$0-IN 1;
+#X obj 374 266 senpoint \$0-IN 0;
+#X obj 374 307 senpoint \$0-IN 2;
+#X obj 374 327 senpoint \$0-IN 3;
+#X obj 1120 404 route 0 1 2 3, f 29;
+#X obj 1117 451 unpack f f f;
+#X floatatom 1112 493 5 0 0 0 - - -;
+#X floatatom 1150 494 5 0 0 0 - - -;
+#X floatatom 1194 493 5 0 0 0 - - -;
+#X obj 1114 472 change;
+#X obj 1150 472 change;
+#X obj 1194 473 change;
+#X obj 1120 377 r senpoint-\$0-IN;
+#X obj 271 244 route 1 2, f 27;
+#X obj 1239 453 unpack f f f;
+#X floatatom 1234 495 5 0 0 0 - - -;
+#X floatatom 1272 496 5 0 0 0 - - -;
+#X floatatom 1316 495 5 0 0 0 - - -;
+#X obj 1236 474 change;
+#X obj 1272 474 change;
+#X obj 1316 475 change;
+#X obj 580 373 route 0 1 2 3, f 71;
+#X obj 835 409 unpack f f f;
+#X floatatom 830 451 5 0 0 0 - - -;
+#X floatatom 868 452 5 0 0 0 - - -;
+#X floatatom 913 452 5 0 0 0 - - -;
+#X obj 832 430 change;
+#X obj 868 430 change;
+#X obj 912 431 change;
+#X obj 967 415 unpack f f f;
+#X floatatom 962 457 5 0 0 0 - - -;
+#X floatatom 1000 458 5 0 0 0 - - -;
+#X floatatom 1043 460 5 0 0 0 - - -;
+#X obj 964 436 change;
+#X obj 1000 436 change;
+#X obj 1044 437 change;
+#X obj 744 82 showPoints \$0;
+#X obj 540 280 r senpoint-\$0;
+#X obj 560 326 spigot;
+#X obj 599 307 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#N canvas 57 306 1184 437 sensitivity 0;
+#X obj 158 381 outlet;
+#N canvas 1 81 450 300 convert_chars_to_fraise 0;
+#X obj 105 58 inlet;
+#X obj 124 109 list split 1;
+#X obj 124 152 list prepend c;
+#X obj 105 79 t b a b;
+#X obj 158 132 t a;
+#X obj 105 229 list;
+#X obj 124 194 t a a;
+#X msg 225 110 list;
+#X obj 105 250 outlet;
+#X obj 124 173 list append;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 1 1 4 0;
+#X connect 2 0 9 0;
+#X connect 3 0 5 0;
+#X connect 3 1 1 0;
+#X connect 3 2 7 0;
+#X connect 4 0 1 0;
+#X connect 5 0 8 0;
+#X connect 6 0 5 1;
+#X connect 6 1 9 1;
+#X connect 7 0 6 0;
+#X connect 9 0 6 0;
+#X restore 158 314 pd convert_chars_to_fraise;
+#X msg 118 189 101 0 1 2 3;
+#X msg 214 187 101 0 0 0 0 0 0 255 0 12 0 0;
+#X text 463 19 Level 1: p0 = 0x72 \, p1 = 0x20 \, p2 = 0x1F \, p3 =
+0x03 Level 2: p0 = 0xC8 \, p1 = 0x36 \, p2 = 0x35 \, p3 = 0x03 Level
+3: p0 = 0xAA \, p1 = 0x64 \, p2 = 0x63 \, p3 = 0x03 Level 4: p0 = 0x96
+\, p1 = 0xB4 \, p2 = 0xB3 \, p3 = 0x04 Level 5: p0 = 0x96 \, p1 = 0xFE
+\, p2 = 0xFE \, p3 = 0x05, f 52;
+#X text 125 43 0x00 \, 0x02 \, 0x00 \, 0x00 \, 0x71 \, 0x01 \, 0x00
+\, p0 0x07 \, 0x00 \, p1 0x1A \, p2 \, p3, f 46;
+#X text 118 105 2 \, 0 \, 0 \, 113 \, 1 \, 0 \, p0 \, 0 \, p1 \, p2
+\, p3, f 46;
+#X msg 472 249 101 2 0 0 113 1 0 \$1 0 \$2 \$3 \$4;
+#X text 456 85 Level 1: p0 = 114 \, p1 = 32 \, p2 = 31 \, p3 = 3 Level
+2: p0 = 200 \, p1 = 54 \, p2 = 53 \, p3 = 3 Level 3: p0 = 170 \, p1
+= 100 \, p2 = 99 \, p3 = 3 Level 4: p0 = 150 \, p1 = 180 \, p2 = 179
+\, p3 = 4 Level 5: p0 = 150 \, p1 = 254 \, p2 = 254 \, p3 = 5, f 48
+;
+#X msg 428 185 114 32 31 3;
+#X msg 511 186 200 54 53 3;
+#X msg 596 184 170 100 99 3;
+#X msg 688 188 150 180 179 4;
+#X msg 783 190 150 254 254 5;
+#X text 23 3 https://makezine.com/2008/11/22/hacking-the-wiimote-ir-ca/
+;
+#X text 798 306 p1: GAIN: Sensor Gain. Smaller values = higher gain
+;
+#X text 798 326 p2: GAINLIMIT: Sensor Gain Limit. Must be less than
+GAIN for camera to function. No other effect?;
+#X text 798 356 p3: MINSIZE: Minimum blob size. Wii uses values from
+3 to 5;
+#X text 798 280 p0: MAXSIZE: Maximum blob size. Wii uses values from
+0x62 to 0xc8 (98 to 200);
+#X msg 420 162 20 15 0 1;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 7 0 1 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X connect 11 0 7 0;
+#X connect 12 0 7 0;
+#X connect 13 0 7 0;
+#X connect 19 0 7 0;
+#X restore 516 92 pd sensitivity;
+#X obj 271 222 fruit/receive cameraRF;
+#X obj 517 200 fruit/send2 cameraRF;
+#X msg 707 189 C\$1;
+#X obj 237 204 r camData;
 #X connect 0 0 14 1;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
@@ -513,9 +796,104 @@
 #X connect 18 0 19 0;
 #X connect 18 1 19 1;
 #X connect 19 0 20 0;
-#X restore 253 196 pd tests-camera;
-#X obj 18 244 fruit/fruit 1 axlA 12 axlRF;
-#N canvas 265 511 349 544 tests-axlA 1;
+#X connect 21 0 119 1;
+#X connect 22 0 21 0;
+#X connect 23 0 119 1;
+#X connect 24 0 22 0;
+#X connect 25 0 24 0;
+#X connect 27 0 26 0;
+#X connect 28 0 27 1;
+#X connect 30 0 120 0;
+#X connect 31 0 41 0;
+#X connect 32 0 31 0;
+#X connect 33 0 35 0;
+#X connect 34 0 51 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 45 0;
+#X connect 38 0 47 0;
+#X connect 39 0 33 0;
+#X connect 40 0 46 0;
+#X connect 41 0 42 0;
+#X connect 42 0 40 0;
+#X connect 43 0 47 1;
+#X connect 44 0 38 0;
+#X connect 45 0 44 0;
+#X connect 46 0 43 0;
+#X connect 47 0 52 0;
+#X connect 48 0 49 0;
+#X connect 48 0 49 1;
+#X connect 50 0 52 1;
+#X connect 51 0 50 0;
+#X connect 52 0 48 0;
+#X connect 53 0 39 0;
+#X connect 53 1 32 0;
+#X connect 53 2 63 0;
+#X connect 54 0 47 2;
+#X connect 55 0 56 0;
+#X connect 56 0 58 0;
+#X connect 58 0 57 0;
+#X connect 59 0 67 0;
+#X connect 59 1 68 0;
+#X connect 59 2 69 0;
+#X connect 63 0 34 0;
+#X connect 64 0 119 0;
+#X connect 65 0 64 0;
+#X connect 66 0 65 0;
+#X connect 67 0 60 0;
+#X connect 68 0 61 0;
+#X connect 69 0 62 0;
+#X connect 70 0 74 0;
+#X connect 70 1 75 0;
+#X connect 70 2 76 0;
+#X connect 74 0 71 0;
+#X connect 75 0 72 0;
+#X connect 76 0 73 0;
+#X connect 77 0 79 0;
+#X connect 78 0 77 0;
+#X connect 79 0 80 0;
+#X connect 81 0 82 0;
+#X connect 81 1 91 0;
+#X connect 82 0 86 0;
+#X connect 82 1 87 0;
+#X connect 82 2 88 0;
+#X connect 86 0 83 0;
+#X connect 87 0 84 0;
+#X connect 88 0 85 0;
+#X connect 90 1 78 0;
+#X connect 91 0 95 0;
+#X connect 91 1 96 0;
+#X connect 91 2 97 0;
+#X connect 95 0 92 0;
+#X connect 96 0 93 0;
+#X connect 97 0 94 0;
+#X connect 98 0 59 0;
+#X connect 98 0 53 0;
+#X connect 98 1 70 0;
+#X connect 98 2 99 0;
+#X connect 98 3 106 0;
+#X connect 99 0 103 0;
+#X connect 99 1 104 0;
+#X connect 99 2 105 0;
+#X connect 103 0 100 0;
+#X connect 104 0 101 0;
+#X connect 105 0 102 0;
+#X connect 106 0 110 0;
+#X connect 106 1 111 0;
+#X connect 106 2 112 0;
+#X connect 110 0 107 0;
+#X connect 111 0 108 0;
+#X connect 112 0 109 0;
+#X connect 114 0 27 0;
+#X connect 114 0 115 0;
+#X connect 115 0 98 0;
+#X connect 116 0 115 1;
+#X connect 117 0 119 0;
+#X connect 118 0 90 0;
+#X connect 120 0 119 1;
+#X connect 121 0 55 0;
+#X restore 241 204 pd camera;
+#N canvas 64 142 394 571 axlA 0;
 #X msg 183 125 L\$1;
 #X obj 183 102 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
 1;
@@ -547,7 +925,14 @@
 #X obj 216 435 t b b;
 #X obj 216 456 timer;
 #X floatatom 216 477 5 0 0 0 - - -;
-#X obj 262 293 print axlA;
+#X obj 289 275 print axlA;
+#X obj 254 304 unpack f f f f;
+#X floatatom 238 334 5 0 0 0 - - -;
+#X obj 275 487 pack f f f;
+#X floatatom 277 339 5 0 0 0 - - -;
+#X floatatom 317 339 5 0 0 0 - - -;
+#X floatatom 355 338 5 0 0 0 - - -;
+#X obj 242 369 print;
 #X connect 0 0 17 1;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
@@ -569,8 +954,79 @@
 #X connect 18 0 13 0;
 #X connect 21 0 22 0;
 #X connect 21 0 23 0;
+#X connect 21 0 27 0;
 #X connect 21 1 26 0;
 #X connect 23 0 24 0;
 #X connect 23 1 24 1;
 #X connect 24 0 25 0;
-#X restore 251 261 pd tests-axlA;
+#X connect 27 0 28 0;
+#X connect 27 1 30 0;
+#X connect 27 2 31 0;
+#X connect 27 3 32 0;
+#X restore 242 264 pd axlA;
+#N canvas 1 81 450 300 OSC 0;
+#X obj 86 117 loadbang;
+#X obj 71 178 netsend -b -u;
+#X obj 71 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 71 75 list prepend send;
+#X obj 71 96 list trim;
+#X msg 146 118 disconnect;
+#X obj 71 54 oscformat SET;
+#N canvas 1 81 802 343 sendOSC 0;
+#X obj 142 57 r senpoint-\$0;
+#X obj 142 78 unpack f f f, f 22;
+#X obj 271 121 clip 0 1;
+#X obj 271 100 / 760;
+#X obj 206 121 clip 0 1;
+#X obj 206 99 / 1023;
+#X obj 142 143 pack f f f, f 22;
+#X obj 142 164 route 0 1 2 3, f 22;
+#X obj 142 248 list append 0 0;
+#X obj 174 221 list append 0 0;
+#X obj 206 194 list append 0 0;
+#X obj 142 269 list prepend camera;
+#X obj 142 290 outlet;
+#X obj 321 270 list prepend camBatt;
+#X obj 321 248 r camBatt;
+#X obj 454 248 r axlBatt;
+#X obj 454 270 list prepend axlBatt;
+#X obj 593 248 r axlData;
+#X obj 593 270 list prepend axl;
+#X obj 621 300 print;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 1 1 5 0;
+#X connect 1 2 3 0;
+#X connect 2 0 6 2;
+#X connect 3 0 2 0;
+#X connect 4 0 6 1;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 7 2 10 0;
+#X connect 7 3 10 1;
+#X connect 8 0 11 0;
+#X connect 9 0 8 1;
+#X connect 10 0 9 1;
+#X connect 11 0 12 0;
+#X connect 13 0 12 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 12 0;
+#X connect 17 0 18 0;
+#X connect 18 0 12 0;
+#X restore 71 29 pd sendOSC;
+#X msg 86 142 disconnect \, connect localhost 8080;
+#X connect 0 0 8 0;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 3 0;
+#X connect 7 0 6 0;
+#X connect 8 0 1 0;
+#X restore 248 90 pd OSC;
+#X obj 18 194 fruit/fruit 1 cameraRF 11 cameraRF 1;
+#X obj 18 244 fruit/fruit 1 axlA 12 axlRF 1;

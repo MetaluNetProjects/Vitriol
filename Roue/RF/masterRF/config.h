@@ -7,6 +7,6 @@
 #define RF24_CE 		MBEN2
 #define RF24_CSN 		MB2
 #define RF24_SPI 		2
-
+#define RF24_POWER 		MB1
 #endif // _CONFIG_H_
 

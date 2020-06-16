@@ -10,5 +10,7 @@
 
 #define VBATT K6
 
+#define I2CMASTER_PORT 1
+
 #endif // _CONFIG_H_
 

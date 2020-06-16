@@ -11,11 +11,15 @@
 #include "../protocol.h"
 
 t_delay mainDelay;
-uint8_t rfconnected = 0;
+//uint8_t rfconnected = 0;
 uint8_t addresses[6][6];
+
 uint8_t txpipe[5] = {0xC2, 0xC2, 0xC2, 0xC2, 0xC2};
+uint8_t rxpipe[5] = {0xC2, 0xC2, 0xC2, 0xC2, 0xC2};
 //uint8_t rcvID = 0;
 byte oldRFservice = 0;
+byte RFpoll = 0;
+byte testVar = 11;
 
 static void delay(unsigned long millisecs)
 {
@@ -40,6 +44,16 @@ void setupPipes()
 	RF24_startListening();
 }
 
+void setupRXPipe()
+{
+	//RF24_stopListening();
+	//fillPipeAddress(rxpipe, ID_MASTER, ID_MASTER);
+	//RF24_openReadingPipe(1, rxpipe);
+
+	RF24_startListeningFast();
+}
+
+
 void initRF()
 {
 	printf("C initRF\n");
@@ -51,12 +65,15 @@ void initRF()
 	//return;
 	RF24_disableDynamicPayloads();
 	RF24_enableDynamicPayloads();
-	//RF24_enableDynamicAck();
-	//RF24_enableAckPayload();
-	RF24_setAutoAck(1);
+	RF24_enableDynamicAck();
+	RF24_enableAckPayload();
+	RF24_setAutoAck(0);
 
 	//RF24_setRetries(8, 3);
 	if(oldRFservice) setupPipes();
+	//else setupRXPipe();
+	fillPipeAddress(rxpipe, ID_MASTER, ID_MASTER);
+	RF24_openReadingPipe(1, rxpipe);
 }
 
 void setup(void) {	
@@ -67,6 +84,8 @@ void setup(void) {
 	digitalClear(LED);			// clear the LED
 
 	//oldRFservice = 1;
+	pinModeDigitalOut(RF24_POWER);
+	digitalClear(RF24_POWER);
 	
 	delay(100);
 	
@@ -84,19 +103,20 @@ void loop() {
 // ---------- Main loop ------------
 	fraiseService();	// listen to Fraise events
 	
-	if(oldRFservice) {
+	//if(oldRFservice) {
 		if(rfService()) digitalSet(LED);
 		else digitalClear(LED);
-	}
+	//}
 	
 	if(delayFinished(mainDelay)) // when mainDelay triggers :
 	{
-		delayStart(mainDelay, 5000); 	// re-init mainDelay
+		delayStart(mainDelay, 6000); 	// re-init mainDelay
 		/*if(rfComm()) digitalSet(LED);
 		else {
 			digitalClear(LED);
 		}*/
-		if(loops++ == 100) {
+		if(rfconnected && (RFpoll != 0)) rfComm();
+		if(loops++ == 50) {
 			loops = 0;
 			printf("CR C %d %d\n", rfconnected, RF24_available());
 			if(!RF24_isChipConnected()) rfconnected = 0;
@@ -127,7 +147,10 @@ void fraiseReceiveChar() // receive text
 		c = fraiseGetChar();
 		oldRFservice = (c != '0');
 		if(c != '0') setupPipes();
-		else RF24_stopListening();
+		else {
+			RF24_stopListening();
+			//setupRXPipe();
+		}
 	}
 	else if(c == 'P') {
 		c = fraiseGetChar();
@@ -149,6 +172,13 @@ void fraiseReceiveChar() // receive text
 			case 6: break;
 		}
 	}
+	else if(c == 'p') {
+		c = fraiseGetChar();
+		if(c == '0') digitalSet(RF24_POWER);
+		else digitalClear(RF24_POWER);
+		/*if(c != '0') pinModeDigitalOut(RF24_POWER);
+		else pinModeDigitalIn(RF24_POWER);*/
+	}
 	else if(c == 'M') {
 		byte regs[32] = {'B', 31};
 		byte i;
@@ -168,11 +198,21 @@ void fraiseReceive() // receive raw
 	unsigned char c;
 	
 	c = fraiseGetChar();
+	if(c == 1) {
+		testVar = fraiseGetChar();
+		if(rfComm()) digitalSet(LED);
+		else digitalClear(LED);
+	}
+	else if(c == 2) {
+		RFpoll = fraiseGetChar();
+	}
 }
 
 uint8_t pipe_num, rcvLen, rcvBuffer[36] = {'B', 30}, sndBuffer[32];
 
 #define RF_INACTIVE_TIME 5000000UL
+t_time t1, t2, t3;
+t_time startTx;
 
 uint8_t rfService()
 {
@@ -187,10 +227,12 @@ uint8_t rfService()
 	size = RF24_getDynamicPayloadSize();
 	if(size < 1) return active; // Corrupt payload has been flushed
 	
-	rcvBuffer[2] = pipe_num;
-	RF24_read(rcvBuffer + 3, 32);
-	rcvBuffer[size + 3] = '\n';
-	fraiseSend(rcvBuffer, size + 4);
+	//rcvBuffer[2] = pipe_num;
+	RF24_read(rcvBuffer + 2, 32);
+	rcvBuffer[size + 2] = '\n';
+	fraiseSend(rcvBuffer, size + 3);
+	
+	//printf("CT %ld %ld %ld %ld\n", timeToMicro(t1), timeToMicro(t2), timeToMicro(t3), timeToMicro(elapsed(startTx)));
 	
 	active = 1;
 	delayStart(rfDelay, RF_INACTIVE_TIME);
@@ -207,36 +249,54 @@ uint8_t rfComm()
 	//active = 1;
 	if(delayFinished(rfDelay)) active = 0;
 	
-	/*switch(count) {
+	switch(count) {
 		case 0 : destID = ID_CAMERA; break;
 		case 1 : destID = ID_AXL_A; break;
+		case 2 : destID = ID_AXL_B; break;
+		case 3 : destID = ID_AXL_C; break;
+		case 4 : destID = ID_AXL_D; break;
+		case 5 : destID = ID_AXL_E; break;
 	}
 	count++;
-	if(count > 2) count = 0;*/
+	if(count > RFpoll) count = 0;
 	
-	RF24_stopListening();
-	fillPipeAddress(txpipe, ID_MASTER, ID_AXL_A/*destID*/);
-	RF24_openWritingPipe(txpipe);
-
-	sndBuffer[0] = 50;
+	startTx = time();
+	//RF24_stopListening(); // 2ms!
+	RF24_stopListeningFast(); // 1ms
+	t1 = elapsed(startTx);
+	fillPipeAddress(txpipe, ID_MASTER, destID);
+	RF24_openWritingPipe(txpipe); // 1ms
+	//
+	
+	// 1.5ms:
+	sndBuffer[0] = testVar;
 	sndBuffer[1] = 100;
 	sndBuffer[2] = 150;
 	sndBuffer[3] = 200;
-	if(!RF24_write(sndBuffer, 4, 0)) {
+	if(!RF24_write(sndBuffer, 4, 1)) {
 		byte tx_ok, tx_fail, rx_ready;
 		RF24_whatHappened(&tx_ok, &tx_fail, &rx_ready);
 		printf("CR err %d %d %d\n", tx_ok, tx_fail, rx_ready);
 		RF24_txStandBy();
 		return active;
 	}
-	
-	RF24_txStandBy();
+	//
+	RF24_txStandBy(); // 0.4ms
+	t2 = elapsed(startTx);
+	//setupRXPipe(); // 3.3ms ; 2.3ms with startListeningFast
+	RF24_startListeningFast(); // 1ms
+	t3 = elapsed(startTx);
 
 	active = 1;
 	delayStart(rfDelay, RF_INACTIVE_TIME);
 
-	if(!RF24_available()) return active;
+	return active;
 
+
+// I couldn't make the ack payload feature to work!
+#if 0
+
+	if(!RF24_available()) return active;
 	//if(!RF24_isAckPayloadAvailable) return active;
 	size = RF24_getDynamicPayloadSize();
 	//size = 6;
@@ -277,4 +337,6 @@ uint8_t rfComm()
 	}*/
 	
 	return active;
+#endif
 }
+

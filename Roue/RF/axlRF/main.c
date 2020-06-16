@@ -15,8 +15,7 @@
 #include "../protocol.h"
 
 t_delay mainDelay;
-uint8_t rfconnected = 0;
-//uint8_t txpipe[5];
+uint8_t txpipe[5];
 uint8_t rxpipe[5];
 uint8_t rfID = ID_AXL_A;
 //uint8_t RFRXbuffer[32];
@@ -26,31 +25,35 @@ ADXL345 adxl1;
 
 void fillRFTX();
 
-void setupPipes()
+/*void setupPipes()
 {
 	// setup pipes
 	RF24_stopListening();
-	//fillPipeAddress(txpipe, rfID, ID_MASTER);
+	fillPipeAddress(txpipe, ID_MASTER, ID_MASTER);
 	fillPipeAddress(rxpipe, ID_MASTER, rfID);
-	RF24_openReadingPipe(0, rxpipe);
+	RF24_openReadingPipe(1, rxpipe);
+	RF24_openWritingPipe(txpipe);
 	RF24_startListening();
 	//fillRFTX();
-}
+}*/
 
 void initRF()
 {
 	printf("C initRF\n");
-	rfconnected = 0;
+	/*rfconnected = 0;
 	RF24_init();
 	if(!RF24_isChipConnected()) return;
 	rfconnected = 1;
 	RF24_enableDynamicPayloads();
-	//RF24_enableDynamicAck();
-	//RF24_enableAckPayload();
+	RF24_enableDynamicAck();
+	RF24_enableAckPayload();
+	RF24_closeReadingPipe(0);
+	RF24_closeReadingPipe(1);
 	//RF24_setRetries(8, 3);
 	RF24_setAutoAck(0);
 
-	setupPipes();
+	setupPipes();*/
+	initSlaveRF(rfID);
 }
 
 void setup(void) {	
@@ -81,39 +84,48 @@ int loops = 0;
 
 uint8_t rfService(); // return ACTIVITY
 
-/*void sendRF()
+void sendRF()
 {
 	//static char turn = 0;
-	static int count = 0;
-	static int v_batt = 0;
+	static unsigned int count = 0;
+	unsigned int v_batt = 0;
+	byte l;
 
-	RF24_openWritingPipe(txpipe);
-	if(count%256 == 0) {
+	l = 0;
+
+	RF24_stopListeningFast();
+	//RF24_openWritingPipe(txpipe);
+	if(count%16 == 0) {
 		//turn = 1;
 		v_batt = analogGet(0);
-		RFRXbuffer[0] = rfID;
-		RFRXbuffer[1] = CMD_VBATT;
-		RFRXbuffer[2] = v_batt >> 8;
-		RFRXbuffer[3] = v_batt & 255;
-		if(RF24_write(RFRXbuffer, 4, 0)) {};
+		RFTXbuffer[l++] = rfID;
+		RFTXbuffer[l++] = CMD_VBATT;
+		RFTXbuffer[l++] = v_batt >> 8;
+		RFTXbuffer[l++] = v_batt & 255;
+		//printf("Ctx VBATT len=%d\n", l);
 	}
 	else {
 		//turn = 0;
-		RFRXbuffer[0] = rfID;
-		RFRXbuffer[1] = CMD_AXL;
-		RFRXbuffer[2] = adxl1.xl;
-		RFRXbuffer[3] = adxl1.xh;
-		RFRXbuffer[4] = adxl1.yl;
-		RFRXbuffer[5] = adxl1.yh;
-		RFRXbuffer[6] = adxl1.zl;
-		RFRXbuffer[7] = adxl1.zh;
-		if(RF24_write(RFRXbuffer, 8, 0)) {};
+		RFTXbuffer[l++] = rfID;
+		RFTXbuffer[l++] = CMD_AXL;
+		RFTXbuffer[l++] = adxl1.xl;
+		RFTXbuffer[l++] = adxl1.xh;
+		RFTXbuffer[l++] = adxl1.yl;
+		RFTXbuffer[l++] = adxl1.yh;
+		RFTXbuffer[l++] = adxl1.zl;
+		RFTXbuffer[l++] = adxl1.zh;
+		//printf("Ctx AXL len=%d\n", l);
 	}
 	count++;
+	if(!RF24_write(RFTXbuffer, l, 1)) {
+		printf("Ctx error! l=%d\n", l);
+	}
 	RF24_txStandBy();
-}*/
+	//setupPipes();
+	RF24_startListeningFast();
+}
 
-void fillRFTX()
+/*void fillRFTX()
 {
 	static int v_batt = 0;
 	static byte l;
@@ -130,8 +142,8 @@ void fillRFTX()
 	RFTXbuffer[l++] = adxl1.yh;
 	RFTXbuffer[l++] = adxl1.zl;
 	RFTXbuffer[l++] = adxl1.zh;
-	RF24_writeAckPayload(0, RFTXbuffer, l);
-}
+	RF24_writeAckPayload(1, RFTXbuffer, l);
+}*/
 
 void loop() {
 // ---------- Main loop ------------
@@ -175,6 +187,7 @@ void fraiseReceiveChar() // receive text
 	}
 }
 
+
 void fraiseReceive() // receive raw
 {
 	unsigned char c;
@@ -202,7 +215,8 @@ uint8_t rfService()
 	RF24_read(rcvBuffer + 2, 32);
 	rcvBuffer[size + 3] = '\n';
 	fraiseSend(rcvBuffer, size + 3);
-	//fillRFTX();
+	
+	if(rcvBuffer[2] == 11) sendRF();
 	
 	/*if(rcvBuffer[2] == CMD_MOTOR) {
 		((char*)&PWM)[1] = rcvBuffer[3];
