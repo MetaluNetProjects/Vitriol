@@ -1,0 +1,77 @@
+#N canvas 1281 168 537 266 12;
+#X declare -lib zexy;
+#X obj 42 139 declare -lib zexy;
+#X obj 43 185 testPof/testPof;
+#X obj 42 160 list prepend testGem/testGem;
+#X obj 404 116 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
+0 10 -258113 -1 -1;
+#X obj 405 50 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
+0 -8 0 10 -262144 -1 -1 1 1;
+#N canvas 1 81 588 682 connect-server 0;
+#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 51 168 list fromsymbol;
+#X obj 51 192 list prepend 92;
+#X obj 51 216 list append 59;
+#X text 165 194 antislash;
+#X text 160 215 semi;
+#X obj 51 263 list append 59;
+#X obj 51 238 list append 51;
+#X text 161 237 '3';
+#X obj 51 74 t b b;
+#X text 159 260 semi;
+#X obj 83 365 netsend -b;
+#X obj 51 287 list prepend send;
+#X msg 83 101 disconnect \, connect localhost 8080;
+#X obj 51 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 51 312 list trim;
+#X msg 51 144 symbol headsetId;
+#X msg 252 450 add2 \$1;
+#X obj 150 523 textfile;
+#X msg 150 491 rewind \, bang \, clear;
+#X obj 150 551 fudiparse;
+#X obj 150 393 sel 59 40 41 44;
+#X msg 221 419 32;
+#X obj 300 580 t b b;
+#X obj 300 604 timer;
+#X obj 300 628 mavg 10;
+#X floatatom 300 652 5 0 0 0 - - -;
+#X obj 150 577 s headsets-data;
+#X obj 83 417 outlet;
+#X obj 51 27 inlet;
+#X connect 0 0 28 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 6 0 12 0;
+#X connect 7 0 6 0;
+#X connect 9 0 16 0;
+#X connect 9 1 13 0;
+#X connect 11 0 0 0;
+#X connect 11 1 21 0;
+#X connect 12 0 15 0;
+#X connect 13 0 11 0;
+#X connect 14 0 9 0;
+#X connect 15 0 11 0;
+#X connect 16 0 1 0;
+#X connect 17 0 18 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 20 0 27 0;
+#X connect 21 0 19 0;
+#X connect 21 3 22 0;
+#X connect 21 4 17 0;
+#X connect 22 0 17 0;
+#X connect 23 0 24 0;
+#X connect 23 1 24 1;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 29 0 14 0;
+#X restore 45 78 pd connect-server;
+#X obj 45 57 bng 15 250 50 0 empty empty connect 17 7 0 10 -257985
+-1 -1;
+#X obj 45 104 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1
+1 1;
+#X connect 5 0 7 0;
+#X connect 6 0 5 0;

@@ -1,0 +1,10 @@
+{
+   "name": "Drawing",
+   "version": "1.0.0",
+   "description": "recuperation des position des casques",
+   "main": "drawServer.js",
+   "dependencies": {
+      "minimist": "^1.2.5",
+      "net": "latest"
+   }
+}
