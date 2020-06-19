@@ -1,9 +1,9 @@
-#N canvas 581 159 344 302 10;
+#N canvas 581 213 344 302 10;
 #X declare -path Fraise -stdpath Fraise;
 #X obj 21 38 pied/pied 0 41424;
 #X obj 21 16 declare -path Fraise -stdpath Fraise;
 #X obj 19 141 fruit/fruit 1 masterRF 10 masterRF;
-#N canvas 201 133 1154 600 master 0;
+#N canvas 214 151 1154 600 master 0;
 #X msg 145 60 L\$1;
 #X obj 145 37 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
 1;
@@ -344,7 +344,7 @@
 #X obj 593 140 b;
 #X obj 622 139 b;
 #X msg 262 111 p\$1;
-#X obj 262 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 262 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 125 45 5;
 #X obj 219 165 print mRF30Cam;
@@ -701,7 +701,7 @@
 #X obj 744 82 showPoints \$0;
 #X obj 540 280 r senpoint-\$0;
 #X obj 560 326 spigot;
-#X obj 599 307 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 599 307 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #N canvas 57 306 1184 437 sensitivity 0;
 #X obj 158 381 outlet;
@@ -973,7 +973,7 @@ GAIN for camera to function. No other effect?;
 #X obj 71 96 list trim;
 #X msg 146 118 disconnect;
 #X obj 71 54 oscformat SET;
-#N canvas 1 81 802 343 sendOSC 0;
+#N canvas 39 421 802 343 sendOSC 0;
 #X obj 142 57 r senpoint-\$0;
 #X obj 142 78 unpack f f f, f 22;
 #X obj 271 121 clip 0 1;
@@ -1018,7 +1018,10 @@ GAIN for camera to function. No other effect?;
 #X connect 17 0 18 0;
 #X connect 18 0 12 0;
 #X restore 71 29 pd sendOSC;
-#X msg 86 142 disconnect \, connect localhost 8080;
+#X msg 86 142 disconnect \, connect localhost 8283;
+#X obj 298 76 route camera;
+#X obj 298 97 s fromCamera;
+#X obj 298 54 list trim;
 #X connect 0 0 8 0;
 #X connect 1 0 2 0;
 #X connect 3 0 4 0;
@@ -1026,7 +1029,10 @@ GAIN for camera to function. No other effect?;
 #X connect 5 0 1 0;
 #X connect 6 0 3 0;
 #X connect 7 0 6 0;
+#X connect 7 0 11 0;
 #X connect 8 0 1 0;
+#X connect 9 0 10 0;
+#X connect 11 0 9 0;
 #X restore 248 90 pd OSC;
 #X obj 18 194 fruit/fruit 1 cameraRF 11 cameraRF 1;
 #X obj 18 244 fruit/fruit 1 axlA 12 axlRF 1;
