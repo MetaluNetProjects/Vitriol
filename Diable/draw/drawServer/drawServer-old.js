@@ -44,7 +44,7 @@ clientDraw.on('connection', function(socket) {
 	console.log('Un client connecté');
 
 	socket.on('data',function(data){
-		if(socket != ClientOne && socket != ClientTwo){
+		if(socket != ClientOne && socket!=ClientTwo){
 			let datas=data.toString().split(';');
 			if(datas[0]=="\\headsetId")
 			{
@@ -73,14 +73,8 @@ clientDraw.on('connection', function(socket) {
 					console.log("client 3 connected");
 				}
 				if(CLONE) socket.write("\\clone;0;");
-			} else if(socket == ClientThree){
-				if(ClientTwo) ClientTwo.write(data);
-				if(ClientOne) ClientOne.write(data);
 			}
-		}/*else if(socket == ClientThree){
-			if(ClientTwo) ClientTwo.write(data);
-			if(ClientOne) ClientOne.write(data);
-		}*/else{
+		}else{
 			sendData(socket,data);
 			gestionPosition(socket,data)
 			if(SAVEDATA || SAVEDRAW) gestionData(socket,data);
@@ -88,7 +82,7 @@ clientDraw.on('connection', function(socket) {
 	});
 
 
-	socket.on('end',function(){
+	socket.on('end',function(err){
 		if(socket == ClientOne){
 				console.log("headset 1 disconnected");
 				if(fileOne!=null)fileOne.end();
