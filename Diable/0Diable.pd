@@ -1,15 +1,16 @@
-#N canvas 93 445 604 323 12;
+#N canvas 128 525 660 323 12;
 #X declare -lib zexy -path AutoPreset;
+#X declare -path Pof;
 #X obj 533 52 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
 0 10 -258113 -1 -1;
-#X obj 37 183 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 1;
-#X text 69 187 projs-fullscreen;
-#X text 70 218 projs-window;
-#X text 70 249 3d-cameras;
-#X text 69 278 3d-projs;
+#X obj 16 177 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
+-262144 -1 -1 3;
+#X text 48 181 projs-fullscreen;
+#X text 49 212 projs-window;
+#X text 49 243 3d-cameras;
+#X text 48 272 3d-projs;
 #N canvas 1 81 845 422 CONFIG 0;
-#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan test2 2 53
+#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan empty 2 53
 2 15 -233017 -45076 0;
 #X obj 337 35 apmaster CONFIG;
 #X obj 66 260 s CONFIG-apmaster-rcv;
@@ -90,18 +91,18 @@
 #X connect 39 0 35 0;
 #X coords 0 -1 1 1 202 80 1 100 15;
 #X restore 151 18 pd CONFIG;
-#X obj 38 73 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
-0 -8 0 10 -262144 -1 -1 50 256;
+#X obj 17 67 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
+0 -8 0 10 -262144 -1 -1 50.2513 256;
 #X obj 368 29 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m)
-70 10 0 12 -228856 -1 -1 10 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X obj 368 53 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m)
-70 10 0 12 -228856 -1 -1 6 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X obj 368 77 nbx 5 20 1 20 0 0 roomHeight-snd roomHeight-rcv Height(m)
-70 10 0 12 -228856 -1 -1 4 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X text 368 11 ROOM SIZE:;
-#N canvas 1 81 636 377 stuff 0;
+#N canvas 1 81 636 438 stuff 0;
 #X obj 28 148 list prepend testGem/testGem;
-#X obj 298 67 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
+#X obj 292 27 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
 0 -8 0 10 -262144 -1 -1 0 1;
 #N canvas 247 95 588 765 connect-server 0;
 #X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -231,27 +232,43 @@
 -1 -1;
 #X obj 31 92 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 1
 1;
-#X obj 298 131 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres
+#X obj 292 91 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres
 0 -8 0 10 -262144 -1 -1 0 1;
 #X obj 29 171 l testPof-25juin/testPof;
-#X obj 295 333 testdrawer;
+#X obj 29 231 testdrawer;
 #X obj 29 195 Pof/0main;
 #X obj 28 127 declare -lib zexy -path AutoPreset;
-#X obj 298 193 tgl 40 0 projectors_colored projectors_colored projectors_colored
+#X obj 292 153 tgl 40 0 projectors_colored projectors_colored projectors_colored
 0 -8 0 10 -262144 -1 -1 0 1;
-#X obj 297 256 tgl 40 0 cameras-bg-on cameras-bg-on cameras-bg-on 0
+#X obj 291 216 tgl 40 0 cameras-bg-on cameras-bg-on cameras-bg-on 0
 -8 0 10 -262144 -1 -1 0 1;
 #X obj 471 122 r global-edit-mode;
 #X obj 486 156 s draw-quads-edit;
 #X obj 477 195 s draw_showspheres;
 #X obj 456 233 s projectors_colored;
 #X obj 419 269 s cameras-bg-on;
+#X obj 290 273 tgl 40 0 camera_draw_labels camera_draw_labels camera_draw_labels
+0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 288 335 tgl 40 0 camera_draw_grid camera_draw_grid camera_draw_grid
+0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 420 336 s camera_draw_grid;
+#X obj 431 366 s camera_draw_labels;
+#X obj 31 278 declare -path Pof;
 #X connect 2 0 4 0;
 #X connect 3 0 2 0;
 #X connect 12 0 13 0;
 #X connect 12 0 14 0;
 #X connect 12 0 15 0;
 #X connect 12 0 16 0;
-#X restore 38 34 pd stuff;
-#X obj 37 117 tgl 40 0 global-edit-mode global-edit-mode DEBUGVIEW
+#X connect 12 0 19 0;
+#X connect 12 0 20 0;
+#X restore 17 28 pd stuff;
+#X obj 16 111 tgl 40 0 global-edit-mode global-edit-mode DEBUGVIEW
 0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 301 179 projector FRONT 1;
+#X obj 194 179 projector LEFT 1;
+#X obj 412 179 projector RIGHT 1;
+#X obj 523 179 projector BACK 1;
+#X obj 328 227 projector FLOOR 1;
+#X obj 373 132 projector TOP 1;
+#X obj 438 227 projector FLOOR 2;
