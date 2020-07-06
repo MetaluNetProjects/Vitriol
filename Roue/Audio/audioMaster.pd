@@ -1,6 +1,6 @@
 #N canvas 572 339 541 379 10;
-#X obj 107 122 hsl 86 15 0 1 0 1 empty empty empty -2 -8 0 10 -258113
--1 -1 1905 1;
+#X obj 107 122 hsl 86 15 0 1 0 1 empty empty volume 20 7 0 10 -258113
+-1 -4034 1905 1;
 #X obj 104 177 pow 2;
 #X msg 104 198 \$1 10;
 #X obj 104 219 line~;
@@ -13,8 +13,8 @@
 #X obj 268 65 *~;
 #X obj 342 67 *~;
 #X obj 342 46 catch~ rev2;
-#X obj 107 142 hsl 86 15 0 1 0 1 empty empty empty -2 -8 0 10 -257985
--1 -1 2505 1;
+#X obj 107 142 hsl 86 15 0 1 0 1 empty empty reverb 20 7 0 10 -257985
+-1 -159808 2505 1;
 #X obj 423 86 pow 2;
 #X msg 423 106 \$1 10;
 #X obj 423 127 line~;
