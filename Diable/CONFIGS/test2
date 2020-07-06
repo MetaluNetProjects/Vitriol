@@ -1,3 +1,9 @@
+camera-FLOOR-on 1 0;
+camera-TOP-on 0 0;
+camera-RIGHT-on 0 0;
+camera-LEFT-on 1 0;
+camera-BACK-on 0 0;
+camera-FRONT-on 1 0;
 FLOOR-2-B 0.455696 0;
 FLOOR-2-V 0.455696 0;
 FLOOR-2-R 1 0;

@@ -1,10 +1,10 @@
-#N canvas 128 525 660 323 12;
+#N canvas 1 382 713 323 12;
 #X declare -lib zexy -path AutoPreset;
 #X declare -path Pof;
 #X obj 533 52 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
 0 10 -258113 -1 -1;
 #X obj 16 177 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 3;
+-262144 -1 -1 2;
 #X text 48 181 projs-fullscreen;
 #X text 49 212 projs-window;
 #X text 49 243 3d-cameras;
@@ -92,7 +92,7 @@
 #X coords 0 -1 1 1 202 80 1 100 15;
 #X restore 151 18 pd CONFIG;
 #X obj 17 67 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
-0 -8 0 10 -262144 -1 -1 50.2513 256;
+0 -8 0 10 -262144 -1 -1 50 256;
 #X obj 368 29 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m)
 70 10 0 12 -228856 -1 -1 1 256;
 #X obj 368 53 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m)
@@ -104,8 +104,8 @@
 #X obj 28 148 list prepend testGem/testGem;
 #X obj 292 27 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
 0 -8 0 10 -262144 -1 -1 0 1;
-#N canvas 247 95 588 765 connect-server 0;
-#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#N canvas 247 81 588 662 connect-server 0;
+#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 51 168 list fromsymbol;
 #X obj 51 192 list prepend 92;
@@ -182,6 +182,7 @@
 #X connect 8 0 1 0;
 #X restore 43 556 pd debounce;
 #X obj 99 638 sel 0;
+#X msg 44 604 0;
 #X connect 0 0 28 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -227,10 +228,11 @@
 #X connect 49 0 48 0;
 #X connect 49 0 50 0;
 #X connect 50 0 16 0;
+#X connect 51 0 48 0;
 #X restore 31 66 pd connect-server;
 #X obj 31 45 bng 15 250 50 0 empty empty connect 17 7 0 10 -257985
 -1 -1;
-#X obj 31 92 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 1
+#X obj 31 92 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 0
 1;
 #X obj 292 91 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres
 0 -8 0 10 -262144 -1 -1 0 1;
@@ -272,3 +274,24 @@
 #X obj 328 227 projector FLOOR 1;
 #X obj 373 132 projector TOP 1;
 #X obj 438 227 projector FLOOR 2;
+#N canvas 1 81 564 281 cameras 0;
+#X obj 104 122 tgl 15 0 camera-FRONT-on-snd camera-FRONT-on-rcv FRONT
+17 7 0 10 -260097 -1 -1 0 1;
+#X obj 203 109 apf CONFIG camera-FRONT-on camera-FRONT-on 2;
+#X obj 104 139 tgl 15 0 camera-BACK-on-snd camera-BACK-on-rcv BACK
+17 7 0 10 -260097 -1 -1 0 1;
+#X obj 204 130 apf CONFIG camera-BACK-on camera-BACK-on 2;
+#X obj 104 156 tgl 15 0 camera-LEFT-on-snd camera-LEFT-on-rcv LEFT
+17 7 0 10 -260097 -1 -1 0 1;
+#X obj 205 151 apf CONFIG camera-LEFT-on camera-LEFT-on 2;
+#X obj 205 173 apf CONFIG camera-RIGHT-on camera-RIGHT-on 2;
+#X obj 206 194 apf CONFIG camera-TOP-on camera-TOP-on 2;
+#X obj 207 215 apf CONFIG camera-FLOOR-on camera-FLOOR-on 2;
+#X obj 104 173 tgl 15 0 camera-RIGHT-on-snd camera-RIGHT-on-rcv RIGHT
+17 7 0 10 -260097 -1 -1 0 1;
+#X obj 104 190 tgl 15 0 camera-TOP-on-snd camera-TOP-on-rcv TOP 17
+7 0 10 -260097 -1 -1 0 1;
+#X obj 104 207 tgl 15 0 camera-FLOOR-on-snd camera-FLOOR-on-rcv FLOOR
+17 7 0 10 -260097 -1 -1 0 1;
+#X coords 0 -1 1 1 60 125 1 100 100;
+#X restore 604 21 pd cameras;
