@@ -1,16 +1,16 @@
-#N canvas 1 382 713 323 12;
+#N canvas 169 536 713 323 12;
 #X declare -lib zexy -path AutoPreset;
 #X declare -path Pof;
 #X obj 533 52 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
 0 10 -258113 -1 -1;
 #X obj 16 177 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 2;
+-262144 -1 -1 3;
 #X text 48 181 projs-fullscreen;
 #X text 49 212 projs-window;
 #X text 49 243 3d-cameras;
 #X text 48 272 3d-projs;
 #N canvas 1 81 845 422 CONFIG 0;
-#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan empty 2 53
+#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan test2 2 53
 2 15 -233017 -45076 0;
 #X obj 337 35 apmaster CONFIG;
 #X obj 66 260 s CONFIG-apmaster-rcv;
@@ -94,18 +94,18 @@
 #X obj 17 67 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
 0 -8 0 10 -262144 -1 -1 50 256;
 #X obj 368 29 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m)
-70 10 0 12 -228856 -1 -1 1 256;
+70 10 0 12 -228856 -1 -1 10 256;
 #X obj 368 53 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m)
-70 10 0 12 -228856 -1 -1 1 256;
+70 10 0 12 -228856 -1 -1 6 256;
 #X obj 368 77 nbx 5 20 1 20 0 0 roomHeight-snd roomHeight-rcv Height(m)
-70 10 0 12 -228856 -1 -1 1 256;
+70 10 0 12 -228856 -1 -1 4 256;
 #X text 368 11 ROOM SIZE:;
-#N canvas 1 81 636 438 stuff 0;
+#N canvas 1 81 636 438 stuff 1;
 #X obj 28 148 list prepend testGem/testGem;
 #X obj 292 27 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #N canvas 247 81 588 662 connect-server 0;
-#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 51 168 list fromsymbol;
 #X obj 51 192 list prepend 92;
@@ -232,27 +232,27 @@
 #X restore 31 66 pd connect-server;
 #X obj 31 45 bng 15 250 50 0 empty empty connect 17 7 0 10 -257985
 -1 -1;
-#X obj 31 92 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 0
+#X obj 31 92 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 1
 1;
 #X obj 292 91 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #X obj 29 171 l testPof-25juin/testPof;
 #X obj 29 231 testdrawer;
 #X obj 29 195 Pof/0main;
 #X obj 28 127 declare -lib zexy -path AutoPreset;
 #X obj 292 153 tgl 40 0 projectors_colored projectors_colored projectors_colored
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #X obj 291 216 tgl 40 0 cameras-bg-on cameras-bg-on cameras-bg-on 0
--8 0 10 -262144 -1 -1 0 1;
+-8 0 10 -262144 -1 -1 1 1;
 #X obj 471 122 r global-edit-mode;
 #X obj 486 156 s draw-quads-edit;
 #X obj 477 195 s draw_showspheres;
 #X obj 456 233 s projectors_colored;
 #X obj 419 269 s cameras-bg-on;
 #X obj 290 273 tgl 40 0 camera_draw_labels camera_draw_labels camera_draw_labels
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #X obj 288 335 tgl 40 0 camera_draw_grid camera_draw_grid camera_draw_grid
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #X obj 420 336 s camera_draw_grid;
 #X obj 431 366 s camera_draw_labels;
 #X obj 31 278 declare -path Pof;
@@ -266,7 +266,7 @@
 #X connect 12 0 20 0;
 #X restore 17 28 pd stuff;
 #X obj 16 111 tgl 40 0 global-edit-mode global-edit-mode DEBUGVIEW
-0 -8 0 10 -262144 -1 -1 0 1;
+0 -8 0 10 -262144 -1 -1 1 1;
 #X obj 301 179 projector FRONT 1;
 #X obj 194 179 projector LEFT 1;
 #X obj 412 179 projector RIGHT 1;
@@ -276,13 +276,13 @@
 #X obj 438 227 projector FLOOR 2;
 #N canvas 1 81 564 281 cameras 0;
 #X obj 104 122 tgl 15 0 camera-FRONT-on-snd camera-FRONT-on-rcv FRONT
-17 7 0 10 -260097 -1 -1 0 1;
+17 7 0 10 -260097 -1 -1 1 1;
 #X obj 203 109 apf CONFIG camera-FRONT-on camera-FRONT-on 2;
 #X obj 104 139 tgl 15 0 camera-BACK-on-snd camera-BACK-on-rcv BACK
 17 7 0 10 -260097 -1 -1 0 1;
 #X obj 204 130 apf CONFIG camera-BACK-on camera-BACK-on 2;
 #X obj 104 156 tgl 15 0 camera-LEFT-on-snd camera-LEFT-on-rcv LEFT
-17 7 0 10 -260097 -1 -1 0 1;
+17 7 0 10 -260097 -1 -1 1 1;
 #X obj 205 151 apf CONFIG camera-LEFT-on camera-LEFT-on 2;
 #X obj 205 173 apf CONFIG camera-RIGHT-on camera-RIGHT-on 2;
 #X obj 206 194 apf CONFIG camera-TOP-on camera-TOP-on 2;
@@ -292,6 +292,10 @@
 #X obj 104 190 tgl 15 0 camera-TOP-on-snd camera-TOP-on-rcv TOP 17
 7 0 10 -260097 -1 -1 0 1;
 #X obj 104 207 tgl 15 0 camera-FLOOR-on-snd camera-FLOOR-on-rcv FLOOR
-17 7 0 10 -260097 -1 -1 0 1;
+17 7 0 10 -260097 -1 -1 1 1;
 #X coords 0 -1 1 1 60 125 1 100 100;
 #X restore 604 21 pd cameras;
+#X obj 82 11 tgl 15 0 head1-sig head1-sig sig1 17 7 0 10 -257985 -1
+-1 1 1;
+#X obj 82 29 tgl 15 0 head2-sig head2-sig sig2 17 7 0 10 -257985 -1
+-1 0 1;
