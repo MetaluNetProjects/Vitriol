@@ -1,9 +1,8 @@
-#N canvas 885 552 344 302 10;
-#X declare -path Fraise -stdpath Fraise;
+#N canvas 794 402 576 350 10;
+#X declare -path ../../tools/Fraise -path Fraise;
 #X obj 21 38 pied/pied 0 41424;
-#X obj 21 16 declare -path Fraise -stdpath Fraise;
 #X obj 19 141 fruit/fruit 1 masterRF 10 masterRF;
-#N canvas 155 120 1154 600 master 1;
+#N canvas 155 120 1154 600 master 0;
 #X msg 145 60 L\$1;
 #X obj 145 37 tgl 15 0 empty empty set_LED 18 7 0 10 -4034 -1 -1 0
 1;
@@ -358,7 +357,7 @@
 #X obj 610 233 s camBatt;
 #X obj 894 247 s axlBatt;
 #X obj 990 409 s axlData;
-#N canvas 288 235 450 300 smooth 1;
+#N canvas 288 235 450 300 smooth 0;
 #X obj 166 14 inlet;
 #X obj 166 138 outlet;
 #X obj 166 77 +;
@@ -1040,3 +1039,4 @@ GAIN for camera to function. No other effect?;
 #X restore 248 90 pd OSC;
 #X obj 18 194 fruit/fruit 1 cameraRF 11 cameraRF 1;
 #X obj 18 244 fruit/fruit 1 axlA 12 axlRF 1;
+#X obj 21 16 declare -path ../../tools/Fraise -path Fraise;
