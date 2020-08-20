@@ -1,7 +1,8 @@
-#N canvas 536 142 903 733 12;
+#N canvas 457 23 903 655 12;
 #X declare -path zexy -lib zexy;
-#X declare -path ../../tools/AutoPreset -path ggee;
-#N canvas 93 125 487 576 guts 1;
+#X declare -path ../../tools/AutoPreset -path ggee -path iemlib -lib
+iemlib;
+#N canvas 93 102 487 576 guts 0;
 #X obj 30 267 bang~;
 #X obj 30 291 i;
 #X obj 30 315 + 1;
@@ -109,7 +110,8 @@
 #X obj 247 527 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113
 -1 -1;
 #X obj 249 498 r MASTER-save;
-#X obj 31 423 declare -path ../../tools/AutoPreset -path ggee;
+#X obj 31 423 declare -path ../../tools/AutoPreset -path ggee -path
+iemlib -lib iemlib;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
