@@ -1,0 +1,6 @@
+- Install lib gsl (GNU scientific library, for "Roue"): brew install gsl
+- Install node.js (for "Diable")
+- Install Blender (for "Roue")
+
+- Install latest Pure Data (Pd) (>= 0.50)
+- Install from Pd (Help/Install new externals): zexy, moonlib, hcs, iemlib, ggee, motex, pof
