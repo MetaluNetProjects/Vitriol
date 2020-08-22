@@ -7,7 +7,7 @@ import cv2
 import imutils
 import time
 
-picam = "http://raspberrypi:8080/?action=stream"
+#picam = "http://raspberrypi:8080/?action=stream"
 
 hsv = None
 frame = None
@@ -15,6 +15,9 @@ frame = None
 greenLower = (89, 165, 104)
 greenUpper = (129, 265, 204)
 greenMid = (0, 255, 255)
+pickindex = 1
+
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video",
@@ -37,12 +40,10 @@ else:
 # allow the camera or video file to warm up
 time.sleep(2.0)
 
-# define the lower and upper boundaries of the "green"
-# ball in the HSV color space, then initialize the
-# list of tracked points
-#greenLower = (29, 86, 6)
-#greenUpper = (64, 255, 255)
-pts = deque(maxlen=args["buffer"])
+pts = []
+pts.append(deque(maxlen=args["buffer"]))
+pts.append(deque(maxlen=args["buffer"]))
+pts.append(deque(maxlen=args["buffer"]))
 
 def pick_color(event,x,y,flags,param):
     global greenLower
@@ -110,21 +111,22 @@ while True:
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
 
     # update the points queue
-    pts.appendleft(center)
+    pts[0].appendleft(center)
 
     # loop over the set of tracked points
-    for i in range(1, len(pts)):
+    for i in range(1, len(pts[0])):
         # if either of the tracked points are None, ignore
         # them
-        if pts[i - 1] is None or pts[i] is None:
+        if pts[0][i - 1] is None or pts[0][i] is None:
             continue
 
         # otherwise, compute the thickness of the line and
         # draw the connecting lines
         thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
-        cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
+        cv2.line(frame, pts[0][i - 1], pts[0][i], (0, 0, 255), thickness)
 
-    # show the frame to our screen
+    cv2.putText(frame, "Color {}".format(pickindex), (20, 20),
+        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
     cv2.imshow("Frame", frame)
     cv2.imshow("Mask", mask)
     #CALLBACK FUNCTION
@@ -134,6 +136,14 @@ while True:
 
     if key == ord("p"):
         print(greenLower, greenUpper)
+    if key == ord("1"):
+        pickindex = 1
+    if key == ord("2"):
+        pickindex = 2
+    if key == ord("3"):
+        pickindex = 3
+    if key == ord("4"):
+        pickindex = 4
 
     # if the 'q' key is pressed, stop the loop
     if key == ord("q"):
