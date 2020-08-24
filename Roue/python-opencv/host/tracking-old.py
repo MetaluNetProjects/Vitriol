@@ -6,19 +6,19 @@ import argparse
 import cv2
 import imutils
 import time
-import colortracker as ct
 
 #picam = "http://raspberrypi:8080/?action=stream"
 
 hsv = None
 frame = None
 
-"""
+import colortracker
+
 greenLower = (89, 165, 104)
 greenUpper = (129, 265, 204)
 greenMid = (0, 255, 255)
-"""
 pickindex = 0
+
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -42,21 +42,22 @@ else:
 # allow the camera or video file to warm up
 time.sleep(2.0)
 
-"""pts = []
+pts = []
 pts.append(deque(maxlen=args["buffer"]))
 pts.append(deque(maxlen=args["buffer"]))
 pts.append(deque(maxlen=args["buffer"]))
-"""
-
-trackers = []
-trackers.append(ct.ColorTracker(1));
-trackers.append(ct.ColorTracker(3));
 
 def pick_color(event,x,y,flags,param):
+    global greenLower
+    global greenUpper
+    global greenMid
     if event == cv2.EVENT_LBUTTONDOWN:
-        hsvcol = hsv[y,x]
-        brgcol = frame[y,x]
-        trackers[pickindex].set_color(hsvcol, brgcol)
+        pixel = hsv[y,x]
+        greenLower = pixel - (20, 50, 50)
+        greenUpper = pixel + (20, 50, 50)
+        pixelbrg = frame[y,x]
+        greenMid = ( int (pixelbrg [ 0 ]), int (pixelbrg [ 1 ]), int (pixelbrg [ 2 ]))
+        print(greenMid, greenLower, greenUpper)
 
 # keep looping
 while True:
@@ -77,17 +78,62 @@ while True:
     blurred = cv2.GaussianBlur(frame, (11, 11), 0)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
-    #trackers[0].track(hsv, frame)
-    #trackers[1].track(hsv, frame)
-    for tracker in trackers:
-        tracker.track(hsv, frame)
+    # construct a mask for the color "green", then perform
+    # a series of dilations and erosions to remove any small
+    # blobs left in the mask
+    mask = cv2.inRange(hsv, greenLower, greenUpper)
+    mask = cv2.erode(mask, None, iterations=2)
+    mask = cv2.dilate(mask, None, iterations=2)
+
+    # find contours in the mask and initialize the current
+    # (x, y) center of the ball
+    cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_SIMPLE)
+    cnts = imutils.grab_contours(cnts)
+    center = None
+
+    # only proceed if at least one contour was found
+    if len(cnts) > 0:
+        # find the largest contour in the mask, then use
+        # it to compute the minimum enclosing circle and
+        # centroid
+        c = max(cnts, key=cv2.contourArea)
+        ((x, y), radius) = cv2.minEnclosingCircle(c)
+        M = cv2.moments(c)
+        center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
+
+        # only proceed if the radius meets a minimum size
+        if radius > 10:
+            # draw the circle and centroid on the frame,
+            # then update the list of tracked points
+            #cv2.circle(frame, (int(x), int(y)), int(radius),
+            #    (0, 255, 255), 2)
+            cv2.circle(frame, (int(x), int(y)), int(radius),
+                greenMid, 2)
+            cv2.circle(frame, center, 5, (0, 0, 255), -1)
+
+    # update the points queue
+    pts[pickindex].appendleft(center)
+
+    # loop over the set of tracked points
+    for i in range(1, len(pts[pickindex])):
+        # if either of the tracked points are None, ignore
+        # them
+        if pts[pickindex][i - 1] is None or pts[pickindex][i] is None:
+            continue
+
+        # otherwise, compute the thickness of the line and
+        # draw the connecting lines
+        thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
+        cv2.line(frame, pts[pickindex][i - 1], pts[pickindex][i], (0, 0, 255), thickness)
+
     cv2.putText(frame, "Color {}".format(pickindex + 1), (20, 20),
         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
     cv2.imshow("Frame", frame)
-    #cv2.imshow("Mask", mask)
+    cv2.imshow("Mask", mask)
     #CALLBACK FUNCTION
-    #cv2.setMouseCallback("Frame", trackers[0].pick_color, [hsv, frame])
     cv2.setMouseCallback("Frame", pick_color)
+    
     key = cv2.waitKey(1) & 0xFF
 
     if key == ord("p"):
