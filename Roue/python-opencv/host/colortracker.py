@@ -15,13 +15,21 @@ class ColorTracker:
         self.maxPoints = maxPoints
         self.ct = CentroidTracker()
 
+    """
+    def read_config(config, section):
+        self.HSVmin = config.get(section, 'HSVmin')
+
+    def write_config(config, section):
+        config.add_section(section)
+        config.set('main', 'HSVmin', self.HSVmin)
+    """
     def set_color(self, hsvcol, brgcol):
         self.HSVmin = hsvcol - (20, 50, 50)
         self.HSVmax = hsvcol + (20, 50, 50)
         self.BGR = ( int (brgcol [ 0 ]), int (brgcol [ 1 ]), int (brgcol [ 2 ]))
         print(self.BGR, self.HSVmin, self.HSVmax)
 
-    def track(self, hsv, frame):
+    def track(self, hsv, frame, draw):
         # construct a mask for the color, then perform
         # a series of dilations and erosions to remove any small
         # blobs left in the mask
@@ -59,13 +67,12 @@ class ColorTracker:
                 # then update the list of tracked points
                 #cv2.circle(frame, (int(x), int(y)), int(radius),
                 #    (0, 255, 255), 2)
-                """cv2.circle(frame, (int(x), int(y)), int(radius),
-                    self.BGR, 2)
-                cv2.circle(frame, center, 5, (0, 0, 255), -1)"""
                 self.pts.append(center)
-
-        # update the points queue
-        #self.pts.appendleft(center)
+                if draw:
+                    cv2.circle(frame, (int(x), int(y)), int(radius),
+                        self.BGR, 2)
+                    cv2.circle(frame, center, 5, (0, 0, 255), -1)
+"""
         self.objects = self.ct.update(self.pts)
         for (objectID, centroid) in self.objects.items():
         # draw both the ID of the object and the centroid of the
@@ -74,6 +81,7 @@ class ColorTracker:
             cv2.putText(frame, text, (centroid[0] - 10, centroid[1] - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
             cv2.circle(frame, (centroid[0], centroid[1]), 4, (0, 255, 0), -1)
+"""
 
 """
         # loop over the set of tracked points
