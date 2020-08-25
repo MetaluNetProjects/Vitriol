@@ -1,17 +1,17 @@
-#N canvas 588 131 713 339 12;
+#N canvas 574 487 713 339 12;
 #X declare -path Pof;
-#X declare -lib zexy -path ../tools/AutoPreset;
+#X declare -lib zexy -path ../tools/AutoPreset -path ggee;
 #X obj 533 52 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
 0 10 -258113 -1 -1;
 #X obj 16 177 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 1;
+-262144 -1 -1 0;
 #X text 48 181 projs-fullscreen;
 #X text 49 212 projs-window;
 #X text 49 243 3d-cameras;
 #X text 48 272 3d-projs;
 #N canvas 1 81 845 422 CONFIG 0;
-#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan CND 2 53 2
-15 -233017 -45076 0;
+#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan empty 2 53
+2 15 -233017 -45076 0;
 #X obj 337 35 apmaster CONFIG;
 #X obj 66 260 s CONFIG-apmaster-rcv;
 #X obj 285 367 s CONFIG-apmaster-rcv;
@@ -92,15 +92,15 @@
 #X coords 0 -1 1 1 202 80 1 100 15;
 #X restore 151 18 pd CONFIG;
 #X obj 17 67 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
-0 -8 0 10 -262144 -1 -1 50.2513 256;
+0 -8 0 10 -262144 -1 -1 50 256;
 #X obj 368 29 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m)
-70 10 0 12 -228856 -1 -1 10 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X obj 368 53 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m)
-70 10 0 12 -228856 -1 -1 6 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X obj 368 77 nbx 5 20 1 20 0 0 roomHeight-snd roomHeight-rcv Height(m)
-70 10 0 12 -228856 -1 -1 4 256;
+70 10 0 12 -228856 -1 -1 1 256;
 #X text 368 11 ROOM SIZE:;
-#N canvas 77 168 636 438 stuff 0;
+#N canvas 57 148 636 438 stuff 0;
 #X obj 28 148 list prepend testGem/testGem;
 #X obj 292 50 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
 0 -8 0 10 -262144 -1 -1 0 1;
@@ -119,7 +119,6 @@
 #X text 159 260 semi;
 #X obj 83 365 netsend -b;
 #X obj 51 287 list prepend send;
-#X msg 83 101 disconnect \, connect localhost 8080;
 #X obj 51 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 51 312 list trim;
@@ -183,52 +182,54 @@
 #X restore 43 556 pd debounce;
 #X obj 99 638 sel 0;
 #X msg 44 604 0;
-#X connect 0 0 28 0;
+#X msg 107 12 disconnect \, connect localhost 8080;
+#X msg 83 101 disconnect \, connect 193.168.4.1 8080;
+#X connect 0 0 27 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 7 0;
 #X connect 6 0 12 0;
 #X connect 7 0 6 0;
-#X connect 9 1 13 0;
+#X connect 9 1 52 0;
 #X connect 11 0 0 0;
-#X connect 11 0 44 0;
-#X connect 11 1 21 0;
-#X connect 12 0 15 0;
-#X connect 13 0 11 0;
-#X connect 14 0 9 0;
-#X connect 15 0 11 0;
-#X connect 16 0 1 0;
-#X connect 17 0 18 0;
-#X connect 18 0 20 0;
-#X connect 19 0 18 0;
-#X connect 20 0 27 0;
-#X connect 21 0 19 0;
-#X connect 21 3 22 0;
-#X connect 21 4 17 0;
-#X connect 22 0 17 0;
+#X connect 11 0 43 0;
+#X connect 11 1 20 0;
+#X connect 12 0 14 0;
+#X connect 13 0 9 0;
+#X connect 14 0 11 0;
+#X connect 15 0 1 0;
+#X connect 16 0 17 0;
+#X connect 17 0 19 0;
+#X connect 18 0 17 0;
+#X connect 19 0 26 0;
+#X connect 20 0 18 0;
+#X connect 20 3 21 0;
+#X connect 20 4 16 0;
+#X connect 21 0 16 0;
+#X connect 22 0 23 0;
+#X connect 22 1 23 1;
 #X connect 23 0 24 0;
-#X connect 23 1 24 1;
 #X connect 24 0 25 0;
-#X connect 25 0 26 0;
-#X connect 29 0 14 0;
+#X connect 28 0 13 0;
+#X connect 30 0 31 0;
 #X connect 31 0 32 0;
-#X connect 32 0 33 0;
-#X connect 33 0 41 0;
-#X connect 36 0 12 0;
-#X connect 38 0 42 0;
-#X connect 39 0 38 0;
-#X connect 41 0 36 0;
-#X connect 42 0 31 0;
-#X connect 43 0 42 0;
-#X connect 44 0 49 0;
-#X connect 45 0 14 0;
-#X connect 46 0 47 0;
+#X connect 32 0 40 0;
+#X connect 35 0 12 0;
+#X connect 37 0 41 0;
+#X connect 38 0 37 0;
+#X connect 40 0 35 0;
+#X connect 41 0 30 0;
+#X connect 42 0 41 0;
+#X connect 43 0 48 0;
+#X connect 44 0 13 0;
+#X connect 45 0 46 0;
+#X connect 46 0 43 0;
 #X connect 47 0 44 0;
-#X connect 48 0 45 0;
-#X connect 49 0 48 0;
-#X connect 49 0 50 0;
-#X connect 50 0 16 0;
-#X connect 51 0 48 0;
+#X connect 48 0 47 0;
+#X connect 48 0 49 0;
+#X connect 49 0 15 0;
+#X connect 50 0 47 0;
+#X connect 52 0 11 0;
 #X restore 31 66 pd connect-server;
 #X obj 31 45 bng 15 250 50 0 empty empty connect 17 7 0 10 -257985
 -1 -1;
@@ -255,7 +256,8 @@
 #X obj 420 336 s camera_draw_grid;
 #X obj 431 366 s camera_draw_labels;
 #X obj 31 278 declare -path Pof;
-#X obj 25 4 declare -lib zexy -path ../tools/AutoPreset;
+#X obj 25 4 declare -lib zexy -path ../tools/AutoPreset -path ggee
+;
 #X connect 2 0 4 0;
 #X connect 3 0 2 0;
 #X connect 11 0 12 0;
@@ -276,13 +278,13 @@
 #X obj 438 227 projector FLOOR 2;
 #N canvas 1 81 564 281 cameras 0;
 #X obj 104 122 tgl 15 0 camera-FRONT-on-snd camera-FRONT-on-rcv FRONT
-17 7 0 10 -260097 -1 -1 1 1;
+17 7 0 10 -260097 -1 -1 0 1;
 #X obj 203 109 apf CONFIG camera-FRONT-on camera-FRONT-on 2;
 #X obj 104 139 tgl 15 0 camera-BACK-on-snd camera-BACK-on-rcv BACK
 17 7 0 10 -260097 -1 -1 0 1;
 #X obj 204 130 apf CONFIG camera-BACK-on camera-BACK-on 2;
 #X obj 104 156 tgl 15 0 camera-LEFT-on-snd camera-LEFT-on-rcv LEFT
-17 7 0 10 -260097 -1 -1 1 1;
+17 7 0 10 -260097 -1 -1 0 1;
 #X obj 205 151 apf CONFIG camera-LEFT-on camera-LEFT-on 2;
 #X obj 205 173 apf CONFIG camera-RIGHT-on camera-RIGHT-on 2;
 #X obj 206 194 apf CONFIG camera-TOP-on camera-TOP-on 2;
@@ -292,7 +294,7 @@
 #X obj 104 190 tgl 15 0 camera-TOP-on-snd camera-TOP-on-rcv TOP 17
 7 0 10 -260097 -1 -1 0 1;
 #X obj 104 207 tgl 15 0 camera-FLOOR-on-snd camera-FLOOR-on-rcv FLOOR
-17 7 0 10 -260097 -1 -1 1 1;
+17 7 0 10 -260097 -1 -1 0 1;
 #X coords 0 -1 1 1 60 125 1 100 100;
 #X restore 604 21 pd cameras;
 #X obj 82 11 tgl 15 0 head1-sig head1-sig sig1 17 7 0 10 -257985 -1
@@ -301,5 +303,5 @@
 -1 0 1;
 #X obj 81 112 tgl 40 0 ALL_WHITE ALL_WHITE ALL_WHITE 0 -8 0 10 -262144
 -1 -1 0 1;
-#X obj 16 302 cnv 15 170 30 empty window_size_canvas window_size=8000x2000
+#X obj 16 302 cnv 15 170 30 empty window_size_canvas window_size=600x300
 5 12 0 12 -233017 -66577 0;
