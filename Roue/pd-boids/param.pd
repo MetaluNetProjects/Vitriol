@@ -1,0 +1,12 @@
+#N canvas 170 159 450 300 10;
+#X floatatom 103 114 5 0 0 0 - - -;
+#X obj 103 174 list trim;
+#X obj 103 153 list prepend \$2;
+#X obj 149 114 apf boids \$2;
+#X obj 103 193 s \$1;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X coords 0 -1 1 1 85 32 1 100 100;
