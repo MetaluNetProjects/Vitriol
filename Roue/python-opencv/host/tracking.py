@@ -7,11 +7,28 @@ import cv2
 import imutils
 import time
 import colortracker as ct
+import socket
 
-#picam = "http://raspberrypi:8080/?action=stream"
+"""
+from configparser import ConfigParser
+config = ConfigParser()
+
+config.read('config.txt')
+config.add_section('main')
+config.set('main', 'key1', 'value1')
+config.set('main', 'key2', 'value2')
+config.set('main', 'key3', 'value3')
+
+with open('config.txt', 'w') as f:
+    config.write(f)
+"""
+
+SOCK = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+SOCK.connect(("localhost", 8765))
 
 hsv = None
 frame = None
+draw = False
 
 """
 greenLower = (89, 165, 104)
@@ -79,19 +96,24 @@ while True:
 
     #trackers[0].track(hsv, frame)
     #trackers[1].track(hsv, frame)
-    for tracker in trackers:
-        tracker.track(hsv, frame)
+    for trackerID in range(0, len(trackers)):
+        trackers[trackerID].track(hsv, frame, draw)
+        for ptID in range(0, len(trackers[trackerID].pts)):
+            #print(trackerID,ptID,trackers[trackerID].pts[ptID])
+            pt = trackers[trackerID].pts[ptID]
+            message='{} {} {} {};'.format(trackerID, ptID, pt[0], pt[1])
+            SOCK.send(message)
     cv2.putText(frame, "Color {}".format(pickindex + 1), (20, 20),
         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
     cv2.imshow("Frame", frame)
-    #cv2.imshow("Mask", mask)
-    #CALLBACK FUNCTION
-    #cv2.setMouseCallback("Frame", trackers[0].pick_color, [hsv, frame])
     cv2.setMouseCallback("Frame", pick_color)
+    #cv2.imshow("Mask", mask)
     key = cv2.waitKey(1) & 0xFF
 
     if key == ord("p"):
         print(greenLower, greenUpper)
+    if key == ord("d"):
+        draw = not draw
     elif key == ord("1"):
         pickindex = 0
     elif key == ord("2"):
