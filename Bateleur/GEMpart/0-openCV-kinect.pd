@@ -228,7 +228,7 @@
 #X obj 31 27 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 514 182 nbx 3 30 -1e+37 1e+37 0 0 empty empty FPS 10 -12 0 28
--257985 -1 -1 20 256;
+-257985 -1 -1 25 256;
 #N canvas 352 81 867 435 NETWORK 0;
 #X obj 176 159 netsend;
 #X obj 176 89 loadbang;
@@ -490,7 +490,7 @@
 -1 -1 0 1;
 #X obj 268 28 declare -lib Gem -lib pix_opencv -path GEMpart -path
 Gem/abstractions, f 69;
-#N canvas 1 620 651 319 CONTROL 0;
+#N canvas 114 476 651 319 CONTROL 0;
 #X obj 45 33 hsl 128 15 0 1 0 0 \$0-control-noise empty noise -2 -8
 0 10 -262144 -1 -1 0 1;
 #X obj 47 81 hsl 128 15 0 1 0 0 \$0-control-mix_retard empty mix_retard
@@ -874,7 +874,7 @@ freeze;
 #X connect 19 0 8 0;
 #X connect 20 0 8 0;
 #X restore 399 458 pd BrightnessSaturationContrast;
-#N canvas 529 382 844 542 Mask-ctl 0;
+#N canvas 529 333 844 542 Mask-ctl 0;
 #X obj 174 403 outlet;
 #X msg 133 163 showMask \$1;
 #X obj 133 138 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -1824,7 +1824,7 @@ you set tables);
 #X obj 383 564 colorRGB 1 1 1 0.75;
 #X obj 92 60 separator;
 #X obj 270 164 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
--1 -1 153 256;
+-1 -1 175 256;
 #X obj 92 27 inlet;
 #X obj 171 1 loadbang;
 #X msg 171 22 gray 1;
@@ -2831,20 +2831,22 @@ might contain spaces (and other weird characters);
 #X obj 678 385 ctl \$0 tigre;
 #X obj 480 274 ctl \$0 freeze;
 #X obj 411 661 hsl 80 10 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 7900 1;
 #X obj 408 580 r MainGauche;
 #X obj 408 601 unpack f f;
 #X obj 496 626 vsl 10 80 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 75 1;
+-1 -1 412 1;
 #X obj 625 665 hsl 80 10 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 4680 1;
+-1 -1 0 1;
 #X obj 622 605 unpack f f;
 #X obj 710 630 vsl 10 80 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 4761 1;
+-1 -1 1891 1;
 #X obj 622 581 r MainDroite;
 #X obj 592 534 s Mains-minarea;
 #X msg 593 503 0.02;
 #X obj 127 63 rotate 0 0 1 0;
+#X obj 596 429 ctl \$0 showDebugMains;
+#X obj 596 451 s showDebug;
 #X connect 1 0 2 0;
 #X connect 2 0 1 0;
 #X connect 5 0 6 0;
@@ -2909,3 +2911,4 @@ might contain spaces (and other weird characters);
 #X connect 85 0 83 0;
 #X connect 87 0 86 0;
 #X connect 88 0 23 0;
+#X connect 89 0 90 0;
