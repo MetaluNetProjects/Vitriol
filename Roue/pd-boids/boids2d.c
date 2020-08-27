@@ -26,11 +26,12 @@
 #define            kAssistOutlet    2
 #define            kMaxLong        0xFFFFFFFF
 #define            kMaxNeighbors    4
-#define            kNumAttract    4
+#define            kNumAttract    5
 
 // util
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define CLIP(x,a,b) (x)=(x)<(a)?(a):(x)>(b)?(b):(x)
+
 
 // initial flight parameters
 const short			kNumBoids        = 12;	// number of boids
@@ -145,7 +146,7 @@ Point2d FindFlockCenter(t_boids *x);
 float MatchAndAvoidNeighbors(t_boids *x, short theBoid, Velocity *matchNeighborVel, Velocity *avoidNeighborVel);
 Velocity SeekPoint(t_boids *x, short theBoid, Point2d seekPt);
 Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt);
-Velocity AvoidWalls(t_boids *x, short theBoid);
+//Velocity AvoidWalls(t_boids *x, short theBoid);
 int InFront(BoidPtr theBoid, BoidPtr neighbor);
 void NormalizeVelocity(Velocity *direction);
 double RandomInt(double minRange, double maxRange);
@@ -567,7 +568,7 @@ void FlightStep(t_boids *x)
     Velocity        goAttractVel;
     Velocity        goAttract;
     Velocity        matchNeighborVel;
-    Velocity        avoidWallsVel;
+    //Velocity        avoidWallsVel;
     Velocity        avoidNeighborVel;
     float            avoidNeighborSpeed;
     const Velocity    zeroVel    = {0.0, 0.0};//, 0.0};
@@ -792,9 +793,7 @@ Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, doub
 
     tempDir.x = seekPt.x - x->boid[theBoid].oldPos.x;    
     tempDir.y = seekPt.y - x->boid[theBoid].oldPos.y;
-    /*tempDir.x = x->attractPt[numpt].x - x->boid[theBoid].oldPos.x;
-    tempDir.y = x->attractPt[numpt].y - x->boid[theBoid].oldPos.y;*/
-    my_hypot = /*sqrt*/(tempDir.x * tempDir.x + tempDir.y * tempDir.y);
+    my_hypot = (tempDir.x * tempDir.x + tempDir.y * tempDir.y);
     my_hypot *= my_hypot;
     if (my_hypot != 0.0) {
         tempDir.x /= my_hypot;
@@ -803,6 +802,7 @@ Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, doub
     return(tempDir);
 }
 
+#if 0
 Velocity AvoidWalls(t_boids *x, short theBoid)
 {
     Point2d        testPoint;
@@ -836,6 +836,7 @@ Velocity AvoidWalls(t_boids *x, short theBoid)
     
     return(tempVel);
 }
+#endif
 
 
 int InFront(BoidPtr theBoid, BoidPtr neighbor)
