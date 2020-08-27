@@ -32,47 +32,49 @@
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define CLIP(x,a,b) (x)=(x)<(a)?(a):(x)>(b)?(b):(x)
 
+// type
+typedef float bfloat;
 
 // initial flight parameters
 const short			kNumBoids        = 12;	// number of boids
 const short			kNumNeighbors    = 2;    // must be <= kMaxNeighbors
-const double		kMinSpeed        = 0.15;	// boids' minimum speed
-const double        kMaxSpeed        = 0.25;    // boids' maximum speed
-const double        kCenterWeight    = 0.25;    // flock centering
-const double        kAttractWeight    = 0.300;// attraction point seeking
-const double        kMatchWeight    = 0.100;// neighbors velocity matching
-const double        kAvoidWeight    = 0.10;    // neighbors avoidance
-const double        kWallsWeight    = 0.500;// wall avoidance [210]
-const double        kEdgeDist        = 0.5;    // vision distance to avoid wall edges [5]
-const double        kSpeedupFactor    = 0.100;// alter animation speed
-const double        kInertiaFactor    = 0.20;    // willingness to change speed & direction
-const double        kAccelFactor    = 0.100;// neighbor avoidance accelerate or decelerate rate
-const double        kPrefDist        = 0.25;    // preferred distance from neighbors
-const double        kFlyRectTop        = 1.0;    // fly rect boundaries
-const double		kFlyRectLeft    = -1.0;    
-const double		kFlyRectBottom    = -1.0;    
-const double		kFlyRectRight    = 1.0;    
-// const double        kFlyRectFront    = 1.0;    
-// const double        kFlyRectBack    = -1.0;    
+const bfloat		kMinSpeed        = 0.15;	// boids' minimum speed
+const bfloat        kMaxSpeed        = 0.25;    // boids' maximum speed
+const bfloat        kCenterWeight    = 0.25;    // flock centering
+const bfloat        kAttractWeight    = 0.300;// attraction point seeking
+const bfloat        kMatchWeight    = 0.100;// neighbors velocity matching
+const bfloat        kAvoidWeight    = 0.10;    // neighbors avoidance
+const bfloat        kWallsWeight    = 0.500;// wall avoidance [210]
+const bfloat        kEdgeDist        = 0.5;    // vision distance to avoid wall edges [5]
+const bfloat        kSpeedupFactor    = 0.100;// alter animation speed
+const bfloat        kInertiaFactor    = 0.20;    // willingness to change speed & direction
+const bfloat        kAccelFactor    = 0.100;// neighbor avoidance accelerate or decelerate rate
+const bfloat        kPrefDist        = 0.25;    // preferred distance from neighbors
+const bfloat        kFlyRectTop        = 1.0;    // fly rect boundaries
+const bfloat		kFlyRectLeft    = -1.0;    
+const bfloat		kFlyRectBottom    = -1.0;    
+const bfloat		kFlyRectRight    = 1.0;    
+// const bfloat        kFlyRectFront    = 1.0;    
+// const bfloat        kFlyRectBack    = -1.0;    
 
 
 // typedefs
 typedef struct Velocity {
-    double        x;
-    double        y;
-//    double        z;
+    bfloat        x;
+    bfloat        y;
+//    bfloat        z;
 } Velocity;
 
 typedef struct Point2d {
-    double        x;
-    double        y;
-//    double        z;
+    bfloat        x;
+    bfloat        y;
+//    bfloat        z;
 } Point2d;
 
 typedef struct Box3D {
-    double        left, right;
-    double        top, bottom;
-//    double        front, back;
+    bfloat        left, right;
+    bfloat        top, bottom;
+//    bfloat        front, back;
 } Box3D;
 
 typedef struct _Boid {
@@ -80,9 +82,9 @@ typedef struct _Boid {
     Point2d        newPos;
     Velocity    oldDir;
     Velocity    newDir;
-    double        speed;
+    bfloat        speed;
     short        neighbor[kMaxNeighbors];
-    double        neighborDistSqr[kMaxNeighbors];
+    bfloat        neighborDistSqr[kMaxNeighbors];
 } t_one_boid, *BoidPtr;
 
 typedef struct _FlockObject {
@@ -92,23 +94,23 @@ typedef struct _FlockObject {
     long		numBoids;
     long		numNeighbors;
     Box3D		flyRect;
-    double		minSpeed;
-    double		maxSpeed;
-    double		centerWeight;
-    double        attractWeight[kNumAttract];
-    double        matchWeight;
-    double        avoidWeight;
-    double        wallsWeight;
-    double        edgeDist;
-    double        speedupFactor;
-    double        inertiaFactor;
-    double        accelFactor;
-    double        prefDist;
-    double        prefDistSqr;
+    bfloat		minSpeed;
+    bfloat		maxSpeed;
+    bfloat		centerWeight;
+    bfloat        attractWeight[kNumAttract];
+    bfloat        matchWeight;
+    bfloat        avoidWeight;
+    bfloat        wallsWeight;
+    bfloat        edgeDist;
+    bfloat        speedupFactor;
+    bfloat        inertiaFactor;
+    bfloat        accelFactor;
+    bfloat        prefDist;
+    bfloat        prefDistSqr;
     Point2d        centerPt;
     Point2d        attractPt[kNumAttract];
     BoidPtr        boid;
-    double         d2r, r2d;
+    bfloat         d2r, r2d;
 } t_boids, *FlockPtr;
 
 // variables
@@ -149,8 +151,8 @@ Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt);
 //Velocity AvoidWalls(t_boids *x, short theBoid);
 int InFront(BoidPtr theBoid, BoidPtr neighbor);
 void NormalizeVelocity(Velocity *direction);
-double RandomInt(double minRange, double maxRange);
-double DistSqrToPt(Point2d firstPoint, Point2d secondPoint);
+bfloat RandomInt(bfloat minRange, bfloat maxRange);
+bfloat DistSqrToPt(Point2d firstPoint, Point2d secondPoint);
 
 void boids2d_setup(void)
 {
@@ -222,11 +224,11 @@ void Flock_bang(t_boids *x)
     t_atom     outlist[10];
     t_atom     *out;
     
-    double     tempNew_x, tempNew_y; 
-    double     tempOld_x, tempOld_y;
-    double    delta_x, delta_y; 
-    double     azi, speed;
-    // double tempspeed;
+    bfloat     tempNew_x, tempNew_y; 
+    bfloat     tempOld_x, tempOld_y;
+    bfloat    delta_x, delta_y; 
+    bfloat     azi, speed;
+    // bfloat tempspeed;
     
     out = outlist;
         
@@ -396,45 +398,45 @@ void Flock_minSpeed(t_boids *x, t_float arg)
 
 void Flock_maxSpeed(t_boids *x, t_float arg)
 {
-    x->maxSpeed = (double)arg;
+    x->maxSpeed = (bfloat)arg;
 }
 
 void Flock_centerWeight(t_boids *x, t_float arg)
 {
-    x->centerWeight = (double)arg;
+    x->centerWeight = (bfloat)arg;
 }
 
 void Flock_attractWeight(t_boids *x, t_float num, t_float w)
 {
     if((int)num < kNumAttract)
     {
-        x->attractWeight[(int)num] = (double)w;
+        x->attractWeight[(int)num] = (bfloat)w;
     }
 }
 
 void Flock_matchWeight(t_boids *x, t_float arg)
 {
-    x->matchWeight = (double)arg;
+    x->matchWeight = (bfloat)arg;
 }
 
 void Flock_avoidWeight(t_boids *x, t_float arg)
 {
-    x->avoidWeight = (double)arg;
+    x->avoidWeight = (bfloat)arg;
 }
 
 void Flock_wallsWeight(t_boids *x, t_float arg)
 {
-    x->wallsWeight = (double)arg;
+    x->wallsWeight = (bfloat)arg;
 }
 
 void Flock_edgeDist(t_boids *x, t_float arg)
 {
-    x->edgeDist = (double)arg;
+    x->edgeDist = (bfloat)arg;
 }
 
 void Flock_speedupFactor(t_boids *x, t_float arg)
 {
-    x->speedupFactor = (double)arg;
+    x->speedupFactor = (bfloat)arg;
 }
 
 void Flock_inertiaFactor(t_boids *x, t_float arg)
@@ -442,28 +444,28 @@ void Flock_inertiaFactor(t_boids *x, t_float arg)
     if(arg == 0){
         x->inertiaFactor = 0.000001;
     }else{
-        x->inertiaFactor = (double)arg;
+        x->inertiaFactor = (bfloat)arg;
     }
 }
 
 void Flock_accelFactor(t_boids *x, t_float arg)
 {
-    x->accelFactor = (double)arg;
+    x->accelFactor = (bfloat)arg;
 }
 
 void Flock_prefDist(t_boids *x, t_float arg)
 {
-    x->prefDist = (double)arg;
+    x->prefDist = (bfloat)arg;
 }
 
 void Flock_flyRect(t_boids *x, t_symbol *msg, short argc, t_atom *argv)
 {
-    double temp[4];
+    bfloat temp[4];
     short i;
     if(argc == 4){
         for(i=0;i<4;i++) {
             if(argv[i].a_type == A_FLOAT) {
-                temp[i] = (double)argv[i].a_w.w_float;    
+                temp[i] = (bfloat)argv[i].a_w.w_float;    
             }
         }
         x->flyRect.left         = temp[0];
@@ -480,8 +482,8 @@ void Flock_attractPt(t_boids *x, t_float num, t_float px, t_float py)
     short i;
     if((int)num < kNumAttract)
     {
-        x->attractPt[(int)num].x = (double)px;
-        x->attractPt[(int)num].y = (double)py;
+        x->attractPt[(int)num].x = (bfloat)px;
+        x->attractPt[(int)num].y = (bfloat)py;
     }
 }
 
@@ -493,7 +495,7 @@ void Flock_reset(t_boids *x)
 void Flock_resetBoids(t_boids *x)
 {
     long i, j;
-    double rndAngle;
+    bfloat rndAngle;
     
     for (i = 0; i <  x->numBoids; i++) { // init everything to 0.0
         x->boid[i].oldPos.x = 0.0;
@@ -640,7 +642,7 @@ void FlightStep(t_boids *x)
 
 Point2d FindFlockCenter(t_boids *x)
 {
-    double            totalH = 0, totalV = 0, totalD = 0;
+    bfloat            totalH = 0, totalV = 0, totalD = 0;
     Point2d            centerPoint;
     short            i;
 
@@ -650,9 +652,9 @@ Point2d FindFlockCenter(t_boids *x)
         totalV += x->boid[i].oldPos.y;
         // totalD += x->boid[i].oldPos.z;
     }
-    centerPoint.x = (double)(totalH / x->numBoids);
-    centerPoint.y = (double)(totalV / x->numBoids);
-    // centerPoint.z = (double)    (totalD / x->numBoids);
+    centerPoint.x = (bfloat)(totalH / x->numBoids);
+    centerPoint.y = (bfloat)(totalV / x->numBoids);
+    // centerPoint.z = (bfloat)    (totalD / x->numBoids);
         
     return(centerPoint);
 }
@@ -660,9 +662,9 @@ Point2d FindFlockCenter(t_boids *x)
 float MatchAndAvoidNeighbors(t_boids *x, short theBoid, Velocity *matchNeighborVel, Velocity *avoidNeighborVel)
 {
     short            i, j, neighbor;
-    double            distSqr;
-    double            dist, distH, distV,distD;
-    double            tempSpeed;
+    bfloat            distSqr;
+    bfloat            dist, distH, distV,distD;
+    bfloat            tempSpeed;
     short            numClose = 0;
     Velocity        totalVel = {0.0,0.0};//,0.0};
 
@@ -786,7 +788,7 @@ Velocity SeekPoint(t_boids *x, short theBoid, Point2d seekPt)
     return(tempDir);
 }
 
-Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, double maxdist*/)
+Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, bfloat maxdist*/)
 {
     Velocity    tempDir;
     float    my_hypot;
@@ -912,20 +914,20 @@ void NormalizeVelocity(Velocity *direction)
     }
 }
 
-double RandomInt(double minRange, double maxRange)
+bfloat RandomInt(bfloat minRange, bfloat maxRange)
 {
     unsigned short    qdRdm;
-    double            t, result;
+    bfloat            t, result;
     
     qdRdm = rand();
-    t = (double)qdRdm / 65536.0;     // now 0 <= t <= 1
+    t = (bfloat)qdRdm / 65536.0;     // now 0 <= t <= 1
     result = (t * (maxRange - minRange)) + minRange;
     return(result);
 }
 
-double DistSqrToPt(Point2d firstPoint, Point2d secondPoint)
+bfloat DistSqrToPt(Point2d firstPoint, Point2d secondPoint)
 {
-    double    a, b,c;
+    bfloat    a, b,c;
     a = firstPoint.x - secondPoint.x;
     b = firstPoint.y - secondPoint.y;    
     //c = firstPoint.z - secondPoint.z;    
