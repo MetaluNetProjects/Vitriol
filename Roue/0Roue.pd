@@ -1,4 +1,4 @@
-#N canvas 747 184 376 211 12;
+#N canvas 747 184 584 225 12;
 #X obj 38 55 RF/masterRF;
 #X obj 38 89 particles/blenderOSCctl;
 #X obj 38 25 Audio/RoueAudio;
@@ -7,7 +7,7 @@
 #X floatatom 247 49 5 0 0 0 - - -;
 #X obj 247 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 637 388 352 246 receive-pythontracker 1;
+#N canvas 637 415 352 246 receive-pythontracker 0;
 #X obj 85 60 fudiparse;
 #X obj 85 36 netreceive -u -b 8765;
 #X obj 85 86 route 0 1;
@@ -25,5 +25,10 @@
 #X connect 4 0 6 0;
 #X connect 5 0 4 0;
 #X restore 39 166 pd receive-pythontracker;
+#X obj 288 160 pd~ -fifo 30;
+#X msg 305 137 pd~ stop;
+#X msg 288 113 pd~ start pd-boids/Roue-boids-pof.pd;
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
