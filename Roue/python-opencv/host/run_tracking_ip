@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python tracking.py -v "http://$1:8080/?action=stream"

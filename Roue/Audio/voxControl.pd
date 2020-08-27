@@ -1,4 +1,4 @@
-#N canvas 21 270 291 379 12;
+#N canvas 220 407 291 379 12;
 #X obj 225 146 bng 15 250 50 0 \$0-resetpitch \$0-resetpitch z 17 7
 0 10 -262144 -1 -1;
 #X obj 307 253 r \$0-resetpitch;
@@ -10,10 +10,10 @@
 #X obj 12 89 paramHrnd \$1 len;
 #X obj 12 127 paramHrnd \$1 pitch;
 #X obj 375 59 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 8429 1;
+-1 -1 0 1;
 #X obj 310 222 s \$1-pan-rcv;
 #X obj 372 110 s \$1-proba-rcv;
-#N canvas 578 203 523 576 calcspeed 1;
+#N canvas 578 203 523 576 calcspeed 0;
 #X obj 162 24 inlet;
 #X obj 66 18 loadbang;
 #X obj 72 277 mavg 20;
@@ -76,7 +76,6 @@
 #X restore 309 32 pd aps;
 #X obj 12 12 paramH \$1 proba 2;
 #X obj 12 240 paramT \$1 auto 2;
-#X obj 372 33 inlet;
 #X obj 11 317 paramH \$1 hip;
 #X obj 430 224 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -86,12 +85,15 @@
 #X obj 144 240 paramT \$1 noautopan;
 #X obj 11 278 paramHrnd \$1 pan;
 #X obj 310 166 r axlXYangle;
+#X obj 372 11 r 2voxControl\$1;
+#X obj 372 35 clip 0 1;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 9 0 12 0;
 #X connect 12 0 11 0;
-#X connect 16 0 9 0;
-#X connect 19 0 10 0;
-#X connect 20 0 19 1;
-#X connect 21 0 20 0;
-#X connect 24 0 19 0;
+#X connect 18 0 10 0;
+#X connect 19 0 18 1;
+#X connect 20 0 19 0;
+#X connect 23 0 18 0;
+#X connect 24 0 25 0;
+#X connect 25 0 9 0;

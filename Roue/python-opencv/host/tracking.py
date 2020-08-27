@@ -28,7 +28,7 @@ SOCK.connect(("localhost", 8765))
 
 hsv = None
 frame = None
-draw = False
+draw = True
 
 """
 greenLower = (89, 165, 104)
@@ -103,8 +103,13 @@ while True:
             pt = trackers[trackerID].pts[ptID]
             message='{} {} {} {};'.format(trackerID, ptID, pt[0], pt[1])
             SOCK.send(message)
-    cv2.putText(frame, "Color {}".format(pickindex + 1), (20, 20),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+    if pickindex == 0:
+        cv2.putText(frame, "Couleur Mitch", (20, 20),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+    else:
+        cv2.putText(frame, "Couleur Danseuses", (20, 20),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+		
     cv2.imshow("Frame", frame)
     cv2.setMouseCallback("Frame", pick_color)
     #cv2.imshow("Mask", mask)
@@ -112,16 +117,16 @@ while True:
 
     if key == ord("p"):
         print(greenLower, greenUpper)
-    if key == ord("d"):
-        draw = not draw
+    #if key == ord("d"):
+    #    draw = not draw
     elif key == ord("1"):
         pickindex = 0
     elif key == ord("2"):
         pickindex = 1
-    elif key == ord("3"):
-        pickindex = 2
-    elif key == ord("4"):
-        pickindex = 3
+    #elif key == ord("3"):
+    #    pickindex = 2
+    #elif key == ord("4"):
+    #    pickindex = 3
     # if the 'q' key is pressed, stop the loop
     elif key == ord("q"):
         break
