@@ -139,27 +139,34 @@
 #X obj 432 343 camera FLOOR y 1 0 0.5 1;
 #X obj 588 342 camera TOP y -1 0 0.5 1;
 #X obj 236 270 s projectors-head;
-#N canvas 1 81 450 300 framerate 0;
-#X obj 175 83 t b b;
-#X obj 175 104 timer;
-#X obj 124 40 pofhead;
-#X obj 124 61 pofbang 1;
-#X obj 175 126 mavg 20;
-#X obj 175 150 maxlib/speedlim 200;
-#X msg 175 171 1000 \$1;
-#X obj 175 192 /;
-#X floatatom 175 213 5 0 0 0 - - -;
-#X obj 175 233 s FRAMERATE-REAL;
+#N canvas 72 412 450 300 framerate 0;
+#X obj 150 66 t b b;
+#X obj 150 87 timer;
+#X obj 99 23 pofhead;
+#X obj 99 44 pofbang 1;
+#X obj 150 109 mavg 20;
+#X msg 63 170 1000 \$1;
+#X obj 63 191 /;
+#X floatatom 63 212 5 0 0 0 - - -;
+#X obj 63 232 s FRAMERATE-REAL;
+#X obj 63 70 loadbang;
+#X obj 63 115 metro 200;
+#X obj 63 149 f, f 15;
+#X obj 63 92 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
 #X connect 0 0 1 0;
 #X connect 0 1 1 1;
 #X connect 1 0 4 0;
 #X connect 2 0 3 0;
 #X connect 3 1 0 0;
-#X connect 4 0 5 0;
+#X connect 4 0 11 1;
 #X connect 5 0 6 0;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
-#X connect 8 0 9 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 5 0;
+#X connect 12 0 10 0;
 #X restore 567 238 pd framerate;
 #X obj 43 200 t a a a, f 65;
 #X obj 348 430 tgl 40 1 draw_showfloor draw_showfloor draw_showfloor
@@ -250,7 +257,7 @@
 #X obj 191 56 s head2-sig;
 #X obj 592 433 pofhead;
 #X obj 592 519 pofvisible;
-#X obj 672 478 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 672 478 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 592 540 pofrect 100000 10000;
 #X obj 670 447 r ALL_WHITE;

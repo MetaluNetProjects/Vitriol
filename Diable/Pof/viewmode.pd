@@ -1,4 +1,4 @@
-#N canvas 519 265 822 448 10;
+#N canvas 509 255 822 582 10;
 #X obj 25 24 r VIEWMODE;
 #X obj 209 114 t b b, f 9;
 #X obj 25 277 pofwin;
@@ -51,12 +51,20 @@
 #X obj 209 186 list;
 #X msg 260 166 window \$1 \$2 \, pos 0 0;
 #X obj 163 161 del 100;
-#X obj 315 273 print;
 #X obj 163 185 list;
 #X msg 270 198 window \$1 \$2 \, pos \$3 0;
-#X obj 326 259 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X msg 209 224 window \$1 \$2 \, pos \$3 0;
+#X obj 213 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 412 467 t b f;
+#X obj 412 488 del 10;
+#X obj 412 509 f;
+#X obj 569 467 t b f;
+#X obj 412 446 r previewScreenWidth-snd;
+#X obj 569 446 r previewscreenHeight-snd;
+#X obj 412 530 pack f f;
+#X obj 412 551 s \$0-previewscreensetting;
+#X text 362 495 TODO:;
 #X connect 0 0 5 0;
 #X connect 0 0 10 0;
 #X connect 1 0 4 0;
@@ -106,12 +114,22 @@
 #X connect 43 1 41 2;
 #X connect 45 0 46 1;
 #X connect 45 0 47 1;
-#X connect 45 0 51 1;
+#X connect 45 0 50 1;
 #X connect 46 0 48 0;
-#X connect 47 0 54 0;
+#X connect 47 0 52 0;
 #X connect 48 0 2 0;
 #X connect 49 0 47 0;
-#X connect 49 0 51 0;
-#X connect 51 0 54 0;
-#X connect 54 0 2 0;
-#X connect 54 0 7 0;
+#X connect 49 0 50 0;
+#X connect 50 0 52 0;
+#X connect 52 0 2 0;
+#X connect 52 0 7 0;
+#X connect 53 0 1 0;
+#X connect 54 0 55 0;
+#X connect 54 1 56 1;
+#X connect 55 0 56 0;
+#X connect 56 0 60 0;
+#X connect 57 0 55 0;
+#X connect 57 1 60 1;
+#X connect 58 0 54 0;
+#X connect 59 0 57 0;
+#X connect 60 0 61 0;
