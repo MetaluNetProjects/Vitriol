@@ -1,11 +1,11 @@
-#N canvas 16 311 764 536 12;
+#N canvas 26 313 743 536 12;
 #X declare -path ggee;
 #X obj 20 16 hsl 200 30 0 1 0 0 \$0-control-noise-snd \$0-control-noise-rcv
 noise 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 50 hsl 200 30 0 1 0 0 \$0-control-mix_retard-snd \$0-control-mix_retard-rcv
 mix_retard 20 15 0 14 -262144 -1 -1 19900 1;
 #X obj 20 84 hsl 200 30 0 1 0 0 \$0-control-mix_chocs-snd \$0-control-mix_chocs-rcv
-mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 0 1;
+mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 11000 1;
 #X obj 20 118 hsl 200 30 0 1 0 0 \$0-control-formant-snd \$0-control-formant-rcv
 formant 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 229 16 tgl 30 0 \$0-control-freeze-snd \$0-control-freeze-rcv
@@ -13,35 +13,25 @@ freeze 32 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 152 hsl 200 30 0 1 0 0 \$0-control-delai-snd \$0-control-delai-rcv
 delai 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 19 209 tgl 30 0 \$0-control-sampleur-snd \$0-control-sampleur-rcv
-sampleur 32 15 0 14 -262144 -1 -1 0 1;
+sampleur 32 15 0 14 -262144 -1 -1 1 1;
 #X obj 163 210 hsl 80 30 0 1 0 0 \$0-control-sample_threshold-snd \$0-control-sample_threshold-rcv
 threshold 5 15 0 14 -260097 -1 -1 3200 1;
 #X obj 251 210 tgl 50 0 empty \$0-control-sample_detect detect 5 25
 0 12 -260097 -1 -1 0 1;
 #X obj 304 210 nbx 2 30 -1e+37 1e+37 0 0 empty \$0-control-sample_last
-last 0 -8 0 14 -260097 -1 -1 3 256;
+last 0 -8 0 14 -260097 -1 -1 4 256;
 #X obj 232 85 hsl 80 30 0 1 0 0 \$0-control-choc_sens-snd \$0-control-choc_sens-rcv
-sens_choc 2 15 0 14 -4032 -1 -1 0 1;
+sens_choc 2 15 0 14 -4032 -1 -1 3200 1;
 #X obj 317 85 bng 30 100 50 0 \$0-choc-snd \$0-choc-rcv empty 17 7
 0 10 -262144 -258699 -1;
 #X obj 382 16 hsl 200 30 0 1 0 0 \$0-control-lum-snd \$0-control-lum-rcv
-lum 20 15 0 14 -261682 -1 -1 15000 1;
+lum 20 15 0 14 -261682 -1 -1 4600 1;
 #X obj 382 50 hsl 200 30 0 1 0 0 \$0-control-contrast-snd \$0-control-contrast-rcv
-contrast 20 15 0 14 -1 -262144 -262144 6900 1;
+contrast 20 15 0 14 -1 -262144 -262144 5900 1;
 #X obj 382 83 hsl 200 30 0 1 0 0 \$0-control-sat-snd \$0-control-sat-rcv
-sat 20 15 0 14 -4034 -1 -1 0 1;
+sat 20 15 0 14 -4034 -1 -1 7700 1;
 #X obj 379 254 tgl 30 0 \$0-control-tigre-snd \$0-control-tigre-rcv
 tigre 32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 121 175 777 481 notes_samedi 0;
-#X text 76 111 charger des samples preenregistrés;
-#X text 75 128 classer des samples préenregistrés de gauche à doite:
-exemple de - en - harmoniques, f 84;
-#X text 18 83 sampleur: spatialisation \; timestretch;
-#X text 76 148 (jouer un son preerngistré en pitch droite-gauche /
-polyphonique), f 84;
-#X text 77 164 bruit blanc filtré gauche-droite (formant?) \, enveloppe
-haut-bas - polyphonique, f 79;
-#X restore 604 68 pd notes_samedi;
 #X obj 382 117 hsl 200 30 0 1 0 0 \$0-control-mask-snd \$0-control-mask-rcv
 mask 20 15 0 14 -228856 -1 -1 19900 1;
 #X obj 382 151 hsl 200 30 0 1 0 0 \$0-control-maskbg-snd \$0-control-maskbg-rcv
@@ -51,7 +41,7 @@ solar 20 15 0 14 -203904 -1 -1 0 1;
 #X obj 382 219 hsl 200 30 0 1 0 0 \$0-control-poster-snd \$0-control-poster-rcv
 poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 229 51 tgl 30 0 \$0-control-fb-snd \$0-control-fb-rcv feedback
-32 15 0 14 -262144 -1 -1 0 1;
+32 15 0 14 -262144 -1 -1 1 1;
 #N canvas 136 122 1107 715 guts 0;
 #X obj 20 133 netsend -u -b;
 #X obj 46 80 loadbang;
@@ -216,6 +206,42 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 607 384 f 1;
 #X obj 249 14 2ctl \$0 freeze A notetrig 1 20;
 #X obj 894 17 2ctl \$0 showDebugMains Z;
+#N canvas 1 81 450 300 old-notes 0;
+#N canvas 121 175 777 481 notes_samedi 0;
+#X text 76 111 charger des samples preenregistrés;
+#X text 75 128 classer des samples préenregistrés de gauche à doite:
+exemple de - en - harmoniques, f 84;
+#X text 18 83 sampleur: spatialisation \; timestretch;
+#X text 76 148 (jouer un son preerngistré en pitch droite-gauche /
+polyphonique), f 84;
+#X text 77 164 bruit blanc filtré gauche-droite (formant?) \, enveloppe
+haut-bas - polyphonique, f 79;
+#X restore 61 66 pd notes_samedi;
+#N canvas 1 330 543 459 notes_semaines_9mars 0;
+#X text 35 57 sampleur: ajouter controles de l'enveloppe + random;
+#X text 114 72 + random pitch;
+#X text 33 22 effet ("delai spectral") sur premier son de la table
+;
+#X text 40 103 envoyer les sons des banques par mail;
+#X text 46 139 noise: supperposer aux samples + enveloppe plus longue-exponentielle
+(un peu comme une reverb) \; plus fort en haut \, plus faible en bas
+, f 69;
+#X text 51 217 sampleur: charger toutes les banques \, pour pouvoir
+cross-mixer 2 banques, f 65;
+#X text 51 267 20 presets au lieu de 16;
+#X text 51 299 pouvoir teinter l'image N/B (-> mapper formant sur teinte)
+;
+#X text 54 337 ajouter couche film préenregistré au dessus;
+#X text 50 373 resize lors du chargement des banques;
+#X restore 59 94 pd notes_semaines_9mars;
+#N canvas 1 81 598 261 conduite-old 0;
+#X text 116 33 rien;
+#X text 114 66 alto: retard video;
+#X text 111 92 saladier blam: négatif couleur;
+#X text 108 117 saladier roule: effets son - enleve video fx - ajout
+freeze;
+#X restore 61 41 pd conduite-old;
+#X restore 976 213 pd old-notes;
 #X connect 1 0 78 0;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
@@ -282,15 +308,15 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X restore 606 17 pd guts;
 #X obj 19 443 MORPHgroup \$0-MASTER A;
 #X obj 21 364 hradio 30 1 0 16 \$0-pattern-snd \$0-pattern-rcv 1____2____3____4___5___6___7___8___9___10___11___12__13__14__15__16
-0 37 0 12 -262144 -1 -1 2;
+0 37 0 12 -262144 -1 -1 15;
 #X obj 24 329 hsl 200 30 0 1 0 0 \$0-fade_time-snd \$0-fade_time-rcv
-fade_time:1.4_s 20 15 0 14 -262144 -1 -1 4000 1;
+fade_time:10.4_s 20 15 0 14 -262144 -1 -1 7700 1;
 #X obj 20 271 hradio 30 1 0 7 \$0-control-sampleur_bank-snd \$0-control-sampleur_bank-rcv
-hold 0 -8 0 14 -99865 -258113 -1 1;
+bank_4 0 -8 0 14 -99865 -258113 -1 6;
 #X obj 311 462 bng 30 250 50 0 \$0-savepatterns-snd \$0-savepatterns-rcv
 SAVE 32 15 0 14 -258113 -1 -1;
 #X obj 447 305 hsl 200 30 0 1 0 0 \$0-control-audiomaster-snd \$0-control-audiomaster-rcv
-audiomaster 20 15 0 14 -258113 -1 -1 4000 1;
+audiomaster 20 15 0 14 -258113 -1 -1 14800 1;
 #X obj 236 271 tgl 30 0 \$0-control-sampleur_single-snd \$0-control-sampleur_single-rcv
 single 32 15 0 14 -99865 -1 -1 0 1;
 #N canvas 749 109 450 300 choc 0;
@@ -335,63 +361,47 @@ single 32 15 0 14 -99865 -1 -1 0 1;
 #X obj 525 390 gcanvas 180 80;
 #X obj 252 156 tgl 50 0 \$0-control-mic_choice-snd \$0-control-mic_choice-rcv
 mic:table 5 25 0 12 -260097 -1 -1 0 1;
-#N canvas 1 330 543 459 notes_semaines_9mars 0;
-#X text 35 57 sampleur: ajouter controles de l'enveloppe + random;
-#X text 114 72 + random pitch;
-#X text 33 22 effet ("delai spectral") sur premier son de la table
+#N canvas 772 96 665 382 notes_25aout2020:conduite 1;
+#X text 268 41 1:rien (bypass);
+#X text 267 57 2:noir&blanc+zebre_au_choc;
+#X text 266 72 3:retard(fantome);
+#X text 265 95 4:(rien);
+#X text 267 142 5:poster;
+#X text 226 124 -- fade long (~20s) : --;
+#X text 261 197 7:rien;
+#X text 263 229 9:rien;
+#X text 261 261 11: sampleur bank1 (alto);
+#X text 261 275 12: sampleur bank4 (gemissements_paul);
+#X text 262 303 14: tigre;
+#X text 263 318 15: tigre en aplat (lum=0);
+#X text 263 337 16: feedback negatif sampleur_bank4 zebre_sur_chocs
 ;
-#X text 40 103 envoyer les sons des banques par mail;
-#X text 46 139 noise: supperposer aux samples + enveloppe plus longue-exponentielle
-(un peu comme une reverb) \; plus fort en haut \, plus faible en bas
-, f 69;
-#X text 51 217 sampleur: charger toutes les banques \, pour pouvoir
-cross-mixer 2 banques, f 65;
-#X text 51 267 20 presets au lieu de 16;
-#X text 51 299 pouvoir teinter l'image N/B (-> mapper formant sur teinte)
+#X text 233 183 --------;
+#X text 78 198 (fin alto \, pose coupelle);
+#X text 263 212 8:"sampleur" bruit blanc (attention sensibilité chocs)
 ;
-#X text 54 337 ajouter couche film préenregistré au dessus;
-#X text 50 373 resize lors du chargement des banques;
-#X restore 602 96 pd notes_semaines_9mars;
-#N canvas 1 81 598 261 conduite-old 0;
-#X text 116 33 rien;
-#X text 114 66 alto: retard video;
-#X text 111 92 saladier blam: négatif couleur;
-#X text 108 117 saladier roule: effets son - enleve video fx - ajout
-freeze;
-#X restore 604 43 pd conduite-old;
-#N canvas 764 96 662 382 notes_25aout2020:conduite 1;
-#X text 189 40 1:rien (bypass);
-#X text 188 56 2:noir&blanc+zebre_au_choc;
-#X text 187 71 3:retard(fantome);
-#X text 67 94 saladier_blam:;
-#X text 186 94 4:(rien);
-#X text 188 141 5:poster;
-#X text 120 140 hachoir;
-#X text 53 158 cloche_tirage_dés:;
-#X text 147 123 -- fade long (~20s) : --;
-#X text 182 196 7:rien;
-#X text 184 228 9:rien;
-#X text 181 245 10: freeze fond blanc poster;
-#X text 182 260 11: sampleur bank1 (alto);
-#X text 182 274 12: sampleur bank4 (gemissements_paul);
-#X text 182 287 13: stop poster \, negatif;
-#X text 183 302 14: tigre;
-#X text 184 317 15: tigre en aplat (lum=0);
-#X text 184 331 16: feedback negatif sampleur_bank4 zebre_sur_chocs
+#X text 97 230 (main sur saladier);
+#X text 266 158 6:poster+formant \; attention: avoir la main sur audiomaster
+pour ma!, f 61;
+#X text 348 244 [PAS UTILISE] 10: freeze fond blanc poster;
+#X text 89 7 control+shift+5=ajouter commentaire /control+e=sortie
+mode editeur, f 68;
+#X text 95 275 (il prends la baguette);
+#X text 261 288 13: sampleur bank4 reste \, stop poster \, negatif
 ;
-#X text 153 177 --------;
-#X text 187 157 6:poster+formant \; attention: avoir la main sur audiomaster!
-, f 61;
-#X text -1 197 (fin alto \, pose coupelle);
-#X text 5 213 (apres saladier tourne);
-#X text 184 211 8:"sampleur" bruit blanc (attention sensibilité chocs)
-;
-#X text 67 72 au 1er ressort:;
-#X restore 618 144 pd notes_25aout2020:conduite;
+#X text 116 287 (enchainé \, fade 10s);
+#X text 177 56 (au choc);
+#X text 143 72 (au 1er ressort);
+#X text 146 95 (saladier_blam);
+#X text 196 142 (hachoir);
+#X text 127 158 (cloche_tirage_dés);
+#X text 34 215 (il prend l'écrou \; SANS FADE!!!);
+#X text 32 262 (avant tirage dés \; SANS FADE!!!);
+#X restore 599 77 pd notes_25aout2020:conduite;
 #X f 17;
-#X obj 695 242 tgl 30 0 \$0-control-showDebugMains-snd \$0-control-showDebugMains-rcv
+#X obj 630 219 tgl 30 0 \$0-control-showDebugMains-snd \$0-control-showDebugMains-rcv
 (showDebugMains) 0 -10 0 14 -159808 -1 -1 0 1;
-#X connect 30 0 31 0;
-#X connect 31 0 30 0;
-#X connect 31 1 30 1;
-#X connect 31 2 30 2;
+#X connect 29 0 30 0;
+#X connect 30 0 29 0;
+#X connect 30 1 29 1;
+#X connect 30 2 29 2;
