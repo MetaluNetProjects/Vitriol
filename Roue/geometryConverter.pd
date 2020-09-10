@@ -1,4 +1,4 @@
-#N canvas 497 105 775 638 10;
+#N canvas 497 40 775 638 10;
 #X declare -lib pof;
 #X declare -path quad2quad;
 #X obj 14 6 declare -lib pof;
@@ -59,7 +59,7 @@
 #X obj 19 230 s \$0-q2qP2-M-coords;
 #X obj 16 46 poffonts bold quad2quad/Quicksand-Bold.ttf;
 #X obj 15 27 declare -path quad2quad;
-#N canvas 533 404 504 303 pof-visu 1;
+#N canvas 681 191 504 366 pof-visu 1;
 #X obj 25 19 pofhead;
 #X obj 25 137 t a a, f 21;
 #X obj 351 85 pofwin;
@@ -78,9 +78,9 @@
 #X obj 25 159 poftranslate 0 -390;
 #X obj 148 159 poftranslate 0 390;
 #X obj 25 96 poftranslate 0 -30;
-#X obj 25 182 q2qCanvas \$0 1;
+#X obj 25 230 q2qCanvas \$0 1;
 #X obj 148 181 q2qCanvas \$0 2;
-#X msg 59 236 title CAMERA;
+#X msg 101 256 title CAMERA;
 #X msg 185 232 title PROJECTOR;
 #X obj 133 211 loadbang;
 #N canvas 507 249 858 494 controls 0;
@@ -259,6 +259,12 @@
 #X obj 77 21 f;
 #X obj 351 178 / 460;
 #X obj 351 199 min;
+#X obj 25 185 t a a;
+#X obj 25 337 pofipcam 1023 760;
+#X obj 25 285 pofcolor 1 1 1 0.9;
+#X msg 188 290 connect http://rouewifi.local:8080/?action=stream;
+#X obj 187 267 loadbang;
+#X msg 184 314 disconnect;
 #X connect 0 0 23 0;
 #X connect 1 0 14 0;
 #X connect 1 1 15 0;
@@ -277,9 +283,10 @@
 #X connect 11 1 22 0;
 #X connect 12 0 1 0;
 #X connect 13 0 2 0;
-#X connect 14 0 17 0;
+#X connect 14 0 28 0;
 #X connect 15 0 18 0;
 #X connect 16 0 12 0;
+#X connect 17 0 30 0;
 #X connect 19 0 17 1;
 #X connect 20 0 18 1;
 #X connect 21 0 19 0;
@@ -290,6 +297,10 @@
 #X connect 25 0 23 2;
 #X connect 26 0 27 0;
 #X connect 27 0 25 0;
+#X connect 28 0 17 0;
+#X connect 30 0 29 0;
+#X connect 31 0 29 0;
+#X connect 33 0 29 0;
 #X restore 15 70 pd pof-visu;
 #X obj 235 142 list split 1;
 #X obj 235 119 r \$0-q2qP2-coords;
@@ -299,7 +310,7 @@
 #X obj 269 206 pack f f;
 #X obj 326 185 / 760;
 #X msg 269 228 p 2 \$1 \$2;
-#N canvas 979 309 450 566 save/load 0;
+#N canvas 910 112 450 566 save/load 0;
 #X obj 335 32 loadbang;
 #X obj 148 47 r \$0-q2qP2-coords;
 #X obj 37 47 r \$0-q2qP1-coords;
