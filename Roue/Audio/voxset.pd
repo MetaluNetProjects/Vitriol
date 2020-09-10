@@ -1,4 +1,4 @@
-#N canvas 1 81 450 300 12;
+#N canvas 869 116 450 300 12;
 #X obj 122 49 t a b, f 12;
 #X obj 203 72 i;
 #X obj 203 120 mod 64;
@@ -8,7 +8,7 @@
 #X msg 280 86 64;
 #X obj 122 25 r vox_play-\$1;
 #X obj 122 171 s vox_play_n-\$1;
-#X obj 119 208 clone vox 128 \$1;
+#X obj 119 208 clone vox 64 \$1;
 #X connect 0 0 4 0;
 #X connect 0 1 1 0;
 #X connect 1 0 3 0;
