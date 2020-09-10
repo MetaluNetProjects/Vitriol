@@ -89,13 +89,15 @@ ifeq ($(UNAME),Darwin)
     SOURCES += $(SOURCES_macosx)
     EXTENSION = pd_darwin
     OS = macosx
-    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
-    OPT_CFLAGS = -ftree-vectorize -ftree-vectorizer-verbose=2 -fast
+    PD_PATH = /Applications/Pd-0.50-2.app/Contents/Resources
+    PD_INCLUDE = $(PD_PATH)/src
+    CFLAGS = -I"$(PD_INCLUDE)" -Wall -W -g
+    OPT_CFLAGS = -ftree-vectorize -fast
 # build universal 32-bit on 10.4 and 32/64 on newer
     ifeq ($(shell uname -r | sed 's|\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*|\1|'), 8)
-      FAT_FLAGS = -arch ppc -arch i386 -mmacosx-version-min=10.4
+      FAT_FLAGS = -arch i386 -mmacosx-version-min=10.4
     else
-      FAT_FLAGS = -arch ppc -arch i386 -arch x86_64 -mmacosx-version-min=10.4
+      FAT_FLAGS = -arch x86_64 -mmacosx-version-min=10.4
       SOURCES += $(SOURCES_iphoneos)
     endif
     CFLAGS += $(FAT_FLAGS) -fPIC -I/sw/include

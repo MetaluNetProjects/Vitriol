@@ -26,7 +26,7 @@
 #define            kAssistOutlet    2
 #define            kMaxLong        0xFFFFFFFF
 #define            kMaxNeighbors    4
-#define            kNumAttract    5
+#define            kNumAttract    2
 
 // util
 #define MAX(a,b) ((a)>(b)?(a):(b))
@@ -601,7 +601,6 @@ void FlightStep(t_boids *x)
         goAttract.x += goAttractVel.x * x->attractWeight[0];
         goAttract.y += goAttractVel.y * x->attractWeight[0];
         for (j = 1 ; j < kNumAttract; j++) {
-            //goAttractVel = SeekPoint2(x, i, j, 1.0);
             goAttractVel = SeekPoint2(x, i, x->attractPt[j]);
             goAttract.x += goAttractVel.x * x->attractWeight[j];
             goAttract.y += goAttractVel.y * x->attractWeight[j];
