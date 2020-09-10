@@ -1,4 +1,4 @@
-#N canvas 747 184 584 225 12;
+#N canvas 1023 168 584 252 12;
 #X obj 38 55 RF/masterRF;
 #X obj 38 89 particles/blenderOSCctl;
 #X obj 38 25 Audio/RoueAudio;
@@ -28,7 +28,11 @@
 #X obj 288 160 pd~ -fifo 30;
 #X msg 305 137 pd~ stop;
 #X msg 288 113 pd~ start pd-boids/Roue-boids-pof.pd;
+#X obj 288 186 route running;
+#X obj 288 213 s reconnect_boidsOSC;
 #X connect 4 0 5 0;
 #X connect 5 0 6 0;
+#X connect 8 0 11 0;
 #X connect 9 0 8 0;
 #X connect 10 0 8 0;
+#X connect 11 0 12 0;

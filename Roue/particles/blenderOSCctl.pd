@@ -1,33 +1,33 @@
-#N canvas 839 163 500 546 10;
+#N canvas 445 467 500 546 10;
 #X obj 53 134 netsend -u -b;
 #X msg 70 104 connect localhost 10000;
 #X obj 53 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#N canvas 659 369 456 420 GUI 1;
+#N canvas 659 369 456 420 GUI 0;
 #X obj 278 113 hsl 128 15 0 30 0 0 \$0-x1-snd \$0-x1-rcv x1 135 8 0
-10 -262144 -1 -1 5329 1;
+10 -262144 -1 -1 1428 1;
 #X obj 278 129 hsl 128 15 0 16 0 0 \$0-y1-snd \$0-y1-rcv y1 135 8 0
-10 -262144 -1 -1 3134 1;
+10 -262144 -1 -1 3927 1;
 #X obj 50 87 hsl 128 15 0 1 0 0 \$0-collider-snd \$0-collider-rcv collider
-135 8 0 10 -262144 -1 -1 300 1;
+135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 107 hsl 128 15 0 10 0 0 \$0-maxSpeed-snd \$0-maxSpeed-rcv
-maxSpeed 135 8 0 10 -262144 -1 -1 3300 1;
+maxSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 123 hsl 128 15 0 1 0 0 \$0-minSpeed-snd \$0-minSpeed-rcv
-minSpeed 135 8 0 10 -262144 -1 -1 2500 1;
+minSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 278 153 hsl 128 15 0 30 0 0 \$0-x2-snd \$0-x2-rcv x2 135 8 0
-10 -262144 -1 -1 2311 1;
+10 -262144 -1 -1 1589 1;
 #X obj 278 169 hsl 128 15 0 16 0 0 \$0-y2-snd \$0-y2-rcv y2 135 8 0
-10 -262144 -1 -1 12700 1;
+10 -262144 -1 -1 1270 1;
 #X obj 279 192 hsl 128 15 0 30 0 0 \$0-x3-snd \$0-x3-rcv x3 135 8 0
-10 -262144 -1 -1 3695 1;
+10 -262144 -1 -1 0 1;
 #X obj 279 208 hsl 128 15 0 16 0 0 \$0-y3-snd \$0-y3-rcv y3 135 8 0
-10 -262144 -1 -1 12700 1;
+10 -262144 -1 -1 0 1;
 #X obj 222 10 tgl 15 0 \$0-hidePlayers-snd \$0-hidePlayers-rcv hidePlayers
-17 7 0 10 -262144 -1 -1 1 1;
+17 7 0 10 -262144 -1 -1 0 1;
 #X obj 223 33 tgl 15 0 \$0-hideBorder-snd \$0-hideBorder-rcv hideBorder
-17 7 0 10 -262144 -1 -1 1 1;
+17 7 0 10 -262144 -1 -1 0 1;
 #X obj 50 145 hsl 128 15 0 1 0 0 \$0-fastTurn-snd \$0-fastTurn-rcv
-fastTurn 135 8 0 10 -262144 -1 -1 600 1;
+fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 49 172 hsl 128 15 0 1 0 0 \$0-H-snd \$0-H-rcv H 135 8 0 10 -262144
 -1 -1 0 1;
 #X obj 49 190 hsl 128 15 0 1 0 0 \$0-S-snd \$0-S-rcv S 135 8 0 10 -262144
@@ -43,7 +43,7 @@ fastTurn 135 8 0 10 -262144 -1 -1 600 1;
 #X obj 279 232 hsl 128 15 0 30 0 0 \$0-x4-snd \$0-x4-rcv x4 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 279 248 hsl 128 15 0 16 0 0 \$0-y4-snd \$0-y4-rcv y4 135 8 0
-10 -262144 -1 -1 12700 1;
+10 -262144 -1 -1 0 1;
 #X obj 272 82 bng 15 250 50 0 \$0-start-snd \$0-start-rcv restart 17
 7 0 10 -262144 -1 -1;
 #X restore 229 103 pd GUI;
@@ -70,7 +70,7 @@ fastTurn 135 8 0 10 -262144 -1 -1 600 1;
 #X text 130 149 Alt+F11 to go full screen;
 #X text 131 166 Alt+A to play;
 #X text 132 184 (Alt+Z) twice or (Shift-Z)twice for modes;
-#N canvas 776 110 450 300 interface 0;
+#N canvas 1244 389 450 300 interface 0;
 #X obj 19 16 r 2video;
 #X obj 19 182 route 1 2 3 4, f 60;
 #X obj 19 203 unpack f f;
@@ -128,6 +128,10 @@ fastTurn 135 8 0 10 -262144 -1 -1 600 1;
 #X obj 50 502 ctl button1 \$0-start;
 #X obj 53 46 list prepend send;
 #X obj 53 71 list trim;
+#X obj 213 79 r reconnect_boidsOSC;
+#X obj 225 367 ctl pattern BoidsPattern;
+#X obj 356 262 hsl 128 15 0 1 0 0 BoidsPattern-snd BoidsPattern-snd
+BoidsPattern -2 -8 0 10 -262144 -1 -1 2700 1;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 4 0 33 0;
@@ -135,3 +139,4 @@ fastTurn 135 8 0 10 -262144 -1 -1 600 1;
 #X connect 31 0 30 0;
 #X connect 33 0 34 0;
 #X connect 34 0 0 0;
+#X connect 35 0 1 0;
