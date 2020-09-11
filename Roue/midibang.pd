@@ -1,7 +1,7 @@
-#N canvas 983 331 926 648 10;
+#N canvas 711 337 926 648 10;
 #X obj 13 37 inlet;
 #X obj 106 27 hsl 128 15 0 1 0 0 \$1-snd \$1-rcv empty -2 -8 0 10 -262144
--1 -1 7874 1;
+-1 -1 0 1;
 #X obj 701 10 apf MIDI \$1-chan \$1-chan 2;
 #X obj 282 10 r MIDICTL_IN;
 #X text 364 9 val-ctl-chan;
@@ -17,9 +17,9 @@
 #X obj 106 45 hsl 128 18 0 1 0 0 \$1---- \$1---- empty -2 -8 0 10 -262144
 -262144 -1 0 1;
 #X obj 134 47 nbx 2 14 0 128 0 0 \$1-chan-snd \$1-chan-rcv chan -25
-7 0 10 -262144 -1 -1 10 256;
+7 0 10 -262144 -1 -1 0 256;
 #X obj 197 47 nbx 3 14 0 128 0 0 \$1-ctl-snd \$1-ctl-rcv ctl -20 7
-0 10 -262144 -1 -1 4 256;
+0 10 -262144 -1 -1 0 256;
 #X obj 699 72 r MIDICTL_IN;
 #X msg 699 93 \$3 \$2 \$1;
 #X obj 699 115 route -1, f 11;
@@ -99,28 +99,6 @@
 #X obj 13 66 t a a a a;
 #X obj 13 618 outlet;
 #X obj 13 586 poftranslate 0 32;
-#N canvas 1 81 450 300 midilock 0;
-#X obj 59 13 inlet;
-#X obj 59 219 outlet;
-#X obj 59 138 poftouchable;
-#X obj 59 159 pofcolor 0.2 0.2 0.2 1;
-#X obj 123 57 r MIDI-UNLOCK;
-#X obj 123 78 max 0.2;
-#X obj 241 140 sel 0;
-#X msg 241 161 0;
-#X obj 241 184 s \$0-learn;
-#X connect 0 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 0;
-#X connect 4 0 2 0;
-#X connect 4 0 5 0;
-#X connect 4 0 6 0;
-#X connect 5 0 3 1;
-#X connect 5 0 3 2;
-#X connect 5 0 3 3;
-#X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X restore 221 208 pd midilock;
 #X connect 0 0 90 0;
 #X connect 3 0 6 0;
 #X connect 6 0 11 0;
@@ -203,8 +181,7 @@
 #X connect 89 0 68 0;
 #X connect 90 0 92 0;
 #X connect 90 1 46 0;
-#X connect 90 2 93 0;
+#X connect 90 2 39 0;
 #X connect 90 3 74 0;
 #X connect 92 0 91 0;
-#X connect 93 0 39 0;
 #X coords 0 -1 1 1 170 55 1 100 10;

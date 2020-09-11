@@ -1,0 +1,10 @@
+invol-1-ctl 4 0;
+invol-1-chan 10 0;
+BoidsPattern-ctl 0 0;
+BoidsPattern-chan 0 0;
+AltoMic-ctl 6 0;
+AltoMic-chan 10 0;
+PercuMic-ctl 0 0;
+PercuMic-chan 0 0;
+MasterAudio-ctl 0 0;
+MasterAudio-chan 0 0;
