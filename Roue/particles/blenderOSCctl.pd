@@ -5,9 +5,9 @@
 1;
 #N canvas 659 369 456 420 GUI 0;
 #X obj 278 113 hsl 128 15 0 30 0 0 \$0-x1-snd \$0-x1-rcv x1 135 8 0
-10 -262144 -1 -1 1428 1;
+10 -262144 -1 -1 0 1;
 #X obj 278 129 hsl 128 15 0 16 0 0 \$0-y1-snd \$0-y1-rcv y1 135 8 0
-10 -262144 -1 -1 3927 1;
+10 -262144 -1 -1 0 1;
 #X obj 50 87 hsl 128 15 0 1 0 0 \$0-collider-snd \$0-collider-rcv collider
 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 107 hsl 128 15 0 10 0 0 \$0-maxSpeed-snd \$0-maxSpeed-rcv
@@ -15,17 +15,17 @@ maxSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 123 hsl 128 15 0 1 0 0 \$0-minSpeed-snd \$0-minSpeed-rcv
 minSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 278 153 hsl 128 15 0 30 0 0 \$0-x2-snd \$0-x2-rcv x2 135 8 0
-10 -262144 -1 -1 1589 1;
+10 -262144 -1 -1 4618 1;
 #X obj 278 169 hsl 128 15 0 16 0 0 \$0-y2-snd \$0-y2-rcv y2 135 8 0
-10 -262144 -1 -1 1270 1;
+10 -262144 -1 -1 5932 1;
 #X obj 279 192 hsl 128 15 0 30 0 0 \$0-x3-snd \$0-x3-rcv x3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 279 208 hsl 128 15 0 16 0 0 \$0-y3-snd \$0-y3-rcv y3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 222 10 tgl 15 0 \$0-hidePlayers-snd \$0-hidePlayers-rcv hidePlayers
-17 7 0 10 -262144 -1 -1 0 1;
+17 7 0 10 -262144 -1 -1 1 1;
 #X obj 223 33 tgl 15 0 \$0-hideBorder-snd \$0-hideBorder-rcv hideBorder
-17 7 0 10 -262144 -1 -1 0 1;
+17 7 0 10 -262144 -1 -1 1 1;
 #X obj 50 145 hsl 128 15 0 1 0 0 \$0-fastTurn-snd \$0-fastTurn-rcv
 fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 49 172 hsl 128 15 0 1 0 0 \$0-H-snd \$0-H-rcv H 135 8 0 10 -262144
@@ -131,7 +131,8 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 213 79 r reconnect_boidsOSC;
 #X obj 225 367 ctl pattern BoidsPattern;
 #X obj 356 262 hsl 128 15 0 1 0 0 BoidsPattern-snd BoidsPattern-snd
-BoidsPattern -2 -8 0 10 -262144 -1 -1 2700 1;
+BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 225 385 ctl ALL_WHITE ALL_WHITE;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 4 0 33 0;

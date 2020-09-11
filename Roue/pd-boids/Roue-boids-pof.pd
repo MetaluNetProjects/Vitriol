@@ -1,4 +1,4 @@
-#N canvas 658 395 537 636 10;
+#N canvas 1157 395 537 636 10;
 #X declare -path cyclone;
 #X declare -path ../../tools/AutoPreset;
 #X declare -lib cyclone -lib pof -path -boids;
@@ -139,7 +139,7 @@
 #X obj 518 320 / 100;
 #X obj 485 488 r boids-save;
 #X obj 211 154 boids2d 500;
-#X obj 626 39 pofhead;
+#X obj 629 27 pofhead;
 #X obj 895 280 s boidhead;
 #X msg 421 107 symbol pointflou4.png;
 #X msg 436 136 symbol pointflou3.png;
@@ -152,22 +152,24 @@
 #X obj 25 214 s showDebug;
 #X obj 25 59 list trim;
 #X obj 25 184 == 0;
-#X obj 302 147 oscPoint 1;
+#X obj 321 55 oscPoint 1;
 #X obj 49 116 s 2oscPoints;
-#X obj 302 167 oscPoint 2;
-#X obj 301 187 oscPoint 3;
-#X obj 301 207 oscPoint 4;
-#X obj 25 162 route border pattern;
+#X obj 321 75 oscPoint 2;
+#X obj 320 95 oscPoint 3;
+#X obj 320 115 oscPoint 4;
 #X obj 106 213 s boids-pattern;
 #X obj 151 252 print;
+#X obj 25 162 route border pattern ALL_WHITE;
+#X obj 217 214 s ALL_WHITE;
 #X connect 0 0 1 0;
 #X connect 1 0 4 0;
 #X connect 2 0 7 0;
-#X connect 2 0 11 0;
+#X connect 2 0 13 0;
 #X connect 4 0 2 0;
 #X connect 5 0 3 0;
-#X connect 11 0 5 0;
-#X connect 11 1 12 0;
+#X connect 13 0 5 0;
+#X connect 13 1 11 0;
+#X connect 13 2 14 0;
 #X restore 207 379 pd control-from-osc;
 #N canvas 494 788 450 300 debug-cadre 0;
 #X obj 154 73 pofvisible;
@@ -246,8 +248,8 @@
 #X connect 5 0 6 3;
 #X connect 6 0 1 0;
 #X connect 8 0 5 0;
-#X restore 626 65 pd autoscale;
-#N canvas 464 550 259 248 \$0-perpective 1;
+#X restore 629 48 pd autoscale;
+#N canvas 464 577 259 248 \$0-perpective 0;
 #X obj 92 45 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -257985 -1 -1 40 256;
 #X obj 29 120 poftranslate, f 26;
@@ -272,7 +274,7 @@
 #X connect 7 0 6 0;
 #X connect 8 0 7 1;
 #X connect 9 0 7 2;
-#X restore 626 89 pd \$0-perpective;
+#X restore 656 89 pd \$0-perpective;
 #N canvas 227 322 259 248 \$0-perpective-- 0;
 #X obj 92 45 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -257985 -1 -1 0 256;
@@ -302,9 +304,13 @@
 #X obj 922 118 l poffbo 2048 2048 boidsfbo;
 #X obj 378 243 clone boid2dpof 500;
 #X obj 39 474 repere 0.7 1 0;
-#X obj 653 132 s boidhead;
-#X obj 626 111 t a a;
-#X obj 626 158 s postboidhead;
+#X obj 683 132 s boidhead;
+#X obj 656 111 t a a;
+#X obj 656 158 s postboidhead;
+#X obj 644 186 r ALL_WHITE;
+#X obj 629 206 pofvisible;
+#X obj 629 227 pofrect 30000 30000;
+#X obj 629 68 t a a;
 #X connect 0 0 2 0;
 #X connect 1 0 50 0;
 #X connect 2 0 7 0;
@@ -378,12 +384,16 @@
 #X connect 85 0 86 0;
 #X connect 86 0 87 0;
 #X connect 87 0 88 0;
-#X connect 91 0 92 0;
+#X connect 91 0 103 0;
 #X connect 92 0 98 0;
 #X connect 93 0 72 0;
 #X connect 94 0 80 0;
 #X connect 98 0 99 0;
 #X connect 98 1 97 0;
+#X connect 100 0 101 0;
+#X connect 101 0 102 0;
+#X connect 103 0 101 0;
+#X connect 103 1 92 0;
 #X restore 38 514 pd guts;
 #X obj 14 439 param boidSetting size;
 #X obj 183 453 hradio 15 1 0 16 empty empty 1..2..3.4..5..6.7.8..9.10.11.2.3.14.15.6
@@ -398,7 +408,7 @@
 #X obj 381 21 bng 15 250 50 0 showPerpective showPerpective perpectiveSettings
 17 7 0 10 -257985 -1 -1;
 #X obj 179 588 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 894 1;
+-1 -1 0 1;
 #X obj 67 626 print;
 #X obj 176 679 s boids-pattern-snd;
 #X obj 176 631 list prepend _all_;
