@@ -1,44 +1,41 @@
-#N canvas 1023 168 624 252 12;
-#X obj 38 55 RF/masterRF;
-#X obj 38 89 particles/blenderOSCctl;
-#X obj 38 25 Audio/RoueAudio;
-#X obj 39 122 geometryConverter;
-#X obj 247 25 r axlBatt;
-#X floatatom 247 49 5 0 0 0 - - -;
-#X obj 247 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 1155 94 646 224 12;
+#X obj 18 90 RF/masterRF;
+#X obj 18 65 Audio/RoueAudio;
+#X obj 18 115 pofGUI;
+#X obj 17 12 cnv 15 200 40 empty empty La_Roue 20 20 2 40 -233017 -66577
+0;
+#N canvas 371 159 451 311 run-boids_window 0;
+#X obj 29 231 pd~ -fifo 30;
+#X msg 74 203 pd~ stop;
+#X msg 74 178 pd~ start pd-boids/Roue-boids-pof.pd;
+#X obj 29 257 route running;
+#X obj 29 284 s reconnect_boidsOSC;
+#X msg 73 144 pd~ start -nogui pd-boids/Roue-boids-pof.pd;
+#X obj 73 97 loadbang;
+#X obj 73 121 del 2000;
+#X obj 109 43 bng 15 250 50 0 empty empty stop 17 7 0 10 -128992 -1
 -1;
-#N canvas 637 415 352 246 receive-pythontracker 0;
-#X obj 85 60 fudiparse;
-#X obj 85 36 netreceive -u -b 8765;
-#X obj 85 86 route 0 1;
-#X obj 115 110 unpack f f f;
-#X obj 115 154 pack f f f;
-#X obj 115 132 + 1;
-#X obj 85 198 s fromPythonTracker;
-#X connect 0 0 2 0;
+#X obj 163 42 bng 15 250 50 0 empty empty run 17 7 0 10 -4034 -1 -1
+;
+#X obj 211 42 bng 15 250 50 0 empty empty edit 17 7 0 10 -260097 -1
+-1;
+#X connect 0 0 3 0;
 #X connect 1 0 0 0;
-#X connect 2 0 6 0;
-#X connect 2 1 3 0;
-#X connect 3 0 5 0;
-#X connect 3 1 4 1;
-#X connect 3 2 4 2;
-#X connect 4 0 6 0;
-#X connect 5 0 4 0;
-#X restore 39 166 pd receive-pythontracker;
-#X obj 288 160 pd~ -fifo 30;
-#X msg 333 132 pd~ stop;
-#X msg 333 107 pd~ start pd-boids/Roue-boids-pof.pd;
-#X obj 288 186 route running;
-#X obj 288 213 s reconnect_boidsOSC;
-#X msg 332 73 pd~ start -nogui pd-boids/Roue-boids-pof.pd;
-#X obj 332 26 loadbang;
-#X obj 332 50 del 2000;
-#X connect 4 0 5 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 5 0 0 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X connect 8 0 1 0;
+#X connect 9 0 5 0;
+#X connect 10 0 2 0;
+#X coords 0 -1 1 1 170 40 1 100 20;
+#X restore 18 139 pd run-boids_window;
+#X obj 236 30 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
+0 14 -262144 -1 -1 3.55433 256;
+#X obj 236 60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 247 106 1: tuyau-harmo_contrebasse : "oiseaux";
+#X text 246 136 2: trilles harmoniques + contre-multipho +cloches;
+#X text 246 165 3: helene souffle;
 #X connect 5 0 6 0;
-#X connect 8 0 11 0;
-#X connect 9 0 8 0;
-#X connect 10 0 8 0;
-#X connect 11 0 12 0;
-#X connect 13 0 8 0;
-#X connect 14 0 15 0;
-#X connect 15 0 13 0;
