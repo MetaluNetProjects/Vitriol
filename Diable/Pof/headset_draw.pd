@@ -1,4 +1,4 @@
-#N canvas 669 81 770 794 10;
+#N canvas 821 261 770 794 10;
 #X obj 55 24 inlet pos;
 #X obj 431 19 r headset_draw_pofhead;
 #X msg 247 591 strokeWidth \$1;
@@ -19,7 +19,7 @@
 #X msg 688 548 5;
 #X obj 74 485 r draw_clear;
 #X msg 659 547 4;
-#X msg 199 383 strokeColor 1 1 1 1;
+#X msg 144 427 strokeColor 1 1 1 1;
 #N canvas 48 491 552 384 minDistance 0;
 #X obj 164 54 inlet;
 #X obj 164 132 unpack f f f;
@@ -122,7 +122,7 @@ res 4;
 #X msg 283 225 1;
 #X msg 310 246 0;
 #X obj 310 267 change;
-#X obj 310 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 310 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 337 290 outlet sig;
 #X obj 310 225 del 50;
@@ -131,6 +131,10 @@ res 4;
 res 4;
 #X obj 414 359 pofvisible PROJ;
 #X obj 523 359 pofvisible SIMUL;
+#X obj 197 329 r cameras-inverse;
+#X obj 197 350 * -1;
+#X obj 197 371 + 1;
+#X msg 197 398 strokeColor \$1 \$1 \$1 1;
 #X connect 0 0 6 0;
 #X connect 0 0 23 0;
 #X connect 0 0 33 0;
@@ -201,3 +205,8 @@ res 4;
 #X connect 57 0 56 0;
 #X connect 58 0 5 0;
 #X connect 59 0 56 0;
+#X connect 60 0 61 0;
+#X connect 61 0 62 0;
+#X connect 62 0 63 0;
+#X connect 63 0 5 0;
+#X connect 63 0 56 0;

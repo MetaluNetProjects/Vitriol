@@ -1,4 +1,4 @@
-#N canvas 373 180 780 611 10;
+#N canvas 1017 430 780 611 10;
 #X declare -lib pof;
 #X obj 13 31 r headsets-data;
 #X obj 13 55 route 1 2, f 10;
@@ -43,7 +43,7 @@
 #X floatatom 66 135 5 0 0 0 - - -;
 #X msg 478 55 0;
 #X obj 138 75 tgl 15 0 empty empty sig 17 7 0 10 -4034 -1 -1 0 1;
-#X obj 110 98 tgl 15 0 empty empty sig 17 7 0 10 -4034 -1 -1 0 1;
+#X obj 110 98 tgl 15 0 empty empty sig 17 7 0 10 -4034 -1 -1 1 1;
 #X msg 420 56 0.2;
 #X obj 235 384 poflayer PROJ;
 #X obj 43 310 poflayer SIMUL;
@@ -124,7 +124,7 @@
 #X obj 568 215 viewmode;
 #X obj 66 115 r MAINSCALE;
 #X obj 112 144 r VIEWSCENE;
-#X floatatom 522 106 5 0 0 0 - - -;
+#X floatatom 515 127 5 0 0 0 - - -;
 #X obj 375 128 pofcolor 1 1 1 0.5;
 #X obj 143 329 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -252,7 +252,7 @@
 #X connect 34 1 35 2;
 #X restore 262 441 pd floor(old);
 #X obj 524 34 r cameras-bg-on;
-#X obj 524 55 * 0.5;
+#X obj 524 60 * 0.5;
 #X obj 194 97 s head1-sig;
 #X obj 191 56 s head2-sig;
 #X obj 592 433 pofhead;
@@ -261,6 +261,12 @@
 1;
 #X obj 592 540 pofrect 100000 10000;
 #X obj 670 447 r ALL_WHITE;
+#X obj 524 86 +;
+#X obj 560 86 t b f;
+#X obj 622 89 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 577 59 r cameras-inverse;
+#X obj 619 112 s cameras-inverse;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 1 16 0;
@@ -325,8 +331,13 @@
 #X connect 66 1 12 0;
 #X connect 66 2 45 0;
 #X connect 69 0 70 0;
-#X connect 70 0 52 4;
+#X connect 70 0 78 0;
 #X connect 73 0 74 0;
 #X connect 74 0 76 0;
 #X connect 75 0 74 0;
 #X connect 77 0 75 0;
+#X connect 78 0 52 4;
+#X connect 79 0 78 0;
+#X connect 79 1 78 1;
+#X connect 80 0 82 0;
+#X connect 81 0 79 0;
