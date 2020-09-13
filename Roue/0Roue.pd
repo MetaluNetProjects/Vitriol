@@ -1,10 +1,10 @@
-#N canvas 1155 94 646 224 12;
+#N canvas 1155 94 646 272 12;
 #X obj 18 90 RF/masterRF;
 #X obj 18 65 Audio/RoueAudio;
 #X obj 18 115 pofGUI;
 #X obj 17 12 cnv 15 200 40 empty empty La_Roue 20 20 2 40 -233017 -66577
 0;
-#N canvas 371 159 451 311 run-boids_window 0;
+#N canvas 626 314 632 435 run-boids_window 0;
 #X obj 29 231 pd~ -fifo 30;
 #X msg 74 203 pd~ stop;
 #X msg 74 178 pd~ start pd-boids/Roue-boids-pof.pd;
@@ -19,16 +19,40 @@
 ;
 #X obj 211 42 bng 15 250 50 0 empty empty edit 17 7 0 10 -260097 -1
 -1;
+#X obj 204 392 s toBlender;
+#X obj 204 290 pack f f f;
+#X obj 204 265 f;
+#X obj 204 242 b;
+#X obj 233 231 r boidswindow-width;
+#X obj 251 254 r boidswindow-height;
+#X obj 288 283 r boidswindow-posX;
+#X obj 204 371 oscformat oscControl pofwin;
+#X obj 204 215 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 147 381 print;
+#X obj 204 344 list;
+#X msg 204 320 open noborder \, window 1920 1080 0 \, pos 1920 0;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 4 0;
+#X connect 3 0 14 0;
 #X connect 5 0 0 0;
 #X connect 6 0 7 0;
 #X connect 7 0 5 0;
 #X connect 8 0 1 0;
 #X connect 9 0 5 0;
 #X connect 10 0 2 0;
+#X connect 12 0 22 0;
+#X connect 13 0 12 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 1;
+#X connect 16 0 12 1;
+#X connect 17 0 12 2;
+#X connect 18 0 11 0;
+#X connect 19 0 14 0;
+#X connect 21 0 18 0;
+#X connect 22 0 21 0;
 #X coords 0 -1 1 1 170 40 1 100 20;
 #X restore 18 139 pd run-boids_window;
 #X obj 236 30 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
@@ -40,4 +64,11 @@
 #X text 246 165 3: helene souffle;
 #X obj 385 26 tgl 40 0 ALL_WHITE-snd ALL_WHITE-rcv ALL_WHITE 0 -10
 0 10 -262144 -1 -1 0 1;
+#X obj 30 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-width empty width
+0 -8 0 10 -262144 -1 -1 1920 256;
+#X text 44 195 BOIDS WINDOW:;
+#X obj 89 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-height empty height
+0 -8 0 10 -262144 -1 -1 1080 256;
+#X obj 147 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-posX empty position
+0 -8 0 10 -262144 -1 -1 1920 256;
 #X connect 5 0 6 0;
