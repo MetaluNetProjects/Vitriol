@@ -91,6 +91,7 @@
 #X obj 74 260 print;
 #X floatatom 330 503 5 0 0 0 - - -;
 #X obj 412 446 r previewscreenWidth-snd;
+#X msg 431 181 open \, window 800 600 0;
 #X connect 0 0 4 0;
 #X connect 0 0 7 0;
 #X connect 1 0 3 0;
@@ -188,3 +189,4 @@
 #X connect 83 0 84 0;
 #X connect 85 0 6 0;
 #X connect 88 0 49 0;
+#X connect 89 0 15 0;

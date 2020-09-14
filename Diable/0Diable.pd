@@ -1,11 +1,11 @@
-#N canvas 211 346 698 462 12;
+#N canvas 1058 129 698 497 12;
 #X declare -path Pof;
 #X declare -lib zexy -path ../tools/AutoPreset -path ggee -lib pof
 ;
 #X obj 625 303 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
 0 10 -258113 -1 -1;
 #X obj 16 183 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 0;
+-262144 -1 -1 1;
 #X text 49 249 3d-cameras;
 #X text 48 278 3d-projs;
 #N canvas 429 387 886 422 CONFIG 0;
@@ -134,17 +134,17 @@
 #X coords 0 -1 1 1 60 125 1 100 100;
 #X restore 608 15 pd cameras;
 #X obj 157 11 tgl 15 0 head1-sig head1-sig sig1 17 7 0 10 -257985 -1
--1 0 1;
+-1 1 1;
 #X obj 157 29 tgl 15 0 head2-sig head2-sig sig2 17 7 0 10 -257985 -1
 -1 0 1;
 #X obj 81 122 tgl 40 0 ALL_WHITE ALL_WHITE ALL_WHITE 0 -8 0 10 -262144
 -1 -1 0 1;
-#X obj 17 426 cnv 15 250 30 empty window_size_canvas window_size=1918x1051
+#X obj 17 426 cnv 15 250 30 empty window_size_canvas window_size=1271x806
 10 12 0 13 -99865 -257985 0;
 #X obj 171 332 nbx 5 20 100 60000 0 0 screenWidth-snd screenWidth-rcv
 Width 70 10 0 12 -204786 -1 -1 1920 256;
 #X obj 171 356 nbx 5 20 100 60000 0 0 screenHeight-snd screenHeight-rcv
-Height 70 10 0 12 -204786 -1 -1 1200 256;
+Height 70 10 0 12 -204786 -1 -1 1080 256;
 #X obj 171 380 nbx 5 20 0 60000 0 0 screenPosition-snd screenPosition-rcv
 Position 70 10 0 12 -204777 -1 -1 1440 256;
 #X text 171 314 FULLSCREEN SETTING:;
@@ -286,7 +286,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 -1;
 #X obj 18 48 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 0
 1;
-#N canvas 704 270 636 438 STUFF 0;
+#N canvas 704 270 636 438 STUFF 1;
 #X obj 24 42 list prepend testGem/testGem;
 #X obj 267 49 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
 0 -8 0 10 -262144 -1 -1 0 1;
@@ -324,7 +324,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X obj 106 131 nbx 3 30 0 180 0 1 cameras-inverse-time-snd cameras-inverse-time-rcv
 time(s) 0 -8 0 12 -262144 -1 -1 0.58 256;
 #X obj 170 131 tgl 30 1 cameras-inverse-snd cameras-inverse-rcv inverse
-0 -8 0 12 -262144 -1 -1 1 1;
+0 -8 0 12 -262144 -1 -1 0 1;
 #X obj 363 124 r cameras-inverse-time-snd;
 #X obj 295 97 r cameras-inverse-snd;
 #X obj 306 232 s cameras-inverse;
@@ -339,15 +339,15 @@ time(s) 0 -8 0 12 -262144 -1 -1 0.58 256;
 #X coords 0 -1 1 1 120 65 1 100 100;
 #X restore 353 349 pd inverse;
 #X obj 171 403 nbx 5 20 0.01 8 0 0 screenScale-snd screenScale-rcv
-Scale 70 10 0 12 -262130 -1 -1 0.7 256;
+Scale 70 10 0 12 -262130 -1 -1 1 256;
 #X obj 16 332 nbx 5 20 100 60000 0 0 previewscreenWidth-snd previewscreenWidth-rcv
-Width 70 10 0 12 -204786 -1 -1 1173 256;
+Width 70 10 0 12 -204786 -1 -1 800 256;
 #X obj 16 356 nbx 5 20 100 60000 0 0 previewscreenHeight-snd previewscreenHeight-rcv
-Height 70 10 0 12 -204786 -1 -1 602 256;
+Height 70 10 0 12 -204786 -1 -1 600 256;
 #X obj 16 380 nbx 5 20 0 60000 0 0 previewscreenPosition-snd previewscreenPosition-rcv
-Position 70 10 0 12 -204777 -1 -1 1603 256;
+Position 70 10 0 12 -204777 -1 -1 0 256;
 #X obj 16 403 nbx 5 20 0.01 8 0 0 previewscreenScale-snd previewscreenScale-rcv
-Scale 70 10 0 12 -262130 -1 -1 0.45 256;
+Scale 70 10 0 12 -262130 -1 -1 0.4 256;
 #X text 16 314 PREVIEW SETTING:;
 #X text 48 187 fullscreen;
 #X text 49 218 projs-preview;
@@ -357,8 +357,31 @@ smooth 0 -8 0 12 -262144 -1 -1 84 256;
 #X obj 324 137 tgl 30 1 automove-swap-snd automove-swap-rcv swap_headsets
 0 -8 0 12 -262144 -1 -1 0 1;
 #X obj 164 131 hsl 128 30 0 1 0 0 automove-amount-snd automove-amount-rcv
-amount 0 -8 0 12 -262144 -1 -1 900 1;
+amount 0 -8 0 12 -262144 -1 -1 0 1;
 #X coords 0 -1 1 1 200 65 1 100 100;
 #X restore 485 350 pd automove;
+#N canvas 73 449 578 469 subsample 0;
+#X obj 106 131 nbx 3 30 0 180 0 1 subsample-smoothtime-snd subsample-smoothtime-rcv
+smooth 0 -8 0 12 -262144 -1 -1 42 256;
+#X obj 164 131 hsl 128 30 0 1 0 0 subsample-amount-snd subsample-amount-rcv
+amount 0 -8 0 12 -262144 -1 -1 4200 1;
+#X obj 107 186 r subsample-amount-snd;
+#X obj 176 217 r subsample-smoothtime-snd;
+#X obj 107 242 pack f f;
+#X obj 107 266 line;
+#X obj 107 347 s cameras-subsample;
+#X obj 176 242 * 10;
+#X floatatom 170 323 5 0 0 0 - - -;
+#X obj 107 318 * 0.98;
+#X obj 107 291 pow 0.4;
+#X connect 2 0 4 0;
+#X connect 3 0 7 0;
+#X connect 4 0 5 0;
+#X connect 5 0 10 0;
+#X connect 7 0 4 1;
+#X connect 9 0 6 0;
+#X connect 10 0 9 0;
+#X coords 0 -1 1 1 200 65 1 100 100;
+#X restore 353 418 pd subsample;
 #X connect 28 0 30 0;
 #X connect 29 0 28 0;
