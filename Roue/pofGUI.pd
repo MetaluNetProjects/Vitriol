@@ -1,4 +1,4 @@
-#N canvas 1123 425 659 210 10;
+#N canvas 568 424 659 210 10;
 #X declare -lib pof;
 #X declare -path quad2quad;
 #X declare -path ../tools/AutoPreset;
@@ -236,7 +236,7 @@
 #X restore 365 45 pd 2video;
 #X obj 32 93 pofhead;
 #X floatatom 124 81 5 0 0 0 - - -;
-#N canvas 1126 304 722 730 controls 0;
+#N canvas 75 110 722 730 controls 0;
 #X obj 26 20 inlet;
 #N canvas 660 199 1162 579 proj_settings 0;
 #X obj 31 25 inlet;
@@ -409,7 +409,7 @@
 #X obj 155 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -262144 -1 -1 480 256;
 #X obj 212 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 252 256;
+-262144 -1 -1 232 256;
 #X obj 89 72 outlet;
 #X obj 35 20 r controlershead;
 #X connect 0 0 3 0;
@@ -467,7 +467,7 @@
 #X obj 155 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -262144 -1 -1 480 256;
 #X obj 212 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 118 256;
+-262144 -1 -1 113 256;
 #X obj 89 72 outlet;
 #X obj 35 20 r controlershead;
 #X connect 0 0 3 0;
@@ -488,7 +488,7 @@
 #X obj 26 659 pofvu outenv-1;
 #X obj 26 679 pofvu outenv-2;
 #X obj 26 699 pofvu outenv-3;
-#X obj 290 139 midislider BoidsPattern;
+#X obj 290 140 midislider BoidsPattern;
 #N canvas 1282 264 450 300 translate 0;
 #X obj 89 50 poftranslate, f 29;
 #X obj 155 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
@@ -502,7 +502,7 @@
 #X connect 2 0 0 2;
 #X connect 4 0 0 0;
 #X coords 0 -1 1 1 120 32 1 150 10;
-#X restore 287 217 pd translate;
+#X restore 287 292 pd translate;
 #N canvas 1 81 430 228 label 0;
 #X obj 37 37 inlet;
 #X obj 37 58 t a a, f 20;
@@ -523,13 +523,13 @@
 #X connect 7 0 9 1;
 #X connect 8 0 9 2;
 #X connect 9 0 4 0;
-#X restore 287 254 pd label;
+#X restore 287 329 pd label;
 #N canvas 1282 264 450 300 translate 0;
 #X obj 89 50 poftranslate, f 29;
 #X obj 155 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -262144 -1 -1 369 256;
 #X obj 212 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 344 256;
+-262144 -1 -1 363 256;
 #X obj 89 72 outlet;
 #X obj 35 20 r controlershead;
 #X connect 0 0 3 0;
@@ -537,7 +537,7 @@
 #X connect 2 0 0 2;
 #X connect 4 0 0 0;
 #X coords 0 -1 1 1 120 32 1 150 10;
-#X restore 292 567 pd translate;
+#X restore 292 612 pd translate;
 #N canvas 34 321 681 314 midilock 0;
 #X obj 37 37 inlet;
 #X obj 37 58 t a a, f 20;
@@ -596,15 +596,15 @@
 #X connect 24 0 4 0;
 #X connect 25 0 26 0;
 #X connect 26 0 22 0;
-#X restore 292 608 pd midilock;
-#X obj 287 280 midiradio audiopattern 1;
-#X obj 287 343 midiradio audiopattern 2;
-#X obj 287 402 midiradio audiopattern 3;
-#X obj 287 461 midiradio audiopattern 4;
-#X obj 469 461 midiradio audiopattern 8;
-#X obj 469 402 midiradio audiopattern 7;
-#X obj 469 341 midiradio audiopattern 6;
-#X obj 469 280 midiradio audiopattern 5;
+#X restore 292 653 pd midilock;
+#X obj 287 355 midiradio audiopattern 1;
+#X obj 287 418 midiradio audiopattern 2;
+#X obj 287 477 midiradio audiopattern 3;
+#X obj 287 536 midiradio audiopattern 4;
+#X obj 469 536 midiradio audiopattern 8;
+#X obj 469 477 midiradio audiopattern 7;
+#X obj 469 416 midiradio audiopattern 6;
+#X obj 469 355 midiradio audiopattern 5;
 #X obj 168 8 r screen_mode;
 #X obj 168 29 < 2;
 #N canvas 626 328 450 300 translate 0;
@@ -810,7 +810,7 @@
 #X connect 80 0 72 0;
 #X connect 81 0 82 0;
 #X restore 86 138 pd screen_mode;
-#X obj 333 652 r MasterAudio-snd;
+#X obj 333 697 r MasterAudio-snd;
 #N canvas 1282 264 450 300 translate 0;
 #X obj 89 50 poftranslate, f 29;
 #X obj 155 25 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
@@ -824,7 +824,7 @@
 #X connect 2 0 0 2;
 #X connect 4 0 0 0;
 #X coords 0 -1 1 1 120 32 1 150 10;
-#X restore 418 567 pd translate;
+#X restore 418 612 pd translate;
 #N canvas 99 595 681 350 axlBatt 0;
 #X obj 37 37 inlet;
 #X obj 37 58 t a a, f 20;
@@ -903,10 +903,12 @@
 #X connect 33 0 34 0;
 #X connect 34 0 27 1;
 #X connect 35 0 28 1;
-#X restore 418 607 pd axlBatt;
+#X restore 418 652 pd axlBatt;
 #X obj 25 205 midislider invol-1 Mic1:Basse;
 #X obj 25 335 midislider invol-2 Mic2:Alto;
 #X obj 26 455 midislider invol-3 Mic3:Percu;
+#X obj 290 204 poftranslate 0 20;
+#X obj 290 229 midislider BoidsFade;
 #X connect 0 0 1 0;
 #X connect 0 0 16 0;
 #X connect 0 0 47 0;
@@ -931,6 +933,7 @@
 #X connect 28 0 29 0;
 #X connect 29 0 30 0;
 #X connect 30 0 31 0;
+#X connect 32 0 55 0;
 #X connect 33 0 34 0;
 #X connect 34 0 37 0;
 #X connect 35 0 36 0;
@@ -948,6 +951,7 @@
 #X connect 52 0 25 0;
 #X connect 53 0 26 0;
 #X connect 54 0 27 0;
+#X connect 55 0 56 0;
 #X restore 174 180 pd controls;
 #N canvas 597 314 386 257 autoscale 0;
 #X obj 63 8 inlet;

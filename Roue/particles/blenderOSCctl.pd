@@ -1,4 +1,4 @@
-#N canvas 445 467 600 546 10;
+#N canvas 409 314 600 546 10;
 #X obj 53 134 netsend -u -b;
 #X msg 70 104 connect localhost 10000;
 #X obj 53 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -131,11 +131,12 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 213 79 r reconnect_boidsOSC;
 #X obj 225 367 ctl pattern BoidsPattern;
 #X obj 356 262 hsl 128 15 0 1 0 0 BoidsPattern-snd BoidsPattern-snd
-BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
-#X obj 225 385 ctl ALL_WHITE ALL_WHITE;
+BoidsPattern -2 -8 0 10 -262144 -1 -1 7103 1;
+#X obj 225 403 ctl ALL_WHITE ALL_WHITE;
 #X obj 400 148 s toBlender;
 #X obj 400 127 oscformat oscControl openwin;
 #X msg 400 96 1920 1080 1920 noborder;
+#X obj 225 384 ctl BoidsFade BoidsFade;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 4 0 33 0;
