@@ -1,18 +1,16 @@
-#N canvas 1155 94 646 272 12;
+#N canvas 670 156 646 272 12;
 #X obj 18 90 RF/masterRF;
 #X obj 18 65 Audio/RoueAudio;
 #X obj 18 115 pofGUI;
 #X obj 17 12 cnv 15 200 40 empty empty La_Roue 20 20 2 40 -233017 -66577
 0;
-#N canvas 626 314 632 435 run-boids_window 0;
+#N canvas 41 242 632 435 run-boids_window 0;
 #X obj 29 231 pd~ -fifo 30;
-#X msg 74 203 pd~ stop;
-#X msg 74 178 pd~ start pd-boids/Roue-boids-pof.pd;
+#X msg 28 88 pd~ stop;
 #X obj 29 257 route running;
 #X obj 29 284 s reconnect_boidsOSC;
-#X msg 73 144 pd~ start -nogui pd-boids/Roue-boids-pof.pd;
-#X obj 73 97 loadbang;
-#X obj 73 121 del 2000;
+#X obj 289 21 loadbang;
+#X obj 289 45 del 2000;
 #X obj 109 43 bng 15 250 50 0 empty empty stop 17 7 0 10 -128992 -1
 -1;
 #X obj 163 42 bng 15 250 50 0 empty empty run 17 7 0 10 -4034 -1 -1
@@ -27,32 +25,46 @@
 #X obj 251 254 r boidswindow-height;
 #X obj 288 283 r boidswindow-posX;
 #X obj 204 371 oscformat oscControl pofwin;
-#X obj 204 215 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 204 220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 147 381 print;
 #X obj 204 344 list;
-#X msg 204 320 open noborder \, window 1920 1080 0 \, pos 1920 0;
-#X connect 0 0 3 0;
+#X msg 204 320 open noborder \, window \$1 \$2 0 \, pos \$3 0;
+#X obj 367 72 pofutil;
+#X msg 366 47 getdir;
+#X msg 367 96 symbol \$1;
+#X obj 91 173 symbol;
+#X obj 46 115 symbol;
+#X msg 91 198 pd~ start \$1/pd-boids/Roue-boids-pof.pd;
+#X msg 46 140 pd~ start -nogui \$1/pd-boids/Roue-boids-pof.pd;
+#X connect 0 0 2 0;
 #X connect 1 0 0 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 3 0 14 0;
-#X connect 5 0 0 0;
-#X connect 6 0 7 0;
-#X connect 7 0 5 0;
-#X connect 8 0 1 0;
-#X connect 9 0 5 0;
-#X connect 10 0 2 0;
-#X connect 12 0 22 0;
-#X connect 13 0 12 0;
-#X connect 14 0 13 0;
-#X connect 15 0 13 1;
-#X connect 16 0 12 1;
-#X connect 17 0 12 2;
-#X connect 18 0 11 0;
-#X connect 19 0 14 0;
-#X connect 21 0 18 0;
+#X connect 2 0 3 0;
+#X connect 2 0 12 0;
+#X connect 4 0 5 0;
+#X connect 4 0 22 0;
+#X connect 5 0 7 0;
+#X connect 6 0 1 0;
+#X connect 7 0 25 0;
+#X connect 8 0 24 0;
+#X connect 10 0 20 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 13 0 11 1;
+#X connect 14 0 10 1;
+#X connect 15 0 10 2;
+#X connect 16 0 9 0;
+#X connect 17 0 12 0;
+#X connect 19 0 16 0;
+#X connect 20 0 19 0;
+#X connect 21 0 23 0;
 #X connect 22 0 21 0;
+#X connect 23 0 24 1;
+#X connect 23 0 25 1;
+#X connect 24 0 26 0;
+#X connect 25 0 27 0;
+#X connect 26 0 0 0;
+#X connect 27 0 0 0;
 #X coords 0 -1 1 1 170 40 1 100 20;
 #X restore 18 139 pd run-boids_window;
 #X obj 236 30 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
@@ -70,5 +82,5 @@
 #X obj 89 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-height empty height
 0 -8 0 10 -262144 -1 -1 1080 256;
 #X obj 147 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-posX empty position
-0 -8 0 10 -262144 -1 -1 1920 256;
+0 -8 0 10 -262144 -1 -1 0 256;
 #X connect 5 0 6 0;
