@@ -1,10 +1,10 @@
-#N canvas 670 156 646 272 12;
+#N canvas 773 177 646 272 12;
 #X obj 18 90 RF/masterRF;
 #X obj 18 65 Audio/RoueAudio;
 #X obj 18 115 pofGUI;
 #X obj 17 12 cnv 15 200 40 empty empty La_Roue 20 20 2 40 -233017 -66577
 0;
-#N canvas 41 242 632 435 run-boids_window 0;
+#N canvas 41 242 668 435 run-boids_window 0;
 #X obj 29 231 pd~ -fifo 30;
 #X msg 28 88 pd~ stop;
 #X obj 29 257 route running;
@@ -37,6 +37,13 @@
 #X obj 46 115 symbol;
 #X msg 91 198 pd~ start \$1/pd-boids/Roue-boids-pof.pd;
 #X msg 46 140 pd~ start -nogui \$1/pd-boids/Roue-boids-pof.pd;
+#X msg 433 284 pos \$1 0;
+#X floatatom 480 111 5 0 0 0 - - -;
+#X obj 465 161 r boidswindow-width;
+#X obj 502 187 r boidswindow-height;
+#X obj 502 210 t b f;
+#X obj 465 236 pack f f;
+#X msg 465 261 window \$1 \$2 0;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
@@ -53,6 +60,7 @@
 #X connect 13 0 11 1;
 #X connect 14 0 10 1;
 #X connect 15 0 10 2;
+#X connect 15 0 28 0;
 #X connect 16 0 9 0;
 #X connect 17 0 12 0;
 #X connect 19 0 16 0;
@@ -65,22 +73,29 @@
 #X connect 25 0 27 0;
 #X connect 26 0 0 0;
 #X connect 27 0 0 0;
+#X connect 28 0 19 0;
+#X connect 30 0 33 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 32 1 33 1;
+#X connect 33 0 34 0;
+#X connect 34 0 19 0;
 #X coords 0 -1 1 1 170 40 1 100 20;
 #X restore 18 139 pd run-boids_window;
 #X obj 236 30 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
-0 14 -262144 -1 -1 0 256;
+0 14 -262144 -1 -1 4.092 256;
 #X obj 236 60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 247 106 1: tuyau-harmo_contrebasse : "oiseaux";
 #X text 246 136 2: trilles harmoniques + contre-multipho +cloches;
 #X text 246 165 3: helene souffle;
 #X obj 385 26 tgl 40 0 ALL_WHITE-snd ALL_WHITE-rcv ALL_WHITE 0 -10
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 1 1;
 #X obj 30 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-width empty width
 0 -8 0 10 -262144 -1 -1 1920 256;
 #X text 44 195 BOIDS WINDOW:;
 #X obj 89 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-height empty height
-0 -8 0 10 -262144 -1 -1 1080 256;
+0 -8 0 10 -262144 -1 -1 1111 256;
 #X obj 147 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-posX empty position
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 1438 256;
 #X connect 5 0 6 0;
