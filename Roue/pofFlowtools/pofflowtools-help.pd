@@ -1,0 +1,284 @@
+#N canvas 608 497 840 504 12;
+#X declare -path ../bin -lib pof -lib pofflowtools;
+#X obj 27 57 pofhead;
+#X obj 27 302 poffluid;
+#X obj 487 280 unpack f f;
+#X obj 487 256 route move down up, f 23;
+#X msg 710 327 0;
+#X obj 423 307 poftranslate, f 28;
+#X obj 423 356 pofcolor 1 1 1 0, f 32;
+#X obj 531 138 tgl 15 0 empty empty empty 17 7 0 10 -4034 -1 -1 0 1
+;
+#X obj 423 405 pofcirc 25 25;
+#X floatatom 467 381 5 0 0 0 - - -;
+#X obj 423 228 poftouch 1280 720;
+#X msg 50 268 showgui \$1;
+#X obj 60 247 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
+1;
+#X obj 27 105 t a a a, f 57;
+#X obj 257 319 pofopticalflow 800 600;
+#X msg 282 287 showgui \$1;
+#X obj 282 266 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 0
+1;
+#X obj 225 163 t a a;
+#X obj 27 152 pofvisible 1;
+#X obj 41 129 tgl 15 0 empty empty empty 17 7 0 10 -4034 -1 -1 1 1
+;
+#X obj 244 345 tgl 15 0 empty empty draw_opticalflow 17 7 0 10 -4034
+-1 -1 0 1;
+#N canvas 1094 259 520 300 scalarshader 0;
+#X obj 37 37 inlet;
+#X obj 37 137 pofshader;
+#X obj 96 44 loadbang;
+#X floatatom 167 193 5 0 0 0 - - -;
+#X msg 177 125 tex SourceTexture mousevelocity 0;
+#X msg 166 221 f Scale \$1;
+#X obj 16 87 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 18 106 play \$1;
+#X msg 178 150 tex SourceTexture mousebuf 0;
+#X obj 37 161 outlet;
+#X msg 83 74 load shaders/none.vert shaders/scalar.frag \, f Scale
+1;
+#X msg 178 174 tex SourceTexture mousedecay 0;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 2 0 10 0;
+#X connect 3 0 5 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 7 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X connect 10 0 1 0;
+#X connect 11 0 1 0;
+#X restore 225 428 pd scalarshader;
+#X obj 423 204 t a a, f 37;
+#X obj 679 256 pofrect 1e+06 1e+06;
+#X obj 679 232 pofcolor 0 0 0 1;
+#X obj 225 395 poftexture mousedecay;
+#N canvas 2319 344 701 668 params 0;
+#X obj 93 607 outlet;
+#X floatatom 66 29 5 0 0 0 - - -;
+#X obj 90 87 hsl 128 15 0.1 2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 374 66 7 0 0 0 - - -;
+#X obj 377 45 hsl 128 15 -0.01 0.01 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X obj 90 160 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 87 180 5 0 0 0 - - -;
+#X obj 93 584 list trim;
+#X obj 341 186 list prepend advanced\ dissipation;
+#X obj 93 561 list prepend param;
+#X floatatom 374 135 7 0 0 0 - - -;
+#X obj 377 115 hsl 128 15 -0.01 0.02 0 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 0 1;
+#X msg 374 157 velocity\ offset \$1;
+#X msg 374 88 density\ offset \$1;
+#X msg 87 130 cell\ size \$1;
+#X msg 66 53 speed \$1;
+#X obj 109 231 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 106 251 5 0 0 0 - - -;
+#X msg 106 275 vorticity \$1;
+#X msg 87 204 viscosity \$1;
+#X obj 128 304 hsl 128 15 0.0001 0.05 1 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 0 1;
+#X floatatom 125 324 5 0 0 0 - - -;
+#X msg 125 348 dissipation \$1;
+#X floatatom 433 337 7 0 0 0 - - -;
+#X obj 436 316 hsl 128 15 0 5 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 433 406 7 0 0 0 - - -;
+#X obj 436 386 hsl 128 15 0.01 10 1 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X obj 390 457 list prepend maximum;
+#X msg 433 359 density \$1;
+#X msg 433 428 velocity \$1;
+#X floatatom 433 266 7 0 0 0 - - -;
+#X obj 436 245 hsl 128 15 0 0.2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X msg 433 288 clampForce \$1;
+#X obj 146 375 hsl 128 15 -0.1 0.1 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X floatatom 143 395 5 0 0 0 - - -;
+#X msg 143 419 density\ from\ pressure \$1;
+#X obj 156 447 hsl 128 15 -0.5 0.5 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X floatatom 153 467 5 0 0 0 - - -;
+#X msg 153 491 density\ from\ vorticity \$1;
+#X obj 68 11 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 87 107 5 0 0 0 - - -;
+#X msg 210 51 reset 1;
+#X connect 1 0 15 0;
+#X connect 2 0 40 0;
+#X connect 3 0 13 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 19 0;
+#X connect 7 0 0 0;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 12 0 8 0;
+#X connect 13 0 8 0;
+#X connect 14 0 9 0;
+#X connect 15 0 9 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 9 0;
+#X connect 19 0 9 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 9 0;
+#X connect 23 0 28 0;
+#X connect 24 0 23 0;
+#X connect 25 0 29 0;
+#X connect 26 0 25 0;
+#X connect 27 0 9 0;
+#X connect 28 0 27 0;
+#X connect 29 0 27 0;
+#X connect 30 0 32 0;
+#X connect 31 0 30 0;
+#X connect 32 0 27 0;
+#X connect 33 0 34 0;
+#X connect 34 0 35 0;
+#X connect 35 0 9 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 9 0;
+#X connect 39 0 1 0;
+#X connect 40 0 14 0;
+#X connect 41 0 9 0;
+#X restore 50 224 pd params;
+#X obj 193 78 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 3047 328 513 585 params 0;
+#X obj 37 535 outlet;
+#X obj 34 8 hsl 128 15 0 200 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 238 299 7 0 0 0 - - -;
+#X obj 241 278 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 34 80 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 31 100 5 0 0 0 - - -;
+#X obj 37 512 list trim;
+#X obj 37 489 list prepend param;
+#X floatatom 217 227 7 0 0 0 - - -;
+#X obj 219 207 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 53 151 hsl 128 15 0.1 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 50 171 5 0 0 0 - - -;
+#X obj 72 224 hsl 128 15 0 0.2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 69 244 5 0 0 0 - - -;
+#X obj 217 361 list prepend time\ decay\ blur;
+#X msg 217 249 decay \$1;
+#X msg 238 321 blur\ radius \$1;
+#X msg 31 50 strength \$1;
+#X msg 31 124 offset \$1;
+#X msg 50 194 lambda \$1;
+#X msg 69 268 threshold \$1;
+#X obj 80 292 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 84 347 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 80 314 inverse\ x \$1;
+#X msg 83 369 inverse\ y \$1;
+#X floatatom 31 28 5 0 0 0 - - -;
+#X connect 1 0 25 0;
+#X connect 2 0 16 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 18 0;
+#X connect 6 0 0 0;
+#X connect 7 0 6 0;
+#X connect 8 0 15 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 19 0;
+#X connect 12 0 13 0;
+#X connect 13 0 20 0;
+#X connect 14 0 7 0;
+#X connect 15 0 14 0;
+#X connect 16 0 14 0;
+#X connect 17 0 7 0;
+#X connect 18 0 7 0;
+#X connect 19 0 7 0;
+#X connect 20 0 7 0;
+#X connect 21 0 23 0;
+#X connect 22 0 24 0;
+#X connect 23 0 7 0;
+#X connect 24 0 7 0;
+#X connect 25 0 17 0;
+#X restore 281 238 pd params;
+#X obj 225 451 pofplane 1280 720;
+#X obj 423 180 poffbo mousebuf 1280 720 RGB;
+#X obj 190 54 loadbang;
+#X msg 679 327 1;
+#X obj 473 333 hsl 60 15 0 1 0 0 empty empty empty -2 -8 0 10 -258113
+-1 -1 0 1;
+#X obj 540 332 hsl 60 15 0 1 0 0 empty empty empty -2 -8 0 10 -4034
+-1 -1 0 1;
+#X obj 610 332 hsl 60 15 0 1 0 0 empty empty empty -2 -8 0 10 -4160
+-1 -1 0 1;
+#X msg 275 194 source mousebuf \, decay mousedecay, f 16;
+#X obj 225 367 pofvisible 1;
+#X obj 423 155 pofcolor 1 1 1 0;
+#X obj 28 12 declare -path ../bin -lib pof -lib pofflowtools;
+#X text 437 28 see: https://github.com/moostrik/ofxFlowTools.git;
+#X text 409 10 This is a Pof port of Matthias Oostrik's ofxFlowTools
+;
+#X msg 50 185 density 0 mousebuf 0.5 \, velocity 0 mousedecay 2, f
+24;
+#X connect 0 0 13 0;
+#X connect 2 0 5 1;
+#X connect 2 1 5 2;
+#X connect 3 0 2 0;
+#X connect 3 1 2 0;
+#X connect 3 1 32 0;
+#X connect 3 2 4 0;
+#X connect 4 0 6 4;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 38 4;
+#X connect 9 0 8 1;
+#X connect 9 0 8 2;
+#X connect 10 0 5 0;
+#X connect 10 1 3 0;
+#X connect 11 0 1 0;
+#X connect 12 0 11 0;
+#X connect 13 0 18 0;
+#X connect 13 1 17 0;
+#X connect 13 2 38 0;
+#X connect 15 0 14 0;
+#X connect 16 0 15 0;
+#X connect 17 0 37 0;
+#X connect 17 1 14 0;
+#X connect 18 0 1 0;
+#X connect 19 0 18 0;
+#X connect 20 0 37 0;
+#X connect 21 0 29 0;
+#X connect 22 0 10 0;
+#X connect 22 1 24 0;
+#X connect 24 0 23 0;
+#X connect 25 0 21 0;
+#X connect 26 0 1 0;
+#X connect 27 0 42 0;
+#X connect 27 0 36 0;
+#X connect 28 0 14 0;
+#X connect 30 0 22 0;
+#X connect 31 0 27 0;
+#X connect 32 0 6 4;
+#X connect 33 0 6 1;
+#X connect 34 0 6 2;
+#X connect 35 0 6 3;
+#X connect 36 0 14 0;
+#X connect 37 0 25 0;
+#X connect 38 0 30 0;
+#X connect 42 0 1 0;

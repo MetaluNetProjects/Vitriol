@@ -705,7 +705,7 @@
 #X msg 683 360 2;
 #X obj 167 407 r screen_mode;
 #X floatatom 167 428 5 0 0 0 - - -;
-#X obj 103 622 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 103 622 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X connect 0 0 50 0;
 #X connect 1 0 2 0;
@@ -989,7 +989,7 @@
 #X connect 14 0 11 0;
 #X connect 15 0 1 0;
 #X restore 32 120 pd autoscale;
-#N canvas 1 135 257 244 cam->proj 0;
+#N canvas 1 163 257 244 cam->proj 0;
 #X obj 39 49 r \$0-q2qP1-M-coords;
 #N canvas 681 125 748 587 quad2quad 0;
 #X obj 34 34 inlet;
@@ -1059,7 +1059,7 @@
 #X connect 6 0 3 0;
 #X connect 7 0 6 1;
 #X restore 364 26 pd cam->proj;
-#N canvas 596 152 652 441 camera 0;
+#N canvas 801 143 652 441 camera 1;
 #X obj 25 195 pofscale 0.44 0.44 1;
 #X obj 25 142 poftranslate 0 -390;
 #X obj 25 274 q2qCanvas \$0 1;
@@ -1085,7 +1085,7 @@
 #X obj 441 216 s \$0-q2qP1-M-props;
 #X msg 245 54 0.92 -180 -20;
 #X obj 124 391 route connected;
-#X obj 124 412 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 124 412 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 199 346 connect http://rouewifiiii.local:8080/?action=stream
 ;
@@ -1101,9 +1101,12 @@
 #X obj 48 51 != 1;
 #X obj 351 240 s \$0-q2qP2-props;
 #X obj 461 239 s \$0-q2qP2-M-props;
+#X obj 53 327 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 25 297 pofvisible 1;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
-#X connect 2 0 5 0;
+#X connect 2 0 39 0;
 #X connect 3 0 2 1;
 #X connect 4 0 3 0;
 #X connect 5 1 23 0;
@@ -1141,6 +1144,8 @@
 #X connect 33 0 1 0;
 #X connect 34 0 35 0;
 #X connect 35 0 33 0;
+#X connect 38 0 39 0;
+#X connect 39 0 5 0;
 #X restore 32 182 pd camera;
 #N canvas 843 714 490 300 projector 0;
 #X obj 43 34 inlet;
