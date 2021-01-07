@@ -2,4 +2,5 @@ tmp/
 Bateleur/samples/bank*
 Bateleur/alto
 **/bak-*
+*.o
 

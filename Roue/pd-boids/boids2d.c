@@ -109,6 +109,7 @@ typedef struct _FlockObject {
     bfloat        prefDistSqr;
     Point2d        centerPt;
     Point2d        attractPt[kNumAttract];
+    bfloat        attractRadius[kNumAttract];
     BoidPtr        boid;
     bfloat         d2r, r2d;
 } t_boids, *FlockPtr;
@@ -129,7 +130,7 @@ void Flock_numBoids(t_boids *x, t_float arg);
 void Flock_minSpeed(t_boids *x, t_float arg);
 void Flock_maxSpeed(t_boids *x, t_float arg);
 void Flock_centerWeight(t_boids *x, t_float arg);
-void Flock_attractWeight(t_boids *x, t_float num, t_float w);
+void Flock_attractWeight(t_boids *x, t_float num, t_float w, t_float rad);
 void Flock_matchWeight(t_boids *x, t_float arg);
 void Flock_avoidWeight(t_boids *x, t_float arg);
 void Flock_wallsWeight(t_boids *x, t_float arg);
@@ -147,7 +148,7 @@ void FlightStep(t_boids *x);
 Point2d FindFlockCenter(t_boids *x);
 float MatchAndAvoidNeighbors(t_boids *x, short theBoid, Velocity *matchNeighborVel, Velocity *avoidNeighborVel);
 Velocity SeekPoint(t_boids *x, short theBoid, Point2d seekPt);
-Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt);
+Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt, bfloat radius);
 //Velocity AvoidWalls(t_boids *x, short theBoid);
 int InFront(BoidPtr theBoid, BoidPtr neighbor);
 void NormalizeVelocity(Velocity *direction);
@@ -167,7 +168,7 @@ void boids2d_setup(void)
     class_addmethod(boids2d_class, (t_method) Flock_minSpeed,      gensym("minspeed"),     A_FLOAT, 0);
     class_addmethod(boids2d_class, (t_method) Flock_maxSpeed,      gensym("maxspeed"),     A_FLOAT, 0);
     class_addmethod(boids2d_class, (t_method) Flock_centerWeight,  gensym("center"),         A_FLOAT, 0);
-    class_addmethod(boids2d_class, (t_method) Flock_attractWeight, gensym("attract"), A_FLOAT, A_FLOAT, 0);
+    class_addmethod(boids2d_class, (t_method) Flock_attractWeight, gensym("attract"), A_FLOAT, A_FLOAT, A_DEFFLOAT, 0);
     class_addmethod(boids2d_class, (t_method) Flock_matchWeight,   gensym("match"),         A_FLOAT, 0);
     class_addmethod(boids2d_class, (t_method) Flock_avoidWeight,   gensym("avoid"),         A_FLOAT, 0);
     class_addmethod(boids2d_class, (t_method) Flock_wallsWeight,   gensym("repel"),         A_FLOAT, 0);
@@ -406,11 +407,12 @@ void Flock_centerWeight(t_boids *x, t_float arg)
     x->centerWeight = (bfloat)arg;
 }
 
-void Flock_attractWeight(t_boids *x, t_float num, t_float w)
+void Flock_attractWeight(t_boids *x, t_float num, t_float w, t_float rad)
 {
     if((int)num < kNumAttract)
     {
         x->attractWeight[(int)num] = (bfloat)w;
+        x->attractRadius[(int)num] = (bfloat)rad;
     }
 }
 
@@ -559,6 +561,7 @@ void InitFlock(t_boids *x)
         x->attractWeight[i] = (i == 0) * kAttractWeight;
         x->attractPt[i].x  = (kFlyRectLeft + kFlyRectRight) * 0.5;
         x->attractPt[i].y  = (kFlyRectTop + kFlyRectBottom) * 0.5;
+        x->attractRadius[i] = 0.0;
     }
     // x->attractPt.z        = (kFlyRectFront + kFlyRectBack) * 0.5;
     Flock_resetBoids(x);
@@ -601,7 +604,7 @@ void FlightStep(t_boids *x)
         goAttract.x += goAttractVel.x * x->attractWeight[0];
         goAttract.y += goAttractVel.y * x->attractWeight[0];
         for (j = 1 ; j < kNumAttract; j++) {
-            goAttractVel = SeekPoint2(x, i, x->attractPt[j]);
+            goAttractVel = SeekPoint2(x, i, x->attractPt[j], x->attractRadius[j]);
             goAttract.x += goAttractVel.x * x->attractWeight[j];
             goAttract.y += goAttractVel.y * x->attractWeight[j];
         }
@@ -787,7 +790,7 @@ Velocity SeekPoint(t_boids *x, short theBoid, Point2d seekPt)
     return(tempDir);
 }
 
-Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, bfloat maxdist*/)
+Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt, bfloat radius)
 {
     Velocity    tempDir;
     float    my_hypot;
@@ -795,11 +798,15 @@ Velocity SeekPoint2(t_boids *x, short theBoid, Point2d seekPt/*short numpt, bflo
     tempDir.x = seekPt.x - x->boid[theBoid].oldPos.x;    
     tempDir.y = seekPt.y - x->boid[theBoid].oldPos.y;
     my_hypot = (tempDir.x * tempDir.x + tempDir.y * tempDir.y);
-    my_hypot *= my_hypot;
+    /*my_hypot *= my_hypot;
     if (my_hypot != 0.0) {
         tempDir.x /= my_hypot;
         tempDir.y /= my_hypot;
-    }
+    }*/
+    my_hypot -= (radius * radius);
+    if(my_hypot < .1) my_hypot = .1;
+    tempDir.x /= my_hypot;
+    tempDir.y /= my_hypot;
     return(tempDir);
 }
 
