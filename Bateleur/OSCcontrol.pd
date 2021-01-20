@@ -1,4 +1,4 @@
-#N canvas 20 124 779 627 12;
+#N canvas 93 385 779 627 12;
 #X declare -path ggee;
 #X obj 20 16 hsl 200 30 0 1 0 0 \$0-control-noise-snd \$0-control-noise-rcv
 noise 20 15 0 14 -262144 -1 -1 0 1;
@@ -13,25 +13,25 @@ freeze 32 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 152 hsl 200 30 0 1 0 0 \$0-control-delai-snd \$0-control-delai-rcv
 delai 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 19 209 tgl 30 0 \$0-control-sampleur-snd \$0-control-sampleur-rcv
-sampleur 32 15 0 14 -262144 -1 -1 1 1;
+sampleur 32 15 0 14 -262144 -1 -1 0 1;
 #X obj 163 210 hsl 80 30 0 1 0 0 \$0-control-sample_threshold-snd \$0-control-sample_threshold-rcv
 threshold 5 15 0 14 -260097 -1 -1 3200 1;
 #X obj 251 210 tgl 50 0 empty \$0-control-sample_detect detect 5 25
 0 12 -260097 -1 -1 0 1;
 #X obj 304 210 nbx 2 30 -1e+37 1e+37 0 0 empty \$0-control-sample_last
-last 0 -8 0 14 -260097 -1 -1 1 256;
+last 0 -8 0 14 -260097 -1 -1 2 256;
 #X obj 232 85 hsl 80 30 0 1 0 0 \$0-control-choc_sens-snd \$0-control-choc_sens-rcv
 sens_choc 2 15 0 14 -4032 -1 -1 3200 1;
 #X obj 317 85 bng 30 100 50 0 \$0-choc-snd \$0-choc-rcv empty 17 7
 0 10 -262144 -258699 -1;
 #X obj 382 16 hsl 200 30 0 1 0 0 \$0-control-lum-snd \$0-control-lum-rcv
-lum 20 15 0 14 -261682 -1 -1 16300 1;
+lum 20 15 0 14 -261682 -1 -1 4600 1;
 #X obj 382 50 hsl 200 30 0 1 0 0 \$0-control-contrast-snd \$0-control-contrast-rcv
-contrast 20 15 0 14 -1 -262144 -262144 6800 1;
+contrast 20 15 0 14 -1 -262144 -262144 5900 1;
 #X obj 382 83 hsl 200 30 0 1 0 0 \$0-control-sat-snd \$0-control-sat-rcv
-sat 20 15 0 14 -4034 -1 -1 0 1;
+sat 20 15 0 14 -4034 -1 -1 7700 1;
 #X obj 379 254 tgl 30 0 \$0-control-tigre-snd \$0-control-tigre-rcv
-tigre 32 15 0 14 -262144 -1 -1 1 1;
+tigre 32 15 0 14 -262144 -1 -1 0 1;
 #X obj 382 117 hsl 200 30 0 1 0 0 \$0-control-mask-snd \$0-control-mask-rcv
 mask 20 15 0 14 -228856 -1 -1 19900 1;
 #X obj 382 151 hsl 200 30 0 1 0 0 \$0-control-maskbg-snd \$0-control-maskbg-rcv
@@ -42,7 +42,7 @@ solar 20 15 0 14 -203904 -1 -1 0 1;
 poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 229 51 tgl 30 0 \$0-control-fb-snd \$0-control-fb-rcv feedback
 32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 136 122 1107 715 guts 0;
+#N canvas 712 231 1107 715 guts 1;
 #X obj 20 133 netsend -u -b;
 #X obj 46 80 loadbang;
 #X obj 20 14 r toCONTROL;
@@ -310,13 +310,13 @@ freeze;
 #X obj 21 364 hradio 30 1 0 16 \$0-pattern-snd \$0-pattern-rcv 1____2____3____4___5___6___7___8___9___10___11___12__13__14__15__16
 0 37 0 12 -262144 -1 -1 13;
 #X obj 24 329 hsl 200 30 0 1 0 0 \$0-fade_time-snd \$0-fade_time-rcv
-fade_time:8.5_s 20 15 0 14 -262144 -1 -1 7200 1;
+fade_time:0_s 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 271 hradio 30 1 0 7 \$0-control-sampleur_bank-snd \$0-control-sampleur_bank-rcv
 bank_4 0 -8 0 14 -99865 -258113 -1 6;
 #X obj 311 462 bng 30 250 50 0 \$0-savepatterns-snd \$0-savepatterns-rcv
 SAVE 32 15 0 14 -258113 -1 -1;
 #X obj 447 305 hsl 200 30 0 1 0 0 \$0-control-audiomaster-snd \$0-control-audiomaster-rcv
-audiomaster 20 15 0 14 -258113 -1 -1 15600 1;
+audiomaster 20 15 0 14 -258113 -1 -1 14200 1;
 #X obj 236 271 tgl 30 0 \$0-control-sampleur_single-snd \$0-control-sampleur_single-rcv
 single 32 15 0 14 -99865 -1 -1 0 1;
 #N canvas 749 109 450 300 choc 0;
@@ -361,48 +361,56 @@ single 32 15 0 14 -99865 -1 -1 0 1;
 #X obj 525 390 gcanvas 180 80;
 #X obj 252 156 tgl 50 0 \$0-control-mic_choice-snd \$0-control-mic_choice-rcv
 mic:table 5 25 0 12 -260097 -1 -1 0 1;
-#N canvas 635 91 728 225 notes_25aout2020:conduite 1;
+#N canvas 869 91 893 409 notes_25aout2020:conduite 1;
 #X text 268 41 1:rien (bypass);
-#X text 267 57 2:noir&blanc+zebre_au_choc;
 #X text 266 72 3:retard(fantome);
 #X text 265 95 4:(rien);
-#X text 267 142 5:poster;
-#X text 226 124 -- fade long (~20s) : --;
 #X text 261 197 7:rien;
 #X text 263 229 9:rien;
-#X text 261 261 11: sampleur bank1 (alto);
-#X text 261 275 12: sampleur bank4 (gemissements_paul);
-#X text 262 303 14: tigre;
-#X text 263 318 15: tigre en aplat (lum=0);
-#X text 393 336 16: feedback negatif sampleur_bank4 zebre_sur_chocs
+#X text 257 320 14: tigre;
+#X text 388 337 15: tigre en aplat (lum=0);
+#X text 390 351 16: feedback negatif sampleur_bank4 zebre_sur_chocs
 ;
-#X text 233 183 --------;
+#X text 234 167 --------;
 #X text 78 198 (fin alto \, pose coupelle);
 #X text 263 212 8:"sampleur" bruit blanc (attention sensibilité chocs)
 ;
-#X text 97 230 (main sur saladier);
-#X text 266 158 6:poster+formant \; attention: avoir la main sur audiomaster
-pour ma!, f 61;
-#X text 348 244 [PAS UTILISE] 10: freeze fond blanc poster;
+#X text 121 228 (main sur saladier);
 #X text 89 7 control+shift+5=ajouter commentaire /control+e=sortie
 mode editeur, f 68;
-#X text 95 275 (il prends la baguette);
-#X text 261 288 13: sampleur bank4 reste \, stop poster \, negatif
-;
-#X text 116 287 (enchainé \, fade 10s);
+#X text 95 264 (il prends la baguette);
 #X text 177 56 (au choc);
 #X text 143 72 (au 1er ressort);
 #X text 146 95 (saladier_blam);
-#X text 196 142 (hachoir);
-#X text 127 158 (cloche_tirage_dés);
-#X text 34 215 (il prend l'écrou \; SANS FADE!!!);
-#X text 32 262 (avant tirage dés \; SANS FADE!!!);
-#X text 61 304 prend ressort dernier objet;
-#X text 118 319 NOIR TELES final;
-#X restore 599 77 pd notes_25aout2020:conduite;
+#X text 123 126 (cloche_tirage_dés);
+#X text 63 322 prend ressort dernier objet;
+#X text 168 384 NOIR TELES final;
+#X text 267 57 2:zebre_au_choc;
+#X text 265 125 5:formant \;, f 11;
+#X text 335 137 attention: avoir la main sur audiomaster !, f 43;
+#X text 261 148 6:poster+formant \;;
+#X text 466 123 0;
+#X text 469 23 temps fade (s);
+#X text 462 152 20s;
+#X text 101 148 (saladier à l'oreille);
+#X text 260 246 10: sampleur bank1 (alto);
+#X text 125 246 (avant tirage dés);
+#X text 125 214 (il prend l'écrou), f 19;
+#X text 260 263 11: sampleur bank4 (gemissements_paul);
+#X text 542 239 0;
+#X text 542 260 0;
+#X text 262 280 12: bank4 + fond blanc poster;
+#X text 542 277 10;
+#X text 149 280 (tout de suite);
+#X text 258 303 13: negatif;
+#X text 85 304 (il lache les baguettes);
+#X text 541 298 0 !!;
+#X restore 596 60 pd notes_25aout2020:conduite;
 #X f 17;
 #X obj 630 219 tgl 30 0 \$0-control-showDebugMains-snd \$0-control-showDebugMains-rcv
 (showDebugMains) 0 -10 0 14 -159808 -1 -1 0 1;
+#X obj 597 117 hsl 150 30 0 1 0 0 \$0-control-mastermask-snd \$0-control-mastermask-rcv
+masterMaskNoir 20 15 0 14 -191407 -1 -1 0 1;
 #X connect 29 0 30 0;
 #X connect 30 0 29 0;
 #X connect 30 1 29 1;

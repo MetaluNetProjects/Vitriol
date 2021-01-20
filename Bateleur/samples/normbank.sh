@@ -6,6 +6,6 @@
 for filename in $1/*.wav ; do
 	name=`basename $filename`
 	echo normalizing $1/$name to $2/$name
-	sox $1/$name $2/$name norm -12 fade 0.01 0 0.01
+	sox $1/$name $2/$name norm -6 fade 0.01 0 0.01
 done
 
