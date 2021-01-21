@@ -1,4 +1,4 @@
-#N canvas 357 393 940 662 10;
+#N canvas 401 123 940 662 10;
 #X obj 31 727 s cameras-drawhead;
 #X obj 214 169 s cameras-bg;
 #X obj 31 18 r cameras-head;
@@ -105,13 +105,13 @@
 1;
 #X obj 578 127 s \$1-size;
 #X obj 70 181 r \$1-size;
-#X obj 286 108 r \$1-size;
+#X obj 301 126 r \$1-size;
 #X obj 484 648 r \$1-size;
 #X obj 568 531 r VIEWMODE;
 #X obj 568 552 == 2;
 #X obj 568 573 max 0.1;
 #X obj 447 599 pofcolor \$4 \$5 \$6 1;
-#N canvas 51 409 450 449 grid 0;
+#N canvas 41 399 450 449 grid 0;
 #X obj 141 17 inlet;
 #X obj 141 38 t a;
 #X obj 141 358 poftranslate 0.5;
@@ -253,6 +253,10 @@
 #X obj 267 57 + 1;
 #X obj 267 35 * -1;
 #X obj 267 78 * 2048;
+#X obj 781 664 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 201 103 r cameras-fbosubsample;
+#X msg 201 123 numsamples \$1;
 #X connect 2 0 116 0;
 #X connect 3 0 11 0;
 #X connect 4 0 3 0;
@@ -401,3 +405,6 @@
 #X connect 129 0 131 0;
 #X connect 130 0 129 0;
 #X connect 131 0 122 0;
+#X connect 132 0 111 0;
+#X connect 133 0 134 0;
+#X connect 134 0 11 0;
