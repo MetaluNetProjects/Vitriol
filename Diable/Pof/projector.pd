@@ -1,4 +1,4 @@
-#N canvas 618 369 644 491 10;
+#N canvas 1170 471 644 491 10;
 #X obj 18 77 r projectors-head;
 #X obj 69 348 pofquad 5 3;
 #X obj 18 161 t a a, f 9;
@@ -59,7 +59,7 @@
 #X connect 2 0 3 0;
 #X connect 4 0 1 0;
 #X restore 520 214 pd aps;
-#N canvas 2 328 913 507 touch-edit 0;
+#N canvas -29 446 913 507 touch-edit 1;
 #X obj 120 25 inlet;
 #X obj 120 46 pofvisible;
 #X obj 173 23 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -68,8 +68,8 @@
 #X obj 314 26 route corner;
 #X obj 120 213 poftranslate;
 #X obj 152 187 unpack f f;
-#X msg 147 279 draw 1;
-#X obj 145 257 loadbang;
+#X msg 48 218 draw 1;
+#X obj 48 196 loadbang;
 #X obj 201 324 route down up;
 #X obj 120 99 t a a, f 10;
 #X obj 261 144 route move;
@@ -80,24 +80,18 @@
 #X obj 272 491 outlet;
 #X obj 321 214 poftranslate;
 #X obj 353 188 unpack f f;
-#X msg 348 280 draw 1;
-#X obj 346 258 loadbang;
 #X obj 402 325 route down up;
 #X msg 402 346 1;
 #X msg 439 346 0;
 #X obj 369 368 spigot;
 #X obj 503 210 poftranslate;
 #X obj 535 184 unpack f f;
-#X msg 530 276 draw 1;
-#X obj 528 254 loadbang;
 #X obj 584 321 route down up;
 #X msg 584 342 1;
 #X msg 621 342 0;
 #X obj 551 364 spigot;
 #X obj 685 212 poftranslate;
 #X obj 717 186 unpack f f;
-#X msg 712 278 draw 1;
-#X obj 710 256 loadbang;
 #X obj 766 323 route down up;
 #X msg 766 344 1;
 #X msg 803 344 0;
@@ -113,120 +107,126 @@
 #X obj 321 304 poftouch 80 80;
 #X obj 503 300 poftouch 80 80;
 #X obj 685 302 poftouch 80 80;
+#X obj 711 70 r projectors-touchedit-size;
 #X connect 0 0 1 0;
-#X connect 1 0 45 0;
+#X connect 1 0 39 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
-#X connect 4 0 44 0;
-#X connect 5 0 48 0;
+#X connect 4 0 38 0;
+#X connect 5 0 42 0;
 #X connect 6 0 5 1;
 #X connect 6 1 5 2;
-#X connect 7 0 48 0;
+#X connect 7 0 42 0;
+#X connect 7 0 43 0;
+#X connect 7 0 44 0;
+#X connect 7 0 45 0;
 #X connect 8 0 7 0;
 #X connect 9 0 12 0;
 #X connect 9 1 13 0;
-#X connect 10 0 47 0;
+#X connect 10 0 41 0;
 #X connect 10 1 5 0;
 #X connect 10 1 17 0;
-#X connect 10 1 25 0;
-#X connect 10 1 33 0;
+#X connect 10 1 23 0;
+#X connect 10 1 29 0;
 #X connect 11 0 14 0;
-#X connect 11 0 24 0;
-#X connect 11 0 32 0;
-#X connect 11 0 40 0;
+#X connect 11 0 22 0;
+#X connect 11 0 28 0;
+#X connect 11 0 34 0;
 #X connect 12 0 14 1;
 #X connect 13 0 14 1;
 #X connect 14 0 15 0;
 #X connect 15 0 16 0;
-#X connect 17 0 49 0;
+#X connect 17 0 43 0;
 #X connect 18 0 17 1;
 #X connect 18 1 17 2;
-#X connect 19 0 49 0;
-#X connect 20 0 19 0;
-#X connect 21 0 22 0;
-#X connect 21 1 23 0;
-#X connect 22 0 24 1;
-#X connect 23 0 24 1;
-#X connect 24 0 41 0;
-#X connect 25 0 50 0;
-#X connect 26 0 25 1;
-#X connect 26 1 25 2;
-#X connect 27 0 50 0;
-#X connect 28 0 27 0;
-#X connect 29 0 30 0;
-#X connect 29 1 31 0;
-#X connect 30 0 32 1;
-#X connect 31 0 32 1;
-#X connect 32 0 42 0;
-#X connect 33 0 51 0;
-#X connect 34 0 33 1;
-#X connect 34 1 33 2;
-#X connect 35 0 51 0;
-#X connect 36 0 35 0;
-#X connect 37 0 38 0;
-#X connect 37 1 39 0;
-#X connect 38 0 40 1;
-#X connect 39 0 40 1;
-#X connect 40 0 43 0;
-#X connect 41 0 16 0;
-#X connect 42 0 16 0;
-#X connect 43 0 16 0;
-#X connect 44 0 6 0;
-#X connect 44 1 18 0;
-#X connect 44 2 26 0;
-#X connect 44 3 34 0;
-#X connect 45 0 10 0;
-#X connect 46 0 2 0;
-#X connect 47 1 11 0;
-#X connect 48 1 9 0;
-#X connect 49 1 21 0;
-#X connect 50 1 29 0;
-#X connect 51 1 37 0;
+#X connect 19 0 20 0;
+#X connect 19 1 21 0;
+#X connect 20 0 22 1;
+#X connect 21 0 22 1;
+#X connect 22 0 35 0;
+#X connect 23 0 44 0;
+#X connect 24 0 23 1;
+#X connect 24 1 23 2;
+#X connect 25 0 26 0;
+#X connect 25 1 27 0;
+#X connect 26 0 28 1;
+#X connect 27 0 28 1;
+#X connect 28 0 36 0;
+#X connect 29 0 45 0;
+#X connect 30 0 29 1;
+#X connect 30 1 29 2;
+#X connect 31 0 32 0;
+#X connect 31 1 33 0;
+#X connect 32 0 34 1;
+#X connect 33 0 34 1;
+#X connect 34 0 37 0;
+#X connect 35 0 16 0;
+#X connect 36 0 16 0;
+#X connect 37 0 16 0;
+#X connect 38 0 6 0;
+#X connect 38 1 18 0;
+#X connect 38 2 24 0;
+#X connect 38 3 30 0;
+#X connect 39 0 10 0;
+#X connect 40 0 2 0;
+#X connect 41 1 11 0;
+#X connect 42 1 9 0;
+#X connect 43 1 19 0;
+#X connect 44 1 25 0;
+#X connect 45 1 31 0;
+#X connect 46 0 42 1;
+#X connect 46 0 42 2;
+#X connect 46 0 43 1;
+#X connect 46 0 43 2;
+#X connect 46 0 44 1;
+#X connect 46 0 44 2;
+#X connect 46 0 45 1;
+#X connect 46 0 45 2;
 #X restore 18 184 pd touch-edit;
 #X msg 18 207 corner \$1 \$2 \$3;
-#N canvas 1 81 561 182 \$1-\$2-edit 0;
+#N canvas 1 82 561 182 \$1-\$2-edit 1;
 #X obj 24 74 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-3-x-snd \$0-corner-3-x-rcv
-x -10 10 0 14 -262144 -1 -1 -1663 256;
+x -10 10 0 14 -262144 -1 -1 -325 256;
 #X obj 24 95 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-3-y-snd \$0-corner-3-y-rcv
-y -10 10 0 14 -262144 -1 -1 -509 256;
+y -10 10 0 14 -262144 -1 -1 62 256;
 #X obj 23 126 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-0-x-snd \$0-corner-0-x-rcv
-x -10 10 0 14 -262144 -1 -1 -1643 256;
+x -10 10 0 14 -262144 -1 -1 8137 256;
 #X obj 23 147 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-0-y-snd \$0-corner-0-y-rcv
-y -10 10 0 14 -262144 -1 -1 156 256;
+y -10 10 0 14 -262144 -1 -1 5962 256;
 #X obj 129 127 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-1-x-snd \$0-corner-1-x-rcv
-x -10 10 0 14 -262144 -1 -1 -630 256;
+x -10 10 0 14 -262144 -1 -1 11612 256;
 #X obj 129 148 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-1-y-snd \$0-corner-1-y-rcv
-y -10 10 0 14 -262144 -1 -1 170 256;
+y -10 10 0 14 -262144 -1 -1 6100 256;
 #X obj 128 75 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-2-x-snd \$0-corner-2-x-rcv
-x -10 10 0 14 -262144 -1 -1 -706 256;
+x -10 10 0 14 -262144 -1 -1 10200 256;
 #X obj 128 96 nbx 6 20 -1e+37 1e+37 0 0 \$0-corner-2-y-snd \$0-corner-2-y-rcv
-y -10 10 0 14 -262144 -1 -1 -526 256;
+y -10 10 0 14 -262144 -1 -1 -250 256;
 #X obj 258 75 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-3-x-snd \$0-tcorner-3-x-rcv
 x -10 10 0 14 -262144 -1 -1 0 256;
 #X obj 258 96 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-3-y-snd \$0-tcorner-3-y-rcv
 y -10 10 0 14 -262144 -1 -1 0 256;
 #X obj 257 127 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-0-x-snd \$0-tcorner-0-x-rcv
-x -10 10 0 14 -262144 -1 -1 0 256;
+x -10 10 0 14 -262144 -1 -1 500 256;
 #X obj 257 148 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-0-y-snd \$0-tcorner-0-y-rcv
-y -10 10 0 14 -262144 -1 -1 0 256;
+y -10 10 0 14 -262144 -1 -1 300 256;
 #X obj 363 128 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-1-x-snd \$0-tcorner-1-x-rcv
-x -10 10 0 14 -262144 -1 -1 0 256;
+x -10 10 0 14 -262144 -1 -1 217 256;
 #X obj 363 149 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-1-y-snd \$0-tcorner-1-y-rcv
-y -10 10 0 14 -262144 -1 -1 0 256;
+y -10 10 0 14 -262144 -1 -1 297 256;
 #X obj 362 76 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-2-x-snd \$0-tcorner-2-x-rcv
 x -10 10 0 14 -262144 -1 -1 0 256;
 #X obj 362 97 nbx 6 20 -1e+37 1e+37 0 0 \$0-tcorner-2-y-snd \$0-tcorner-2-y-rcv
 y -10 10 0 14 -262144 -1 -1 0 256;
-#X obj 23 7 cnv 15 300 30 empty \$0-edit-namecanvas Projector:_LEFT_1
+#X obj 23 7 cnv 15 300 30 empty \$0-edit-namecanvas Projector:_FLOOR_2
 20 12 0 14 -233017 -66577 0;
 #X text 234 55 from_camera_corners(cm from corner):;
 #X text 30 53 on_screen_corners(pixels):;
 #X obj 478 82 vsl 15 80 0 1 0 0 \$0-R-snd \$0-R-rcv R 0 -9 0 10 -258113
 -1 -1 7900 1;
 #X obj 496 82 vsl 15 80 0 1 0 0 \$0-V-snd \$0-V-rcv V 0 -9 0 10 -4034
--1 -1 7900 1;
+-1 -1 3600 1;
 #X obj 515 82 vsl 15 80 0 1 0 0 \$0-B-snd \$0-B-rcv B 0 -9 0 10 -1856
--1 -1 0 1;
+-1 -1 3600 1;
 #X restore 520 193 pd \$1-\$2-edit;
 #N canvas 16 98 440 594 convert-relative-tcorners 0;
 #X obj 145 496 t a;
