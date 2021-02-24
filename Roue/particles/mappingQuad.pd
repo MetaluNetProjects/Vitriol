@@ -1,0 +1,80 @@
+#N canvas 268 168 1281 381 10;
+#X obj 304 24 mappingCorner \$1 0;
+#X obj 304 46 mappingCorner \$1 1;
+#X obj 304 67 mappingCorner \$1 2;
+#X obj 304 89 mappingCorner \$1 3;
+#X obj 25 91 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-3-x-snd \$1-corner-3-x-rcv
+x -10 10 0 14 -262144 -1 -1 -832 256;
+#X obj 25 112 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-3-y-snd \$1-corner-3-y-rcv
+y -10 10 0 14 -262144 -1 -1 363 256;
+#X obj 25 45 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-0-x-snd \$1-corner-0-x-rcv
+x -10 10 0 14 -262144 -1 -1 -891 256;
+#X obj 25 66 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-0-y-snd \$1-corner-0-y-rcv
+y -10 10 0 14 -262144 -1 -1 -295 256;
+#X obj 129 46 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-1-x-snd \$1-corner-1-x-rcv
+x -10 10 0 14 -262144 -1 -1 -30 256;
+#X obj 129 67 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-1-y-snd \$1-corner-1-y-rcv
+y -10 10 0 14 -262144 -1 -1 -340 256;
+#X obj 129 92 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-2-x-snd \$1-corner-2-x-rcv
+x -10 10 0 14 -262144 -1 -1 9 256;
+#X obj 129 113 nbx 6 20 -1e+37 1e+37 0 0 \$1-corner-2-y-snd \$1-corner-2-y-rcv
+y -10 10 0 14 -262144 -1 -1 357 256;
+#X text 28 27 on_screen_corners(pixels):;
+#X obj 235 53 vsl 15 80 0 1 0 0 \$1-R-snd \$1-R-rcv R 0 -9 0 10 -258113
+-1 -1 0 1;
+#X obj 253 53 vsl 15 80 0 1 0 0 \$1-V-snd \$1-V-rcv V 0 -9 0 10 -4034
+-1 -1 7900 1;
+#X obj 272 53 vsl 15 80 0 1 0 0 \$1-B-snd \$1-B-rcv B 0 -9 0 10 -1856
+-1 -1 0 1;
+#X obj 305 122 apf MAPPING \$1-R \$1-R;
+#X obj 305 143 apf MAPPING \$1-V \$1-V;
+#X obj 305 164 apf MAPPING \$1-B \$1-B;
+#X obj 76 302 list prepend setCONFIG;
+#X obj 76 348 s toPof;
+#X obj 76 326 oscformat oscControl;
+#X obj 76 227 r \$1-R-snd;
+#X obj 76 251 list prepend mapping-\$1-R;
+#X obj 235 227 r \$1-V-snd;
+#X obj 235 252 list prepend mapping-\$1-V;
+#X obj 395 229 r \$1-B-snd;
+#X obj 395 253 list prepend mapping-\$1-B;
+#X obj 179 14 tgl 15 0 \$1-on-snd \$1-on-rcv on 17 7 0 10 -262144 -1
+-1 1 1;
+#X obj 305 186 apf MAPPING \$1-on \$1-on;
+#X obj 554 230 r \$1-on-snd;
+#X obj 554 254 list prepend mapping-\$1-on;
+#X obj 717 325 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 218 14 tgl 15 0 \$1-ctl-snd \$1-ctl-rcv ctlPoints 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 721 229 r \$1-ctl-snd;
+#X obj 721 253 list prepend mapping-\$1-ctl;
+#X obj 632 31 r toPof-resendAll;
+#X obj 632 76 b;
+#X obj 632 53 t b b;
+#X obj 574 121 s \$1-R-rcv;
+#X obj 641 121 s \$1-V-rcv;
+#X obj 710 121 s \$1-B-rcv;
+#X obj 776 121 s \$1-on-rcv;
+#X obj 849 121 s \$1-ctl-rcv;
+#X connect 19 0 21 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 0;
+#X connect 23 0 19 0;
+#X connect 24 0 25 0;
+#X connect 25 0 19 0;
+#X connect 26 0 27 0;
+#X connect 27 0 19 0;
+#X connect 30 0 31 0;
+#X connect 31 0 19 0;
+#X connect 34 0 35 0;
+#X connect 35 0 19 0;
+#X connect 36 0 38 0;
+#X connect 37 0 39 0;
+#X connect 37 0 43 0;
+#X connect 37 0 42 0;
+#X connect 37 0 41 0;
+#X connect 37 0 40 0;
+#X connect 38 0 37 0;
+#X connect 38 1 37 0;
+#X coords 0 -1 1 1 280 130 1 10 10;

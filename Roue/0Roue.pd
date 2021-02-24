@@ -1,4 +1,4 @@
-#N canvas 773 177 646 272 12;
+#N canvas 715 149 646 272 12;
 #X obj 18 90 RF/masterRF;
 #X obj 18 65 Audio/RoueAudio;
 #X obj 18 115 pofGUI;
@@ -17,7 +17,6 @@
 ;
 #X obj 211 42 bng 15 250 50 0 empty empty edit 17 7 0 10 -260097 -1
 -1;
-#X obj 204 392 s toBlender;
 #X obj 204 290 pack f f f;
 #X obj 204 265 f;
 #X obj 204 242 b;
@@ -44,58 +43,59 @@
 #X obj 502 210 t b f;
 #X obj 465 236 pack f f;
 #X msg 465 261 window \$1 \$2 0;
+#X obj 204 392 s toPof;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
-#X connect 2 0 12 0;
+#X connect 2 0 11 0;
 #X connect 4 0 5 0;
-#X connect 4 0 22 0;
+#X connect 4 0 21 0;
 #X connect 5 0 7 0;
 #X connect 6 0 1 0;
-#X connect 7 0 25 0;
-#X connect 8 0 24 0;
-#X connect 10 0 20 0;
+#X connect 7 0 24 0;
+#X connect 8 0 23 0;
+#X connect 9 0 19 0;
+#X connect 10 0 9 0;
 #X connect 11 0 10 0;
-#X connect 12 0 11 0;
-#X connect 13 0 11 1;
-#X connect 14 0 10 1;
-#X connect 15 0 10 2;
-#X connect 15 0 28 0;
-#X connect 16 0 9 0;
-#X connect 17 0 12 0;
-#X connect 19 0 16 0;
-#X connect 20 0 19 0;
-#X connect 21 0 23 0;
-#X connect 22 0 21 0;
-#X connect 23 0 24 1;
-#X connect 23 0 25 1;
+#X connect 12 0 10 1;
+#X connect 13 0 9 1;
+#X connect 14 0 9 2;
+#X connect 14 0 27 0;
+#X connect 15 0 34 0;
+#X connect 16 0 11 0;
+#X connect 18 0 15 0;
+#X connect 19 0 18 0;
+#X connect 20 0 22 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 1;
+#X connect 22 0 24 1;
+#X connect 23 0 25 0;
 #X connect 24 0 26 0;
-#X connect 25 0 27 0;
+#X connect 25 0 0 0;
 #X connect 26 0 0 0;
-#X connect 27 0 0 0;
-#X connect 28 0 19 0;
-#X connect 30 0 33 0;
+#X connect 27 0 18 0;
+#X connect 29 0 32 0;
+#X connect 30 0 31 0;
 #X connect 31 0 32 0;
+#X connect 31 1 32 1;
 #X connect 32 0 33 0;
-#X connect 32 1 33 1;
-#X connect 33 0 34 0;
-#X connect 34 0 19 0;
+#X connect 33 0 18 0;
 #X coords 0 -1 1 1 170 40 1 100 20;
 #X restore 18 139 pd run-boids_window;
 #X obj 236 30 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
-0 14 -262144 -1 -1 4.092 256;
+0 14 -262144 -1 -1 0 256;
 #X obj 236 60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 247 106 1: tuyau-harmo_contrebasse : "oiseaux";
 #X text 246 136 2: trilles harmoniques + contre-multipho +cloches;
 #X text 246 165 3: helene souffle;
 #X obj 385 26 tgl 40 0 ALL_WHITE-snd ALL_WHITE-rcv ALL_WHITE 0 -10
-0 10 -262144 -1 -1 1 1;
+0 10 -262144 -1 -1 0 1;
 #X obj 30 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-width empty width
 0 -8 0 10 -262144 -1 -1 1920 256;
-#X text 44 195 BOIDS WINDOW:;
 #X obj 89 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-height empty height
 0 -8 0 10 -262144 -1 -1 1111 256;
 #X obj 147 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-posX empty position
 0 -8 0 10 -262144 -1 -1 1438 256;
+#X text 44 195 PROJECTOR WINDOW:;
 #X connect 5 0 6 0;

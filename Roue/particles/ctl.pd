@@ -1,6 +1,6 @@
-#N canvas 1 81 450 300 12;
-#X obj 45 173 s toBlender;
+#N canvas 1 82 450 300 12;
 #X obj 45 152 oscformat oscControl \$1;
 #X obj 45 130 r \$2-snd;
+#X obj 45 173 s toPof;
+#X connect 0 0 2 0;
 #X connect 1 0 0 0;
-#X connect 2 0 1 0;

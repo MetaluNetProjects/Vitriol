@@ -1,4 +1,4 @@
-#N canvas 409 314 600 546 10;
+#N canvas 976 320 740 655 10;
 #X obj 53 134 netsend -u -b;
 #X msg 70 104 connect localhost 10000;
 #X obj 53 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -15,17 +15,17 @@ maxSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 123 hsl 128 15 0 1 0 0 \$0-minSpeed-snd \$0-minSpeed-rcv
 minSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 278 153 hsl 128 15 0 30 0 0 \$0-x2-snd \$0-x2-rcv x2 135 8 0
-10 -262144 -1 -1 4618 1;
+10 -262144 -1 -1 4258 1;
 #X obj 278 169 hsl 128 15 0 16 0 0 \$0-y2-snd \$0-y2-rcv y2 135 8 0
-10 -262144 -1 -1 5932 1;
+10 -262144 -1 -1 8339 1;
 #X obj 279 192 hsl 128 15 0 30 0 0 \$0-x3-snd \$0-x3-rcv x3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 279 208 hsl 128 15 0 16 0 0 \$0-y3-snd \$0-y3-rcv y3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 222 10 tgl 15 0 \$0-hidePlayers-snd \$0-hidePlayers-rcv hidePlayers
-17 7 0 10 -262144 -1 -1 1 1;
+17 7 0 10 -262144 -1 -1 0 1;
 #X obj 223 33 tgl 15 0 \$0-hideBorder-snd \$0-hideBorder-rcv hideBorder
-17 7 0 10 -262144 -1 -1 1 1;
+17 7 0 10 -262144 -1 -1 0 1;
 #X obj 50 145 hsl 128 15 0 1 0 0 \$0-fastTurn-snd \$0-fastTurn-rcv
 fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 49 172 hsl 128 15 0 1 0 0 \$0-H-snd \$0-H-rcv H 135 8 0 10 -262144
@@ -47,7 +47,6 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 272 82 bng 15 250 50 0 \$0-start-snd \$0-start-rcv restart 17
 7 0 10 -262144 -1 -1;
 #X restore 229 103 pd GUI;
-#X obj 53 22 r toBlender;
 #X obj 52 213 ctl P1x \$0-x1;
 #X obj 52 230 ctl P1y \$0-y1;
 #X obj 52 253 ctl P2x \$0-x2;
@@ -70,7 +69,7 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X text 130 149 Alt+F11 to go full screen;
 #X text 131 166 Alt+A to play;
 #X text 132 184 (Alt+Z) twice or (Shift-Z)twice for modes;
-#N canvas 1244 389 450 300 interface 0;
+#N canvas 1234 379 450 300 interface 0;
 #X obj 19 16 r 2video;
 #X obj 19 182 route 1 2 3 4, f 60;
 #X obj 19 203 unpack f f;
@@ -131,19 +130,71 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 213 79 r reconnect_boidsOSC;
 #X obj 225 367 ctl pattern BoidsPattern;
 #X obj 356 262 hsl 128 15 0 1 0 0 BoidsPattern-snd BoidsPattern-snd
-BoidsPattern -2 -8 0 10 -262144 -1 -1 7103 1;
+BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 225 403 ctl ALL_WHITE ALL_WHITE;
-#X obj 400 148 s toBlender;
 #X obj 400 127 oscformat oscControl openwin;
 #X msg 400 96 1920 1080 1920 noborder;
 #X obj 225 384 ctl BoidsFade BoidsFade;
+#X obj 606 96 netreceive 8877;
+#X obj 606 117 s fromPof;
+#X obj 400 148 s toPof;
+#X obj 53 22 r toPof;
+#X obj 600 157 r fromPof;
+#X obj 600 178 spigot;
+#X obj 600 199 print;
+#X obj 653 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 740 119 592 214 MAPPING_SETTINGS 1;
+#X obj 13 11 mappingQuad LEFT;
+#X obj 297 11 mappingQuad RIGHT;
+#N canvas 1 82 595 268 guts 0;
+#X obj 75 130 list prepend setCONFIG;
+#X obj 75 176 s toPof;
+#X obj 75 154 oscformat oscControl;
+#X obj 75 55 apf MAPPING mappingDivide mappingDivide;
+#X obj 75 82 r mappingDivide-snd;
+#X obj 75 106 list prepend mappingDivide;
+#X obj 391 61 r toPof-resendAll;
+#X obj 391 106 b;
+#X obj 391 134 s mappingDivide-rcv;
+#X obj 391 83 t b;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 9 0;
+#X connect 7 0 8 0;
+#X connect 9 0 7 0;
+#X restore 143 194 pd guts;
+#X obj 20 147 hsl 550 20 0 1 0 0 mappingDivide-snd mappingDivide-rcv
+divide 20 10 0 12 -204786 -1 -1 27450 1;
+#X msg 18 172 0.5;
+#X obj 18 193 s mappingDivide-rcv;
+#X connect 4 0 5 0;
+#X restore 519 278 pd MAPPING_SETTINGS;
+#X obj 167 5 sel 1;
+#X obj 167 45 s toPof-resendAll;
+#X obj 239 17 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 302 41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 167 25 del 1000;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
-#X connect 4 0 33 0;
-#X connect 16 0 1 0;
-#X connect 31 0 30 0;
-#X connect 33 0 34 0;
-#X connect 34 0 0 0;
-#X connect 35 0 1 0;
-#X connect 40 0 39 0;
-#X connect 41 0 40 0;
+#X connect 15 0 1 0;
+#X connect 30 0 29 0;
+#X connect 32 0 33 0;
+#X connect 33 0 0 0;
+#X connect 34 0 1 0;
+#X connect 34 0 53 0;
+#X connect 34 0 54 0;
+#X connect 38 0 43 0;
+#X connect 39 0 38 0;
+#X connect 41 0 42 0;
+#X connect 44 0 32 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 48 0 46 1;
+#X connect 50 0 54 0;
+#X connect 54 0 51 0;
+#X connect 54 0 52 0;
