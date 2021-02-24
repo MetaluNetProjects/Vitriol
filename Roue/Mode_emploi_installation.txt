@@ -1,0 +1,16 @@
+Installer projecteur(s) pour maximiser surface de projection.
+Si 2 projecteurs, respecter gauche/droite, recouvrir légèrement les 2 faisceaux.
+Placer la caméra Wifi de manière à voir toute la zone de projection.
+
+Régler mapping : 
+- sélectionner page "Settings", cliquer sur "Edit Mapping"
+- régler les boutons "on" : si 1 seul proj, on_LEFT=1 on_RIGHT=0 divide=0. Si 2 projs, les 2 on=1 et divide=0.5
+- afficher les "ctlPoints", régler à la souris, affiner en tirant les réglages numériques haut/bas.
+- cliquer sur "SAVE"
+- cacher les "ctlPoints"
+
+Régler les correspondances des points 1,2,3,4, cliquer sur "SAVE"
+
+
+
+
