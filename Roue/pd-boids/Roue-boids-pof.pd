@@ -1,10 +1,10 @@
-#N canvas 1434 116 426 570 10;
+#N canvas 752 361 426 570 10;
 #X declare -path cyclone;
 #X declare -path ../../tools/AutoPreset;
 #X declare -lib cyclone -lib pof -path -boids -path ggee;
 #X declare -path ../pofFlowtools -lib pofflowtools;
 #X declare -path ../;
-#N canvas 823 610 1053 678 guts 1;
+#N canvas 823 377 1053 678 guts 0;
 #X obj 49 83 tgl 15 0 empty empty start_flocking_animation 20 6 1 10
 -262144 -1 -1 1 1;
 #X obj 211 115 r boidParam;
@@ -108,7 +108,7 @@
 #X msg 436 136 symbol pointflou3.png;
 #X msg 432 159 symbol pointflou2.png;
 #X obj 399 200 s boidsimage;
-#N canvas 1266 308 567 400 control-from-osc 1;
+#N canvas 1266 309 567 400 control-from-osc 1;
 #X obj 25 13 netreceive -u -b 10000;
 #X obj 25 34 oscparse;
 #X obj 25 85 route oscControl;
@@ -126,21 +126,23 @@
 #X obj 348 215 s boids-fade;
 #X floatatom 333 262 5 0 0 0 - - -;
 #X obj 106 213 s global-pattern;
-#X obj 25 162 route border pattern ALL_WHITE pofwin BoidsFade setCONFIG
-, f 69;
 #X obj 432 214 s CONFIG-setap-snd;
+#X obj 25 162 route border pattern ALL_WHITE pofwin BoidsFade setCONFIG
+VideoFadeTime, f 79;
+#X obj 447 189 s fadetime;
 #X connect 0 0 1 0;
 #X connect 1 0 4 0;
 #X connect 2 0 7 0;
-#X connect 2 0 17 0;
+#X connect 2 0 18 0;
 #X connect 4 0 2 0;
 #X connect 5 0 3 0;
-#X connect 17 0 5 0;
-#X connect 17 1 16 0;
-#X connect 17 2 11 0;
-#X connect 17 3 12 0;
-#X connect 17 4 14 0;
-#X connect 17 5 18 0;
+#X connect 18 0 5 0;
+#X connect 18 1 16 0;
+#X connect 18 2 11 0;
+#X connect 18 3 12 0;
+#X connect 18 4 14 0;
+#X connect 18 5 17 0;
+#X connect 18 6 19 0;
 #X restore 207 379 pd control-from-osc;
 #N canvas 494 548 450 300 debug-cadre 0;
 #X obj 154 73 pofvisible;
@@ -171,7 +173,7 @@
 #X connect 11 0 12 2;
 #X restore 207 350 pd debug-cadre;
 #X obj 144 27 tgl 15 0 showDebug showDebug showDebug 17 7 0 10 -258113
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 9 210 r P1;
 #X obj 39 397 r P2;
 #X obj 180 450 s boidParam;
@@ -288,7 +290,7 @@
 -1 -1 0 1;
 #X obj 56 293 pofcolor 1 1 1 1;
 #X obj 91 272 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 12700 1;
 #X obj 378 215 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 383 258 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
@@ -993,7 +995,7 @@ maxVelocity, f 71;
 #X connect 27 0 28 0;
 #X connect 29 0 5 0;
 #X restore 184 286 pd décal_repuls;
-#N canvas 750 545 1039 445 \$0-mapping 1;
+#N canvas 750 546 1039 445 \$0-mapping 0;
 #X obj 81 21 inlet;
 #X obj 137 122 outlet;
 #X obj 137 98 poffbo \$0-mappingFB 1920 1080;
@@ -1003,10 +1005,10 @@ maxVelocity, f 71;
 #X obj 137 77 pofcolor 1 1 1 0;
 #X obj 114 176 poftexture \$0-mappingFB;
 #X obj 355 280 s draw-quads-edit;
-#X obj 355 256 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 355 256 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 491 151 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 6338 1;
+-1 -1 6350 1;
 #X obj 488 414 s CONFIG-setap-snd;
 #X floatatom 488 192 5 0 0 0 - - -;
 #X obj 488 365 list append 0;
@@ -1104,7 +1106,7 @@ maxVelocity, f 71;
 #X obj 920 150 pofcolor 0 0 0 1;
 #X obj 920 171 pofrect 1e+06 1e+06;
 #X obj 696 113 t a a a a a, f 12;
-#X obj 958 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 958 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X connect 0 0 2 0;
 #X connect 1 0 85 0;
@@ -1292,7 +1294,7 @@ maxVelocity, f 71;
 #X obj 35 117 presetMaster global;
 #X obj 246 43 declare -path ../;
 #X obj 24 299 presetfadelin global 0 1 2 3 4 5;
-#N canvas 1308 92 513 297 other_params 1;
+#N canvas 1308 93 513 297 other_params 0;
 #X obj 33 51 param cache alpha cache 0 1 1;
 #X obj 229 51 param cache size cache 0 2000 1 2;
 #X obj 229 86 param cache stretch cache 100 300 0 2;
@@ -1310,6 +1312,9 @@ maxVelocity, f 71;
 #X obj 242 379 f 1000;
 #X obj 288 284 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
+#X obj 344 383 r fadetime;
+#X obj 344 404 pow 2;
+#X obj 344 425 * 10000;
 #X connect 4 0 11 0;
 #X connect 5 0 6 0;
 #X connect 6 0 7 0;
@@ -1325,3 +1330,6 @@ maxVelocity, f 71;
 #X connect 18 0 15 0;
 #X connect 19 0 15 0;
 #X connect 22 0 16 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 22 1;

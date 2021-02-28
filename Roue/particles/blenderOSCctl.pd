@@ -5,9 +5,9 @@
 1;
 #N canvas 659 369 456 420 GUI 0;
 #X obj 278 113 hsl 128 15 0 30 0 0 \$0-x1-snd \$0-x1-rcv x1 135 8 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 8726 1;
 #X obj 278 129 hsl 128 15 0 16 0 0 \$0-y1-snd \$0-y1-rcv y1 135 8 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 9511 1;
 #X obj 50 87 hsl 128 15 0 1 0 0 \$0-collider-snd \$0-collider-rcv collider
 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 107 hsl 128 15 0 10 0 0 \$0-maxSpeed-snd \$0-maxSpeed-rcv
@@ -23,9 +23,9 @@ minSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 279 208 hsl 128 15 0 16 0 0 \$0-y3-snd \$0-y3-rcv y3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 222 10 tgl 15 0 \$0-hidePlayers-snd \$0-hidePlayers-rcv hidePlayers
-17 7 0 10 -262144 -1 -1 0 1;
+17 7 0 10 -262144 -1 -1 1 1;
 #X obj 223 33 tgl 15 0 \$0-hideBorder-snd \$0-hideBorder-rcv hideBorder
-17 7 0 10 -262144 -1 -1 0 1;
+17 7 0 10 -262144 -1 -1 1 1;
 #X obj 50 145 hsl 128 15 0 1 0 0 \$0-fastTurn-snd \$0-fastTurn-rcv
 fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 49 172 hsl 128 15 0 1 0 0 \$0-H-snd \$0-H-rcv H 135 8 0 10 -262144
@@ -130,7 +130,7 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 213 79 r reconnect_boidsOSC;
 #X obj 225 367 ctl pattern BoidsPattern;
 #X obj 356 262 hsl 128 15 0 1 0 0 BoidsPattern-snd BoidsPattern-snd
-BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
+BoidsPattern -2 -8 0 10 -262144 -1 -1 12700 1;
 #X obj 225 403 ctl ALL_WHITE ALL_WHITE;
 #X obj 400 127 oscformat oscControl openwin;
 #X msg 400 96 1920 1080 1920 noborder;
@@ -144,7 +144,7 @@ BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 600 199 print;
 #X obj 653 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 740 119 592 214 MAPPING_SETTINGS 1;
+#N canvas 740 119 592 214 MAPPING_SETTINGS 0;
 #X obj 13 11 mappingQuad LEFT;
 #X obj 297 11 mappingQuad RIGHT;
 #N canvas 1 82 595 268 guts 0;
@@ -179,6 +179,7 @@ divide 20 10 0 12 -204786 -1 -1 27450 1;
 #X obj 302 41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 167 25 del 1000;
+#X obj 372 385 ctl VideoFadeTime VideoFadeTime;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 15 0 1 0;
