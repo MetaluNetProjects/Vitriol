@@ -1,11 +1,11 @@
-#N canvas 175 582 621 409 10;
+#N canvas 741 415 621 409 10;
 #X declare -path ../tools/gammabs;
 #X declare -lib zexy -path moonlib -lib iemlib -path iemlib;
 #X declare -path ../tools/effects;
 #X declare -path ../tools/AutoPreset;
 #X obj 22 53 OSCcontrol;
 #X obj 310 24 nbx 5 25 -1e+37 1e+37 0 1 SCREEN_POSITION SCREEN_POSITION
-SCREEN_POSITION 0 -8 0 16 -159808 -257985 -1 749 256;
+SCREEN_POSITION 0 -8 0 16 -159808 -257985 -1 1440 256;
 #X obj 233 20 bng 30 250 50 0 askQUIT askQUIT QUIT!! 0 -8 0 10 -258113
 -1 -1;
 #X obj 409 40 cnv 15 180 30 empty empty empty 20 12 0 14 -257985 -66577
@@ -27,7 +27,7 @@ PureData: menu Média/Paramètres audio;
 #X obj 473 79 in 8 RightHi;
 #X obj 20 9 cnv 15 200 30 empty empty Le_Bateleur 20 15 2 30 -233017
 -66577 0;
-#N canvas 636 181 852 420 audio&stuff 0;
+#N canvas 587 181 852 420 audio&stuff 0;
 #X obj 17 7 loadbang;
 #X msg 17 28 \; pd dsp 1;
 #X obj 424 152 hsl 80 10 0.001 1 1 0 bipVol bipVol bipVol -2 -8 0 10
@@ -937,7 +937,7 @@ and window-msec (analysis window size in seconds and msec).;
 #X restore 257 574 graph;
 #X obj 23 294 *~ 1;
 #X obj 145 149 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5305 1;
+-1 -1 0 1;
 #X obj 145 307 pow 2;
 #X obj 145 119 route choc_sens;
 #X obj 145 98 r CONTROL;
@@ -1210,7 +1210,7 @@ frame 25 \, create :0 \, 1 \, cursor 0;
 #X obj 197 88 inlet~ alto;
 #X obj 344 86 inlet~ voix;
 #X obj 198 118 formant;
-#X obj 198 145 delai;
+#X obj 209 150 delai;
 #X obj 294 203 sampleur;
 #N canvas 1 81 455 420 multipan 0;
 #X obj 45 269 motex/pan~;
@@ -1284,7 +1284,7 @@ frame 25 \, create :0 \, 1 \, cursor 0;
 #X obj 555 222 outchan 1;
 #X obj 539 267 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 422 277 hsl 86 15 0 1 0 1 empty empty audio_master -2 -8 0 10
--258113 -1 -1 6193 1;
+-258113 -1 -1 0 1;
 #X obj 326 309 pow 2;
 #X msg 326 330 \$1 10;
 #X obj 326 351 line~;
@@ -1292,9 +1292,9 @@ frame 25 \, create :0 \, 1 \, cursor 0;
 #X obj 371 222 route audiomaster;
 #X obj 371 201 r CONTROL;
 #X obj 420 374 hsl 86 15 80 115 0 1 empty empty table_reverb -2 -8
-0 10 -260097 -1 -1 3200 1;
+0 10 -260097 -1 -1 2600 1;
 #X obj 421 337 hsl 86 15 0 2 0 1 empty empty table_volume -2 -8 0 10
--257985 -1 -1 5300 1;
+-257985 -1 -1 3900 1;
 #X obj 688 149 +~;
 #X obj 654 150 +~;
 #X obj 654 194 *~;
@@ -1342,7 +1342,7 @@ frame 25 \, create :0 \, 1 \, cursor 0;
 #X connect 13 0 15 0;
 #X connect 13 0 19 0;
 #X connect 14 0 19 1;
-#X connect 15 0 16 0;
+#X connect 15 0 18 0;
 #X connect 16 0 18 0;
 #X connect 19 0 17 0;
 #X connect 20 0 3 0;
@@ -1394,7 +1394,6 @@ frame 25 \, create :0 \, 1 \, cursor 0;
 #X restore 20 237 pd audio&stuff;
 #X f 76;
 #X connect 5 0 12 0;
-#X connect 6 0 12 1;
 #X connect 7 0 12 2;
 #X connect 8 0 12 3;
 #X connect 9 0 12 4;
