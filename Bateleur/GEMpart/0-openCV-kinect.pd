@@ -1,4 +1,4 @@
-#N canvas 115 233 777 718 10;
+#N canvas 251 157 777 718 10;
 #X declare -lib Gem -lib pix_opencv -path GEMpart -path Gem/abstractions
 ;
 #X declare -path Gem/help;
@@ -228,7 +228,7 @@
 #X obj 617 84 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 474 182 nbx 3 30 -1e+37 1e+37 0 0 empty empty FPS 10 -12 0 28
--257985 -1 -1 25 256;
+-257985 -1 -1 20 256;
 #N canvas 352 81 867 435 NETWORK 0;
 #X obj 176 159 netsend;
 #X obj 176 89 loadbang;
@@ -272,6 +272,7 @@
 #X obj 310 264 route choc;
 #X obj 337 306 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X obj 613 363 print;
 #X connect 0 0 2 0;
 #X connect 0 1 7 0;
 #X connect 1 0 4 0;
@@ -491,10 +492,10 @@
 #X connect 24 0 0 0;
 #X restore 351 320 pd mix;
 #X obj 511 77 tgl 15 0 showDebug showDebug showDebug 17 7 0 10 -260097
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 176 24 declare -lib Gem -lib pix_opencv -path GEMpart -path
 Gem/abstractions, f 69;
-#N canvas 114 476 651 319 CONTROL 0;
+#N canvas 90 522 651 319 CONTROL 0;
 #X obj 45 33 hsl 128 15 0 1 0 0 \$0-control-noise empty noise -2 -8
 0 10 -262144 -1 -1 0 1;
 #X obj 47 81 hsl 128 15 0 1 0 0 \$0-control-mix_retard empty mix_retard
@@ -878,37 +879,39 @@ freeze;
 #X connect 19 0 8 0;
 #X connect 20 0 8 0;
 #X restore 359 458 pd BrightnessSaturationContrast;
-#N canvas 519 323 844 542 Mask-ctl 0;
+#N canvas 539 283 844 542 Mask-ctl 0;
 #X obj 174 403 outlet;
 #X msg 133 163 showMask \$1;
 #X obj 133 138 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 285 115 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+#X obj 285 105 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
-#X msg 282 135 showKinect \$1;
-#X obj 328 170 r \$0-control-mask;
-#X obj 330 197 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 1;
-#X msg 327 232 amountMask \$1;
-#X obj 481 221 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X msg 478 241 amountDelayMask \$1;
+#X msg 282 125 showKinect \$1;
+#X obj 328 150 r \$0-control-mask;
+#X obj 331 215 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 7160 1;
+#X msg 328 250 amountMask \$1;
 #X obj 350 283 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X msg 347 306 delayMix \$1;
 #X obj 133 113 r control-showMask;
+#X obj 354 171 r \$0-control-mastermask;
+#X obj 328 192 *;
+#X obj 354 192 t b f;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
 #X connect 4 0 0 0;
-#X connect 5 0 6 0;
+#X connect 5 0 12 0;
 #X connect 6 0 7 0;
-#X connect 6 0 9 0;
 #X connect 7 0 0 0;
 #X connect 8 0 9 0;
-#X connect 10 0 11 0;
-#X connect 11 0 0 0;
-#X connect 12 0 2 0;
+#X connect 9 0 0 0;
+#X connect 10 0 2 0;
+#X connect 11 0 13 0;
+#X connect 12 0 6 0;
+#X connect 13 0 12 0;
+#X connect 13 1 12 1;
 #X restore 359 487 pd Mask-ctl;
 #X msg 117 23 180;
 #N canvas 298 81 896 788 Caméras-textures 0;
@@ -1114,7 +1117,7 @@ you set tables);
 #X obj 445 76 loadbang;
 #X msg 445 97 1;
 #X obj 368 76 tgl 15 0 empty showDebug showDebug 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X connect 0 0 1 0;
 #X connect 0 0 27 0;
 #X connect 1 0 2 0;
@@ -1455,11 +1458,11 @@ you set tables);
 #X obj 92 435 t a a, f 49;
 #X obj 383 467 spigot;
 #X obj 439 466 tgl 15 0 empty showDebug showDebug 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 383 540 t a a, f 23;
 #X obj 169 587 spigot;
 #X obj 225 586 tgl 15 0 empty showDebug showDebug 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 383 503 separator;
 #N canvas 189 144 1198 901 detectMains 0;
 #X obj -67 115 cnv 15 250 40 empty empty empty 20 12 0 14 -4034 -66577
@@ -2811,7 +2814,7 @@ might contain spaces (and other weird characters);
 #X obj 307 150 alpha;
 #X obj 332 192 r \$0-control-maskbg;
 #X obj 62 207 route 0 1;
-#X obj 143 165 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 143 165 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 62 186 list prepend 1;
 #X obj 185 232 r feedback-texture;
@@ -2836,16 +2839,16 @@ might contain spaces (and other weird characters);
 #X obj 638 385 ctl \$0 tigre;
 #X obj 440 274 ctl \$0 freeze;
 #X obj 371 661 hsl 80 10 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 1825 1;
 #X obj 368 580 r MainGauche;
 #X obj 368 601 unpack f f;
 #X obj 456 626 vsl 10 80 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 780 1;
+-1 -1 1466 1;
 #X obj 585 665 hsl 80 10 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1590 1;
+-1 -1 0 1;
 #X obj 582 605 unpack f f;
 #X obj 670 630 vsl 10 80 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5173 1;
+-1 -1 0 1;
 #X obj 582 581 r MainDroite;
 #X obj 552 534 s Mains-minarea;
 #X msg 553 503 0.02;
@@ -2857,7 +2860,7 @@ might contain spaces (and other weird characters);
 #N canvas 1 81 450 393 debug_mains 0;
 #X obj 26 58 separator;
 #X obj 26 83 spigot;
-#X obj 76 80 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 76 80 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 26 32 inlet;
 #X obj 71 161 unpack f f;
@@ -2894,7 +2897,7 @@ might contain spaces (and other weird characters);
 #X obj 245 132 separator;
 #X obj 245 347 text2d D, f 16;
 #X obj 103 50 tgl 15 0 empty showDebug showDebug 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X connect 0 0 1 0;
 #X connect 1 0 12 0;
 #X connect 2 0 1 1;
@@ -2936,6 +2939,7 @@ might contain spaces (and other weird characters);
 #X connect 35 0 23 0;
 #X connect 37 0 2 0;
 #X restore 35 658 pd debug_mains;
+#X obj 636 339 ctl \$0 mastermask;
 #X connect 1 0 2 0;
 #X connect 2 0 1 0;
 #X connect 5 0 6 0;

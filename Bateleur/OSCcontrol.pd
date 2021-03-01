@@ -1,11 +1,11 @@
-#N canvas 93 385 779 627 12;
+#N canvas 16 171 779 627 12;
 #X declare -path ggee;
 #X obj 20 16 hsl 200 30 0 1 0 0 \$0-control-noise-snd \$0-control-noise-rcv
 noise 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 50 hsl 200 30 0 1 0 0 \$0-control-mix_retard-snd \$0-control-mix_retard-rcv
 mix_retard 20 15 0 14 -262144 -1 -1 0 1;
 #X obj 20 84 hsl 200 30 0 1 0 0 \$0-control-mix_chocs-snd \$0-control-mix_chocs-rcv
-mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 0 1;
+mix_chocs(zebre) 5 15 0 14 -262144 -1 -1 19400 1;
 #X obj 20 118 hsl 200 30 0 1 0 0 \$0-control-formant-snd \$0-control-formant-rcv
 formant 20 15 0 14 -257985 -1 -1 0 1;
 #X obj 229 16 tgl 30 0 \$0-control-freeze-snd \$0-control-freeze-rcv
@@ -19,30 +19,30 @@ threshold 5 15 0 14 -260097 -1 -1 3200 1;
 #X obj 251 210 tgl 50 0 empty \$0-control-sample_detect detect 5 25
 0 12 -260097 -1 -1 0 1;
 #X obj 304 210 nbx 2 30 -1e+37 1e+37 0 0 empty \$0-control-sample_last
-last 0 -8 0 14 -260097 -1 -1 2 256;
+last 0 -8 0 14 -260097 -1 -1 0 256;
 #X obj 232 85 hsl 80 30 0 1 0 0 \$0-control-choc_sens-snd \$0-control-choc_sens-rcv
-sens_choc 2 15 0 14 -4032 -1 -1 3200 1;
+sens_choc 2 15 0 14 -4032 -1 -1 3000 1;
 #X obj 317 85 bng 30 100 50 0 \$0-choc-snd \$0-choc-rcv empty 17 7
 0 10 -262144 -258699 -1;
 #X obj 382 16 hsl 200 30 0 1 0 0 \$0-control-lum-snd \$0-control-lum-rcv
-lum 20 15 0 14 -261682 -1 -1 4600 1;
+lum 20 15 0 14 -261682 -1 -1 15000 1;
 #X obj 382 50 hsl 200 30 0 1 0 0 \$0-control-contrast-snd \$0-control-contrast-rcv
-contrast 20 15 0 14 -1 -262144 -262144 5900 1;
+contrast 20 15 0 14 -1 -262144 -262144 6300 1;
 #X obj 382 83 hsl 200 30 0 1 0 0 \$0-control-sat-snd \$0-control-sat-rcv
-sat 20 15 0 14 -4034 -1 -1 7700 1;
+sat 20 15 0 14 -4034 -1 -1 10400 1;
 #X obj 379 254 tgl 30 0 \$0-control-tigre-snd \$0-control-tigre-rcv
 tigre 32 15 0 14 -262144 -1 -1 0 1;
 #X obj 382 117 hsl 200 30 0 1 0 0 \$0-control-mask-snd \$0-control-mask-rcv
 mask 20 15 0 14 -228856 -1 -1 19900 1;
 #X obj 382 151 hsl 200 30 0 1 0 0 \$0-control-maskbg-snd \$0-control-maskbg-rcv
-mask-background 20 15 0 14 -128992 -1 -1 19900 1;
+mask-background 20 15 0 14 -128992 -1 -1 0 1;
 #X obj 382 185 hsl 200 30 0 1 0 0 \$0-control-solar-snd \$0-control-solar-rcv
 solar 20 15 0 14 -203904 -1 -1 0 1;
 #X obj 382 219 hsl 200 30 0 1 0 0 \$0-control-poster-snd \$0-control-poster-rcv
 poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 229 51 tgl 30 0 \$0-control-fb-snd \$0-control-fb-rcv feedback
 32 15 0 14 -262144 -1 -1 0 1;
-#N canvas 712 231 1107 715 guts 1;
+#N canvas 101 157 1107 715 guts 0;
 #X obj 20 133 netsend -u -b;
 #X obj 46 80 loadbang;
 #X obj 20 14 r toCONTROL;
@@ -62,14 +62,14 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 251 172 2ctl \$0 choc_sens A;
 #X obj 251 194 2ctl \$0 formant A;
 #X obj 251 215 2ctl \$0 delai A;
-#X obj 471 51 2ctl \$0 lum A;
-#X obj 471 77 2ctl \$0 contrast A;
-#X obj 471 100 2ctl \$0 sat A;
-#X obj 471 124 2ctl \$0 mask A;
-#X obj 471 146 2ctl \$0 maskbg A;
-#X obj 471 168 2ctl \$0 solar A;
-#X obj 471 192 2ctl \$0 poster A;
-#X obj 471 214 2ctli \$0 tigre A;
+#X obj 471 61 2ctl \$0 lum A;
+#X obj 471 87 2ctl \$0 contrast A;
+#X obj 471 110 2ctl \$0 sat A;
+#X obj 471 134 2ctl \$0 mask A;
+#X obj 471 156 2ctl \$0 maskbg A;
+#X obj 471 178 2ctl \$0 solar A;
+#X obj 471 202 2ctl \$0 poster A;
+#X obj 471 224 2ctli \$0 tigre A;
 #X obj 49 374 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 464 328 r \$0-pattern-snd;
@@ -104,7 +104,7 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 642 446 symbol;
 #X msg 642 470 label \$1;
 #X obj 642 494 s \$0-control-sampleur_bank-rcv;
-#X obj 471 249 2ctli \$0 sampleur_bank A;
+#X obj 471 259 2ctli \$0 sampleur_bank A;
 #X obj 697 254 s toCONTROL;
 #X msg 697 230 list choc 0.5 0.5;
 #X obj 470 12 2ctl \$0 audiomaster Z;
@@ -123,7 +123,7 @@ poster 20 15 0 14 -159808 -1 -1 0 1;
 #X obj 782 74 route sample detect;
 #X obj 847 100 s \$0-control-sample_detect;
 #X obj 817 125 s \$0-control-sample_last;
-#X obj 470 270 2ctli \$0 sampleur_single A;
+#X obj 470 280 2ctli \$0 sampleur_single A;
 #N canvas 1 81 612 280 MIDI 0;
 #X floatatom 201 87 0 0 0 0 - - -;
 #X obj 182 38 notein;
@@ -242,6 +242,7 @@ cross-mixer 2 banques, f 65;
 freeze;
 #X restore 61 41 pd conduite-old;
 #X restore 976 213 pd old-notes;
+#X obj 470 34 2ctl \$0 mastermask Z;
 #X connect 1 0 78 0;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
@@ -308,15 +309,15 @@ freeze;
 #X restore 606 17 pd guts;
 #X obj 19 443 MORPHgroup \$0-MASTER A;
 #X obj 21 364 hradio 30 1 0 16 \$0-pattern-snd \$0-pattern-rcv 1____2____3____4___5___6___7___8___9___10___11___12__13__14__15__16
-0 37 0 12 -262144 -1 -1 13;
+0 37 0 12 -262144 -1 -1 1;
 #X obj 24 329 hsl 200 30 0 1 0 0 \$0-fade_time-snd \$0-fade_time-rcv
-fade_time:0_s 20 15 0 14 -262144 -1 -1 0 1;
+fade_time:0.5_s 20 15 0 14 -262144 -1 -1 2900 1;
 #X obj 20 271 hradio 30 1 0 7 \$0-control-sampleur_bank-snd \$0-control-sampleur_bank-rcv
-bank_4 0 -8 0 14 -99865 -258113 -1 6;
+hold 0 -8 0 14 -99865 -258113 -1 1;
 #X obj 311 462 bng 30 250 50 0 \$0-savepatterns-snd \$0-savepatterns-rcv
 SAVE 32 15 0 14 -258113 -1 -1;
 #X obj 447 305 hsl 200 30 0 1 0 0 \$0-control-audiomaster-snd \$0-control-audiomaster-rcv
-audiomaster 20 15 0 14 -258113 -1 -1 14200 1;
+audiomaster 20 15 0 14 -258113 -1 -1 15500 1;
 #X obj 236 271 tgl 30 0 \$0-control-sampleur_single-snd \$0-control-sampleur_single-rcv
 single 32 15 0 14 -99865 -1 -1 0 1;
 #N canvas 749 109 450 300 choc 0;
@@ -361,16 +362,13 @@ single 32 15 0 14 -99865 -1 -1 0 1;
 #X obj 525 390 gcanvas 180 80;
 #X obj 252 156 tgl 50 0 \$0-control-mic_choice-snd \$0-control-mic_choice-rcv
 mic:table 5 25 0 12 -260097 -1 -1 0 1;
-#N canvas 869 91 893 409 notes_25aout2020:conduite 1;
+#N canvas 546 81 893 409 notes_25aout2020:conduite 1;
 #X text 268 41 1:rien (bypass);
 #X text 266 72 3:retard(fantome);
 #X text 265 95 4:(rien);
 #X text 261 197 7:rien;
 #X text 263 229 9:rien;
 #X text 257 320 14: tigre;
-#X text 388 337 15: tigre en aplat (lum=0);
-#X text 390 351 16: feedback negatif sampleur_bank4 zebre_sur_chocs
-;
 #X text 234 167 --------;
 #X text 78 198 (fin alto \, pose coupelle);
 #X text 263 212 8:"sampleur" bruit blanc (attention sensibilité chocs)
@@ -387,10 +385,10 @@ mode editeur, f 68;
 #X text 168 384 NOIR TELES final;
 #X text 267 57 2:zebre_au_choc;
 #X text 265 125 5:formant \;, f 11;
-#X text 335 137 attention: avoir la main sur audiomaster !, f 43;
+#X text 491 122 attention: avoir la main sur audiomaster !, f 43;
 #X text 261 148 6:poster+formant \;;
 #X text 466 123 0;
-#X text 469 23 temps fade (s);
+#X text 435 21 temps fade (s);
 #X text 462 152 20s;
 #X text 101 148 (saladier à l'oreille);
 #X text 260 246 10: sampleur bank1 (alto);
@@ -405,12 +403,13 @@ mode editeur, f 68;
 #X text 258 303 13: negatif;
 #X text 85 304 (il lache les baguettes);
 #X text 541 298 0 !!;
+#X text 462 55 0.5;
 #X restore 596 60 pd notes_25aout2020:conduite;
 #X f 17;
 #X obj 630 219 tgl 30 0 \$0-control-showDebugMains-snd \$0-control-showDebugMains-rcv
 (showDebugMains) 0 -10 0 14 -159808 -1 -1 0 1;
 #X obj 597 117 hsl 150 30 0 1 0 0 \$0-control-mastermask-snd \$0-control-mastermask-rcv
-masterMaskNoir 20 15 0 14 -191407 -1 -1 0 1;
+masterMaskNoir 20 15 0 14 -191407 -1 -1 8400 1;
 #X connect 29 0 30 0;
 #X connect 30 0 29 0;
 #X connect 30 1 29 1;
