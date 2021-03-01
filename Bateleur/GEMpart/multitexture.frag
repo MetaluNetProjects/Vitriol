@@ -210,7 +210,7 @@ void main (void)
 	color1 = Mask(color1, color4.r, amountMask);
 	//gl_FragData[0] =
 	// gl_FragColor = color0 * (color2.r) + color1 * (1.0 - color2.r) + hash12((vec2(ivec2(texcoord0*noisesize))*10000.0)/noisesize + time);
-	color1.a *= delayMix;
+	color1/*.a*/ *= delayMix;
 	//color1 *= 1.0 - color0.a;
 	//color0.rgb *= color0.a;
 	gl_FragColor.rgb = mix(color1.rgb, color0.rgb, color0.a);
