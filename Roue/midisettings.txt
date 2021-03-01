@@ -1,3 +1,7 @@
+VideoFadeTime-ctl 6 0;
+VideoFadeTime-chan 1 0;
+BoidsFade-ctl 7 0;
+BoidsFade-chan 1 0;
 audiopattern---8-ctl 0 0;
 audiopattern---8-chan 0 0;
 audiopattern---7-ctl 0 0;
@@ -14,8 +18,6 @@ pattPrev-ctl 43 0;
 pattPrev-chan 1 0;
 pattNext-ctl 44 0;
 pattNext-chan 1 0;
-BoidsFade-ctl 6 0;
-BoidsFade-chan 1 0;
 invol-3-ctl 3 0;
 invol-3-chan 1 0;
 invol-2-ctl 2 0;

@@ -9,7 +9,7 @@ Régler mapping :
 - cliquer sur "SAVE"
 - cacher les "ctlPoints"
 
-Régler les correspondances des points 1,2,3,4, cliquer sur "SAVE"
+Régler les correspondances des points caméra<->proj 1,2,3,4, cliquer sur "SAVE"
 
 
 
