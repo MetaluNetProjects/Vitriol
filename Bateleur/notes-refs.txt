@@ -1,2 +1,26 @@
 Localisation d'une source sonore par un réseau de microphones https://oatao.univ-toulouse.fr/13060/1/Thaljaoui_13060.pdf
 
+
+------------
+1er octobre 2020 Fra
+
+organiser le déport de l'écran de contrôle ; régie sous la table avec : ordi, carte son, convertisseur et splitter TV
+prévoir extinction ordi, réglage screen_position, depuis télécommande
+
+possibilité d'enlever le masque si le fond est beau ?
+
+top hachoir demi-lune (avant celui des formants) : faire démarrer la postérisation et fond blanc plus progressivement (20s) 
+- OU : virer postér ou fond blanc pendant les formants 
+[ A CONFIRMER ! ]
+
+balance table/réverb/sensibilité choc
+renormaliser les samples alto vs voix ?
+
+assouplir le passage du fond noir au fond blanc vers la fin
+
+--------
+20 janvier 2021 Fra
+
+prévoir une "neige" pour afficher au début
+
+est-ce possible de prévoir un bouton "freeze" sur le daily video ?
