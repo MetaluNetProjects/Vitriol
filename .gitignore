@@ -3,4 +3,5 @@ Bateleur/samples/bank*
 Bateleur/alto
 **/bak-*
 *.o
+.DS_Store
 
