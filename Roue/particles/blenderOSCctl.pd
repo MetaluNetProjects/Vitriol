@@ -5,9 +5,9 @@
 1;
 #N canvas 659 369 456 420 GUI 0;
 #X obj 278 113 hsl 128 15 0 30 0 0 \$0-x1-snd \$0-x1-rcv x1 135 8 0
-10 -262144 -1 -1 5996 1;
+10 -262144 -1 -1 12700 1;
 #X obj 278 129 hsl 128 15 0 16 0 0 \$0-y1-snd \$0-y1-rcv y1 135 8 0
-10 -262144 -1 -1 6617 1;
+10 -262144 -1 -1 2550 1;
 #X obj 50 87 hsl 128 15 0 1 0 0 \$0-collider-snd \$0-collider-rcv collider
 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 107 hsl 128 15 0 10 0 0 \$0-maxSpeed-snd \$0-maxSpeed-rcv
@@ -15,9 +15,9 @@ maxSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 50 123 hsl 128 15 0 1 0 0 \$0-minSpeed-snd \$0-minSpeed-rcv
 minSpeed 135 8 0 10 -262144 -1 -1 0 1;
 #X obj 278 153 hsl 128 15 0 30 0 0 \$0-x2-snd \$0-x2-rcv x2 135 8 0
-10 -262144 -1 -1 4258 1;
+10 -262144 -1 -1 1688 1;
 #X obj 278 169 hsl 128 15 0 16 0 0 \$0-y2-snd \$0-y2-rcv y2 135 8 0
-10 -262144 -1 -1 8339 1;
+10 -262144 -1 -1 7937 1;
 #X obj 279 192 hsl 128 15 0 30 0 0 \$0-x3-snd \$0-x3-rcv x3 135 8 0
 10 -262144 -1 -1 0 1;
 #X obj 279 208 hsl 128 15 0 16 0 0 \$0-y3-snd \$0-y3-rcv y3 135 8 0
@@ -69,7 +69,7 @@ fastTurn 135 8 0 10 -262144 -1 -1 0 1;
 #X text 130 149 Alt+F11 to go full screen;
 #X text 131 166 Alt+A to play;
 #X text 132 184 (Alt+Z) twice or (Shift-Z)twice for modes;
-#N canvas 974 182 450 300 interface 1;
+#N canvas 974 182 450 300 interface 0;
 #X obj 19 16 r 2video;
 #X obj 19 182 route 1 2 3 4, f 60;
 #X obj 19 203 unpack f f;
@@ -146,7 +146,7 @@ BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 600 199 print;
 #X obj 653 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 740 119 592 214 MAPPING_SETTINGS 0;
+#N canvas 709 140 592 214 MAPPING_SETTINGS 1;
 #X obj 13 11 mappingQuad LEFT;
 #X obj 297 11 mappingQuad RIGHT;
 #N canvas 1 82 595 268 guts 0;
@@ -169,7 +169,7 @@ BoidsPattern -2 -8 0 10 -262144 -1 -1 0 1;
 #X connect 9 0 7 0;
 #X restore 143 194 pd guts;
 #X obj 20 147 hsl 550 20 0 1 0 0 mappingDivide-snd mappingDivide-rcv
-divide 20 10 0 12 -204786 -1 -1 27450 1;
+divide 20 10 0 12 -204786 -1 -1 54900 1;
 #X msg 18 172 0.5;
 #X obj 18 193 s mappingDivide-rcv;
 #X connect 4 0 5 0;

@@ -1,4 +1,4 @@
-#N canvas 715 149 646 272 12;
+#N canvas 704 343 646 272 12;
 #X obj 18 90 RF/masterRF;
 #X obj 18 65 Audio/RoueAudio;
 #X obj 18 115 pofGUI;
@@ -92,10 +92,10 @@
 #X obj 385 26 tgl 40 0 ALL_WHITE-snd ALL_WHITE-rcv ALL_WHITE 0 -10
 0 10 -262144 -1 -1 0 1;
 #X obj 30 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-width empty width
-0 -8 0 10 -262144 -1 -1 1920 256;
+0 -8 0 10 -262144 -1 -1 2560 256;
 #X obj 89 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-height empty height
-0 -8 0 10 -262144 -1 -1 1111 256;
+0 -8 0 10 -262144 -1 -1 720 256;
 #X obj 147 226 nbx 5 14 -1e+37 1e+37 0 1 boidswindow-posX empty position
-0 -8 0 10 -262144 -1 -1 1438 256;
+0 -8 0 10 -262144 -1 -1 1441 256;
 #X text 44 195 PROJECTOR WINDOW:;
 #X connect 5 0 6 0;
