@@ -3,7 +3,7 @@
 #X obj 214 169 s cameras-bg;
 #X obj 31 18 r cameras-head;
 #X msg 69 82 quality \$1;
-#X obj 69 60 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 69 60 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X floatatom 110 271 5 0 0 0 - - -;
 #X floatatom 70 270 5 0 0 0 - - -;
@@ -257,6 +257,9 @@
 #X obj 201 103 r cameras-fbosubsample;
 #X msg 201 123 numsamples \$1;
 #X obj 31 500 pofscale 1 1 -2;
+#X msg 444 119 format RGB;
+#X msg 448 171 format RGBA;
+#X obj 444 94 loadbang;
 #X connect 2 0 115 0;
 #X connect 3 0 11 0;
 #X connect 4 0 3 0;
@@ -408,3 +411,6 @@
 #X connect 132 0 133 0;
 #X connect 133 0 11 0;
 #X connect 134 0 24 0;
+#X connect 135 0 11 0;
+#X connect 136 0 11 0;
+#X connect 137 0 135 0;
