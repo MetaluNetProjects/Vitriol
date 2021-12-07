@@ -1,4 +1,4 @@
-#N canvas 761 220 448 248 12;
+#N canvas 761 220 443 317 12;
 #X obj 20 72 RF/masterRF;
 #X obj 17 12 cnv 15 320 40 empty empty La_Maison_Dieu 20 20 2 40 -233017
 -66577 0;
