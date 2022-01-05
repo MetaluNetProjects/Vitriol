@@ -1,0 +1,39 @@
+a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z,  // 1
+a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y,  // i
+a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x,  // j
+a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w   // k
+
+http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/:
+(BAD!)
+heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qy2 - 2*qz2)
+attitude = asin(2*qx*qy + 2*qz*qw)
+bank = atan2(2*qx*qw - 2*qy*qz , 1 - 2*qx2 - 2*qz2)
+
+https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Quaternion_to_Euler_Angles_Conversion:
+EulerAngles ToEulerAngles(Quaternion q) {
+    EulerAngles angles;
+
+    // roll (x-axis rotation)
+    double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+    double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+    angles.roll = std::atan2(sinr_cosp, cosr_cosp);
+
+    // pitch (y-axis rotation)
+    double sinp = 2 * (q.w * q.y - q.z * q.x);
+    if (std::abs(sinp) >= 1)
+        angles.pitch = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+    else
+        angles.pitch = std::asin(sinp);
+
+    // yaw (z-axis rotation)
+    double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+    double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+    angles.yaw = std::atan2(siny_cosp, cosy_cosp);
+
+    return angles;
+}
+->
+H(Y) = atan2(2wz + 2xy, 1 - 2yy - 2zz)
+   R = atan2(2wx + 2yz, 1 - 2xx - 2yy)
+   P = asin(2wy - 2xz)
+

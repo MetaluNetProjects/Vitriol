@@ -1,10 +1,19 @@
-#N canvas 761 220 443 317 12;
-#X obj 20 72 RF/masterRF;
+#N canvas 551 131 576 527 12;
 #X obj 17 12 cnv 15 320 40 empty empty La_Maison_Dieu 20 20 2 40 -233017
 -66577 0;
 #X obj 262 80 nbx 5 25 -1e+37 1e+37 0 0 empty axlBatt axlBatt 0 -8
 0 14 -262144 -1 -1 0 256;
 #X obj 262 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 21 106 audioTest1;
-#X connect 2 0 3 0;
+#X obj 392 32 audioTest1;
+#X obj 392 139 rem RF/masterRF;
+#X obj 19 126 Arduino/sensor 1;
+#X obj 19 189 Arduino/sensor 2;
+#X text 141 173 4 jan 18h30: 4.137 3.892;
+#X text 142 190 5 jan 9h30: 4.08 3.84;
+#X obj 18 253 Arduino/sensor 3;
+#X obj 18 316 Arduino/sensor 4;
+#X obj 18 380 Arduino/sensor 5;
+#X obj 18 443 Arduino/sensor 6;
+#X obj 19 61 Arduino/driver ardDev;
+#X connect 1 0 2 0;
