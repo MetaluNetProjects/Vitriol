@@ -1,4 +1,4 @@
-#N canvas 1068 259 492 645 10;
+#N canvas 873 98 492 645 10;
 #X declare -path moonlib;
 #X obj 13 545 outlet~;
 #X obj 14 10 r AXL-Voice\$2;

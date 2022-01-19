@@ -1,0 +1,130 @@
+#N canvas 54 107 791 610 10;
+#X declare -path .. -path ../.. -path ../../../tools/gammabs;
+#X obj 103 116 on \$1;
+#X obj 440 101 r \$1-on-snd;
+#X obj 440 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 168 248 chan \$1 2;
+#X obj 168 267 chan \$1 3;
+#X obj 168 286 chan \$1 4;
+#X obj 168 305 chan \$1 5;
+#X obj 306 151 GAMMEKB /G\$1;
+#X obj 556 192 r /G\$1;
+#X floatatom 556 213 5 0 0 0 - - -;
+#X obj 604 284 gammeNotes /G\$1;
+#X obj 604 306 s /G\$1-notes;
+#X obj 220 31 declare -path .. -path ../.. -path ../../../tools/gammabs
+;
+#X obj 440 144 switch~;
+#X obj 349 207 bng 15 250 50 0 empty empty 5 17 7 0 10 -262144 -1 -1
+;
+#X obj 106 158 nbx 3 20 0 100 0 0 \$1-adjust-snd \$1-adjust-rcv adjust
+0 -8 0 14 -262144 -1 -1 0 256;
+#X obj 486 175 loadbang;
+#X msg 486 196 677;
+#X obj 486 217 s /G\$1;
+#X obj 292 276 s \$1-resetCenter-snd;
+#X obj 76 290 catch~ \$1-out;
+#X obj 108 182 hsl 128 15 0 1 0 1 empty empty empty -2 -8 0 10 -258113
+-1 -1 0 1;
+#X obj 91 218 pow 2;
+#X obj 91 239 pack f 10;
+#X obj 91 260 line~;
+#X obj 76 389 *~;
+#X obj 76 540 throw~ outL;
+#X obj 109 420 delwrite~ \$0-d 1000;
+#X obj 109 442 delread~ \$0-d 200;
+#X obj 109 483 rev1~;
+#X obj 108 505 *~ 0.2;
+#X msg 350 225 5, f 2;
+#X obj 345 127 nbx 3 20 -50 50 0 0 \$1-filterOffset-snd \$1-filterOffset-rcv
+filter 0 -8 0 14 -262144 -1 -1 17 256;
+#X obj 126 462 nbx 5 14 0 100 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 17 256;
+#X obj 350 247 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 76 316 hip~ 5;
+#X obj 76 352 lop~ 2000;
+#X obj 376 208 bng 15 250 50 0 empty empty 5 17 7 0 10 -262144 -1 -1
+;
+#X msg 377 226 5, f 2;
+#X obj 416 247 nbx 5 14 0 1000 0 0 \$1-gainRot-snd \$1-gainRot-rcv
+gainRot 0 -8 0 10 -262144 -1 -1 15 256;
+#X obj 415 201 bng 15 250 50 0 empty empty 0 17 7 0 10 -262144 -1 -1
+;
+#X obj 442 202 bng 15 250 50 0 empty empty 5 17 7 0 10 -262144 -1 -1
+;
+#X msg 443 220 4, f 2;
+#X obj 265 226 t f f;
+#X msg 292 246 -1 \$1;
+#X msg 416 219 2, f 2;
+#X obj 318 425 s \$1-props;
+#X obj 257 106 bng 15 250 50 0 empty empty la 17 7 0 10 -262144 -1
+-1;
+#X obj 189 162 hsl 80 10 0 1 0 1 empty empty lfo -2 -8 0 10 -257985
+-1 -1 1900 1;
+#X msg 265 391 -1 lfoAmp \$1;
+#X obj 500 285 bng 15 250 50 0 empty empty sub 17 7 0 10 -262144 -1
+-1;
+#X msg 351 394 -1 center 14 \, -1 gainRot 2 \, 4 center 21;
+#X obj 364 308 bng 15 250 50 0 empty empty norm 17 7 0 10 -262144 -1
+-1;
+#X msg 408 306 -1 center 8 \, -1 gainRot 4;
+#X obj 173 125 tgl 15 0 empty empty continu 17 7 0 10 -262144 -1 -1
+1 1;
+#X msg 279 358 -1 continue \$1;
+#X msg 404 355 -1 center \$1 \, -1 gainRot 16;
+#X msg 403 334 0.5;
+#X msg 434 334 -0.4;
+#X msg 169 485 1;
+#X obj 193 467 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 476 333 -0.8;
+#X obj 168 229 rem chan \$1 1;
+#X obj 168 324 rem chan \$1 6;
+#X connect 1 0 2 0;
+#X connect 2 0 13 0;
+#X connect 8 0 9 0;
+#X connect 10 0 11 0;
+#X connect 14 0 31 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 20 0 35 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 1;
+#X connect 25 0 26 0;
+#X connect 25 0 27 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 30 0 26 0;
+#X connect 31 0 34 0;
+#X connect 33 0 29 1;
+#X connect 34 0 43 0;
+#X connect 35 0 36 0;
+#X connect 36 0 25 0;
+#X connect 37 0 38 0;
+#X connect 38 0 34 0;
+#X connect 40 0 45 0;
+#X connect 41 0 42 0;
+#X connect 42 0 39 0;
+#X connect 43 1 44 0;
+#X connect 44 0 19 0;
+#X connect 45 0 39 0;
+#X connect 47 0 51 0;
+#X connect 48 0 49 0;
+#X connect 49 0 46 0;
+#X connect 50 0 61 0;
+#X connect 51 0 46 0;
+#X connect 52 0 53 0;
+#X connect 53 0 46 0;
+#X connect 54 0 55 0;
+#X connect 55 0 46 0;
+#X connect 56 0 46 0;
+#X connect 57 0 56 0;
+#X connect 58 0 56 0;
+#X connect 59 0 29 1;
+#X connect 60 0 33 0;
+#X connect 61 0 56 0;
+#X coords 0 -1 1 1 300 100 1 100 100;

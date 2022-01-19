@@ -1,0 +1,22 @@
+#N canvas 475 188 450 300 10;
+#X obj 103 103 tgl 15 0 \$1-on-snd \$1-on-rcv ON 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 160 52 r MODE;
+#X obj 160 76 symbol;
+#X obj 160 100 sel \$1;
+#X msg 160 123 1;
+#X msg 193 123 0;
+#X obj 160 144 change;
+#X msg 236 104 set \$1;
+#X obj 160 167 s \$1-on-rcv;
+#X obj 236 83 r \$1-on-snd;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 9 0 7 0;
+#X coords 0 -1 1 1 35 20 2 100 100;
