@@ -1,7 +1,7 @@
 #N canvas 269 81 791 610 10;
 #X declare -path .. -path ../.. -path ../../../tools/gammabs;
 #X obj 440 101 r \$1-on-snd;
-#X obj 440 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 440 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 645 146 GAMMEKB /G\$1;
 #X obj 556 192 r /G\$1;
@@ -27,8 +27,8 @@
 #X obj 76 389 *~;
 #X obj 76 540 throw~ outL;
 #X obj 109 420 delwrite~ \$0-d 1000;
-#X obj 125 478 rev1~;
-#X obj 108 505 *~ 0.2;
+#X obj 117 474 rev1~;
+#X obj 108 516 *~ 0.2;
 #X msg 689 30 5, f 2;
 #X obj 519 286 nbx 3 20 -50 50 0 0 \$1-filterOffset-snd \$1-filterOffset-rcv
 filter 0 -8 0 14 -262144 -1 -1 0 256;
@@ -65,7 +65,7 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X obj 665 242 rem chan \$1 6;
 #X obj 665 223 rem chan \$1 5;
 #X obj 262 455 throw~ \$1-out;
-#N canvas 21 130 473 431 filter 1;
+#N canvas 21 130 473 431 filter 0;
 #X obj 50 70 inlet~;
 #X obj 49 269 outlet~;
 #X obj 49 169 bp~ 400 30;
@@ -184,6 +184,7 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 -1;
 #X obj 215 142 bng 15 250 50 0 empty empty h1 17 7 0 10 -262144 -1
 -1;
+#X obj 116 497 hip~ 500;
 #X connect 0 0 1 0;
 #X connect 1 0 8 0;
 #X connect 3 0 4 0;
@@ -197,7 +198,7 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X connect 18 0 19 1;
 #X connect 19 0 20 0;
 #X connect 19 0 21 0;
-#X connect 22 0 23 0;
+#X connect 22 0 79 0;
 #X connect 23 0 20 0;
 #X connect 24 0 27 0;
 #X connect 26 0 22 1;
@@ -247,4 +248,5 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X connect 76 0 73 0;
 #X connect 77 0 74 0;
 #X connect 78 0 75 0;
+#X connect 79 0 23 0;
 #X coords 0 -1 1 1 200 60 1 100 100;
