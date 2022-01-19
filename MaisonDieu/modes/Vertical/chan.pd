@@ -1,4 +1,4 @@
-#N canvas 77 81 1149 662 10;
+#N canvas 327 81 1149 662 10;
 #X declare -path moonlib;
 #X obj 81 85 unpack f f f, f 28;
 #X floatatom 81 106 5 0 0 0 - - -;
@@ -8,7 +8,7 @@
 #X obj 80 64 spigot;
 #X obj 128 60 r \$1-on-snd;
 #X obj 340 208 hsl 128 15 -1 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 8375 1;
+-1 -1 6789 1;
 #X obj 185 544 *~;
 #X obj 186 449 line~;
 #X obj 185 475 mtof~;
@@ -30,7 +30,7 @@
 #X obj 969 329 +;
 #X floatatom 969 349 5 0 0 0 - - -;
 #X obj 969 394 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 6162 1;
+-1 -1 6453 1;
 #X msg 1043 295 0;
 #X obj 991 35 unpack f f f;
 #X obj 992 55 abs;
@@ -49,7 +49,7 @@
 #X obj 1106 329 +;
 #X floatatom 1106 349 5 0 0 0 - - -;
 #X obj 1106 394 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 6159 1;
+-1 -1 6165 1;
 #X obj 1135 329 * 0.99;
 #X msg 1135 309 0;
 #X obj 1106 369 / 5;
@@ -57,7 +57,7 @@
 #X obj 891 329 +;
 #X floatatom 891 349 5 0 0 0 - - -;
 #X obj 936 396 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 6411 1;
+-1 -1 6263 1;
 #X obj 919 328 * 0.99;
 #X msg 919 308 0;
 #X obj 891 369 / 5;
@@ -75,8 +75,8 @@
 #X obj 1010 457 - 0.1;
 #X floatatom 1007 503 5 0 0 0 - - -;
 #X obj 1010 479 clip 0 1;
-#X obj 497 422 pack f 20;
-#X obj 497 443 line~;
+#X obj 498 485 pack f 20;
+#X obj 498 506 line~;
 #X obj 997 328 * 0.99;
 #X obj 226 320 r \$1-center-snd;
 #X obj 1043 330 clip -5 5;
@@ -84,16 +84,16 @@
 #X obj 337 235 t f f, f 15;
 #X obj 425 256 t f f;
 #X obj 425 282 -;
-#X obj 424 345 f;
-#X obj 424 367 +;
-#X floatatom 432 414 5 0 0 0 - - -;
+#X obj 425 408 f;
+#X obj 425 430 +;
+#X floatatom 433 477 5 0 0 0 - - -;
 #X obj 524 158 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
-#X obj 425 303 abs;
-#X obj 495 366 clip 0 1;
+#X obj 425 305 abs;
+#X obj 496 429 clip 0 1;
 #X obj 186 303 * -30;
 #X obj 186 324 + 80;
-#X obj 496 395 pow 2;
+#X obj 497 458 pow 2;
 #X obj 186 428 pack f 50;
 #X obj 337 61 + 90;
 #X obj 337 104 / 180;
@@ -109,15 +109,22 @@
 #X obj 139 18 r \$0-props;
 #X obj 139 39 route sensor;
 #X obj 185 572 outlet~;
-#X obj 424 324 * 100;
+#X obj 425 387 * 100;
 #X obj 185 503 osc~;
-#X obj 449 368 * 0.3;
+#X obj 450 431 * 0.3;
 #X obj 337 152 * 2;
 #X obj 337 180 - 1;
 #X obj 229 339 r \$0-props;
 #X obj 229 360 route offset;
 #X obj 186 351 +;
 #X obj 186 389 clip 0 135;
+#X floatatom 357 386 5 0 0 0 - - -;
+#X obj 425 326 - 0.01;
+#X obj 425 347 clip 0 1;
+#X obj 516 273 hsl 128 15 0 1 0 1 empty empty empty -2 -8 0 10 -262144
+-1 -1 6100 1;
+#X obj 513 293 pow 4;
+#X floatatom 513 314 5 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 0 1 2 0;
 #X connect 0 1 12 0;
@@ -209,7 +216,7 @@
 #X connect 78 0 79 0;
 #X connect 79 0 104 0;
 #X connect 81 0 75 0;
-#X connect 82 0 102 0;
+#X connect 82 0 112 0;
 #X connect 83 0 79 1;
 #X connect 83 0 80 0;
 #X connect 83 0 86 0;
@@ -239,3 +246,9 @@
 #X connect 108 0 109 1;
 #X connect 109 0 110 0;
 #X connect 110 0 87 0;
+#X connect 112 0 113 0;
+#X connect 113 0 102 0;
+#X connect 113 0 111 0;
+#X connect 114 0 115 0;
+#X connect 115 0 116 0;
+#X connect 115 0 112 1;

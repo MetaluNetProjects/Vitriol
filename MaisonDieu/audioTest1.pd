@@ -1,4 +1,4 @@
-#N canvas 516 149 896 622 10;
+#N canvas 469 121 896 622 10;
 #X obj 666 129 r axlData;
 #X obj 666 175 unpack f f f;
 #X obj 669 237 hsl 128 15 -2 2 0 0 empty empty empty -2 -8 0 10 -262144
@@ -27,13 +27,13 @@
 #X obj 350 241 loadbang;
 #X msg 350 262 \; pd dsp 1;
 #X obj 126 73 hsl 128 15 -0.5 0.5 0 0 empty empty X -15 8 0 14 -262144
--1 -1 6201 1;
+-1 -1 5625 1;
 #X obj 569 68 t b f;
 #X obj 615 93 t b f;
 #X obj 539 127 pack f f f;
 #X obj 539 149 s axlData;
 #X obj 126 93 hsl 128 15 -0.5 0.5 0 0 empty empty Y -15 8 0 14 -262144
--1 -1 7038 1;
+-1 -1 5286 1;
 #X obj 618 74 hsl 128 15 -0.5 0.5 0 0 empty empty empty -2 -8 0 10
 -262144 -1 -1 0 1;
 #X obj 86 380 delwrite~ \$0-pdl 1000;
@@ -42,7 +42,7 @@
 #X obj 85 474 rev3~ 100 92 4000 90;
 #X obj 85 449 bp~ 800 3;
 #X obj 108 179 hsl 150 30 0 1 0 0 empty empty MASTER 5 15 0 16 -258113
--1 -257985 8960 1;
+-1 -257985 10860 1;
 #X obj 62 527 *~, f 31;
 #X obj 246 501 line~;
 #X msg 246 480 \$1 20;
@@ -65,18 +65,17 @@
 #X msg 536 390 set \$1;
 #X msg 593 390 set \$1;
 #X obj 126 119 hsl 128 15 0 1 0 0 X-scale-snd X-scale-rcv X-scale 10
-8 0 14 -262144 -1 -1 12700 1;
+8 0 14 -262144 -1 -1 3175 1;
 #X obj 126 137 hsl 128 15 -1 1 0 0 X-transpo-snd X-transpo-rcv X-transpo
 10 8 0 14 -262144 -1 -1 6350 1;
-#X msg 219 24 1;
-#X msg 250 23 0;
+#X msg 273 21 0;
 #X obj 372 505 s AXL-Voice1-params;
 #X obj 372 458 r X-scale-snd;
 #X msg 372 479 X-scale \$1;
 #X obj 463 457 r X-transpo-snd;
 #X msg 463 478 X-transpo \$1;
 #X obj 127 160 tgl 15 0 free-freq-snd free-freq-rcv Frequence-libre
-17 7 0 14 -262144 -1 -1 0 1;
+17 7 0 14 -262144 -1 -1 1 1;
 #X obj 569 458 r free-freq-snd;
 #X msg 569 479 free-freq \$1;
 #X obj 241 53 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 1
@@ -102,6 +101,14 @@
 #X obj 246 460 * 0.2;
 #X obj 61 325 hip~ 10;
 #X obj 61 346 lop~ 1000;
+#X floatatom 228 253 5 0 0 0 - - -;
+#X floatatom 168 249 5 0 0 0 - - -;
+#X msg 47 121 1;
+#X msg 549 544 adjust \$1;
+#X msg 545 521 0;
+#X msg 576 522 0;
+#X msg 608 523 0;
+#X msg 219 24 0.25;
 #X connect 0 0 5 0;
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
@@ -117,7 +124,7 @@
 #X connect 11 1 12 2;
 #X connect 12 0 13 0;
 #X connect 14 0 15 0;
-#X connect 16 0 84 0;
+#X connect 16 0 83 0;
 #X connect 18 0 19 0;
 #X connect 20 0 23 0;
 #X connect 21 0 23 0;
@@ -136,11 +143,12 @@
 #X connect 33 0 17 1;
 #X connect 34 0 33 1;
 #X connect 35 0 34 0;
-#X connect 36 0 83 0;
+#X connect 36 0 82 0;
 #X connect 37 0 38 0;
 #X connect 37 0 39 0;
+#X connect 37 0 92 0;
 #X connect 37 0 55 0;
-#X connect 37 0 56 0;
+#X connect 37 0 87 0;
 #X connect 38 0 32 0;
 #X connect 39 0 20 0;
 #X connect 39 0 25 0;
@@ -160,30 +168,35 @@
 #X connect 50 1 52 0;
 #X connect 51 0 20 0;
 #X connect 52 0 25 0;
-#X connect 55 0 53 0;
-#X connect 56 0 54 0;
-#X connect 58 0 59 0;
-#X connect 59 0 57 0;
-#X connect 60 0 61 0;
-#X connect 61 0 57 0;
-#X connect 63 0 64 0;
-#X connect 64 0 57 0;
-#X connect 65 0 66 0;
-#X connect 65 0 72 0;
-#X connect 67 0 71 0;
-#X connect 68 1 75 0;
-#X connect 68 2 81 0;
-#X connect 71 0 68 0;
-#X connect 72 0 71 1;
-#X connect 73 0 76 0;
-#X connect 75 0 73 0;
-#X connect 76 0 80 0;
-#X connect 78 0 82 0;
-#X connect 80 0 78 0;
-#X connect 81 0 78 1;
-#X connect 82 0 79 0;
-#X connect 83 0 35 0;
-#X connect 84 0 85 0;
-#X connect 85 0 27 0;
-#X connect 85 0 33 0;
+#X connect 53 0 85 0;
+#X connect 54 0 86 0;
+#X connect 55 0 54 0;
+#X connect 57 0 58 0;
+#X connect 58 0 56 0;
+#X connect 59 0 60 0;
+#X connect 60 0 56 0;
+#X connect 62 0 63 0;
+#X connect 63 0 56 0;
+#X connect 64 0 65 0;
+#X connect 64 0 71 0;
+#X connect 66 0 70 0;
+#X connect 67 1 74 0;
+#X connect 67 2 80 0;
+#X connect 70 0 67 0;
+#X connect 71 0 70 1;
+#X connect 72 0 75 0;
+#X connect 74 0 72 0;
+#X connect 75 0 79 0;
+#X connect 77 0 81 0;
+#X connect 79 0 77 0;
+#X connect 80 0 77 1;
+#X connect 81 0 78 0;
+#X connect 82 0 35 0;
+#X connect 83 0 84 0;
+#X connect 84 0 27 0;
+#X connect 84 0 33 0;
+#X connect 87 0 61 0;
+#X connect 88 0 56 0;
+#X connect 89 0 88 0;
+#X connect 92 0 53 0;
 #X coords 0 -1 1 1 165 165 1 100 50;
