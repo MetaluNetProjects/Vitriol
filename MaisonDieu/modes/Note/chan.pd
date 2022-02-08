@@ -13,7 +13,7 @@
 #X obj 611 281 hsl 128 15 -18 16 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 441 261 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 648 311 r /G\$1-notes;
 #N canvas 831 210 490 523 adjust_note 0;
 #X obj 26 18 inlet;
@@ -144,23 +144,27 @@
 #X obj 89 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 22 217 sin;
-#X obj 22 619 outlet~;
+#X obj 20 618 outlet~;
 #X obj 22 413 ssaw~;
 #X obj 21 476 *~;
-#X obj 169 618 outlet;
+#X obj 202 614 outlet;
 #X obj 134 446 * -1;
-#X floatatom 72 507 5 0 0 0 - - -;
+#X floatatom 72 482 5 0 0 0 - - -;
 #X obj 134 467 - 90;
 #X obj 22 273 + \$3;
 #X obj 202 274 * 0;
-#X obj 21 529 hip~ 30;
-#X obj 21 574 lop~ 6000;
+#X obj 21 504 hip~ 30;
+#X obj 21 525 lop~ 6000;
 #X obj 77 413 ssaw~;
-#X obj 252 443 noise~;
-#X obj 252 464 lop~ 1;
+#X obj 285 282 noise~;
+#X obj 285 303 lop~ 1;
 #X obj 95 175 route gainRot center lfoAmp resetAngle gainLFO;
-#X obj 252 485 *~ 60;
+#X obj 285 324 *~ 60;
 #X obj 22 244 * 0.5;
+#X obj 20 595 *~;
+#X obj 21 551 hip~ 5;
+#X obj 21 572 lop~ 2000;
+#X obj 45 592 r~ \$1-vol;
 #X connect 0 0 50 0;
 #X connect 0 0 51 1;
 #X connect 0 1 26 0;
@@ -225,7 +229,7 @@
 #X connect 61 0 18 0;
 #X connect 62 0 32 0;
 #X connect 63 0 64 0;
-#X connect 64 0 54 0;
+#X connect 64 0 72 0;
 #X connect 65 0 56 0;
 #X connect 66 0 67 0;
 #X connect 67 0 69 0;
@@ -237,3 +241,7 @@
 #X connect 68 4 69 1;
 #X connect 69 0 65 0;
 #X connect 70 0 61 0;
+#X connect 71 0 54 0;
+#X connect 72 0 73 0;
+#X connect 73 0 71 0;
+#X connect 74 0 71 1;
