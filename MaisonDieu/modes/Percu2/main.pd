@@ -1,7 +1,7 @@
 #N canvas 574 81 791 610 10;
 #X declare -path .. -path ../.. -path ../../../tools/gammabs;
 #X obj 440 101 r \$1-on-snd;
-#X obj 440 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 440 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 645 146 GAMMEKB /G\$1;
 #X obj 556 192 r /G\$1;
@@ -20,9 +20,9 @@
 #X obj 486 217 s /G\$1;
 #X obj 631 81 s \$1-resetCenter-snd;
 #X obj 147 118 hsl 128 15 0 1 0 1 empty empty empty -2 -8 0 10 -258113
--1 -1 2600 1;
-#X obj 85 214 pack f 10;
-#X obj 85 235 line~;
+-1 -1 2200 1;
+#X obj 55 227 pack f 10;
+#X obj 55 248 line~;
 #X obj 252 532 throw~ outL;
 #X obj 79 381 delwrite~ \$0-d 1000;
 #X obj 89 439 rev1~;
@@ -61,7 +61,7 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X obj 666 203 rem chan \$1 1;
 #X obj 665 242 rem chan \$1 6;
 #X obj 665 223 rem chan \$1 5;
-#N canvas 401 81 473 431 filter 1;
+#N canvas 401 81 473 431 filter 0;
 #X obj 50 70 inlet~;
 #X obj 49 269 outlet~;
 #X obj 49 169 bp~ 400 30;
@@ -164,30 +164,31 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X obj 444 317 hradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
 #X obj 444 336 + 2;
-#X obj 85 193 pow 2;
-#X obj 85 170 * 3;
+#X obj 55 206 pow 2;
+#X obj 55 183 * 3;
 #X msg 174 244 -1 gain \$1;
-#X obj 174 183 loadbang;
+#X obj 147 182 loadbang;
 #X obj 103 116 on \$1;
 #X msg 235 209 20;
 #X msg 207 209 10;
-#X msg 268 245 -1 hyst \$1;
-#X msg 304 212 0.1;
-#X msg 340 209 1;
-#X msg 272 208 0.05;
+#X msg 295 243 -1 hyst \$1;
+#X msg 335 206 0.1;
+#X msg 371 203 1;
+#X msg 299 206 0.05;
 #X obj 164 142 bng 15 250 50 0 empty empty h0.1 17 7 0 10 -262144 -1
 -1;
 #X obj 215 142 bng 15 250 50 0 empty empty h1 17 7 0 10 -262144 -1
 -1;
 #X obj 88 462 hip~ 500;
-#X obj 85 258 s~ \$1-vol;
+#X obj 55 271 s~ \$1-vol;
 #X obj 346 532 throw~ outC;
 #X obj 434 532 throw~ outR;
 #X obj 333 372 chan_dechire \$1 3;
 #X obj 444 376 chan_goutte \$1 4;
-#X msg 174 207 6;
+#X msg 177 208 6;
 #X obj 80 481 *~ 0.1;
-#X msg 142 195 3;
+#X msg 147 207 3;
+#X obj 335 154 loadbang;
 #X connect 0 0 1 0;
 #X connect 1 0 8 0;
 #X connect 3 0 4 0;
@@ -232,7 +233,7 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X connect 59 0 16 0;
 #X connect 60 0 59 0;
 #X connect 61 0 36 0;
-#X connect 62 0 78 0;
+#X connect 62 0 80 0;
 #X connect 64 0 61 0;
 #X connect 65 0 61 0;
 #X connect 66 0 36 0;
@@ -253,4 +254,5 @@ filter 0 -8 0 14 -262144 -1 -1 0 256;
 #X connect 79 0 74 0;
 #X connect 79 0 75 0;
 #X connect 80 0 61 0;
+#X connect 81 0 67 0;
 #X coords 0 -1 1 1 200 60 1 100 100;

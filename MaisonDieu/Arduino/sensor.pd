@@ -1,6 +1,6 @@
 #N canvas 770 85 595 658 12;
 #X declare -path quaternion;
-#X obj 14 44 r fromArduinoDriver;
+#X obj 15 21 r fromArduinoDriver;
 #X obj 14 146 route 0;
 #X obj 60 73 loadbang;
 #X obj 60 97 f \$1;
@@ -44,7 +44,7 @@
 #X msg 141 455 0;
 #X msg 173 455 1;
 #X obj 104 137 nbx 5 20 -1e+37 1e+37 0 0 empty empty %battery 0 -8
-0 14 -241291 -1 -1 97 256;
+0 14 -262144 -1 -1 75 256;
 #X obj 141 509 * 15;
 #X msg 141 532 color \$1 22 22;
 #X obj 40 464 * 100;
@@ -56,14 +56,19 @@
 #X obj 168 321 loadbang;
 #X obj 141 480 change -1;
 #X obj 71 218 s accel\$1;
-#X obj 420 357 s euler\$1;
-#X obj 283 534 s sensor\$1;
-#X obj 401 444 list prepend \$1;
-#X obj 401 468 s EULER;
-#X obj 284 573 list prepend \$1;
-#X obj 284 597 s SENSOR_ON;
+#X obj 414 377 s euler\$1;
+#X obj 382 563 s sensor\$1;
+#X obj 397 413 list prepend \$1;
+#X obj 397 437 s EULER;
+#X obj 261 562 list prepend \$1;
+#X obj 261 586 s SENSOR_ON;
 #X obj 96 260 list prepend \$1;
 #X obj 96 284 s ACCEL;
+#X obj 397 341 spigot 1;
+#X obj 262 522 spigot 1;
+#X obj 186 126 tgl 30 0 empty empty mute 3 15 0 10 -257985 -1 -45076
+0 1;
+#X obj 378 291 == 0;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 1 0 38 0;
@@ -102,8 +107,7 @@
 #X connect 28 0 20 2;
 #X connect 29 0 20 3;
 #X connect 30 0 23 0;
-#X connect 30 0 54 0;
-#X connect 30 0 56 0;
+#X connect 30 0 62 0;
 #X connect 32 0 34 0;
 #X connect 32 1 10 0;
 #X connect 32 1 48 0;
@@ -127,9 +131,15 @@
 #X connect 50 0 46 0;
 #X connect 51 0 40 0;
 #X connect 52 0 43 0;
-#X connect 52 0 55 0;
-#X connect 52 0 58 0;
+#X connect 52 0 63 0;
 #X connect 56 0 57 0;
 #X connect 58 0 59 0;
 #X connect 60 0 61 0;
-#X coords 0 -1 1 1 85 60 1 100 100;
+#X connect 62 0 54 0;
+#X connect 62 0 56 0;
+#X connect 63 0 55 0;
+#X connect 63 0 58 0;
+#X connect 64 0 65 0;
+#X connect 65 0 62 1;
+#X connect 65 0 63 1;
+#X coords 0 -1 1 1 120 60 1 100 100;
