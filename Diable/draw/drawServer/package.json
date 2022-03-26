@@ -4,7 +4,7 @@
    "description": "recuperation des position des casques",
    "main": "drawServer.js",
    "dependencies": {
-      "minimist": "^1.2.5",
+      "minimist": "^1.2.6",
       "net": "latest"
    }
 }
