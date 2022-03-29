@@ -1,7 +1,7 @@
-#N canvas 415 85 562 526 12;
-#X declare -path zexy -lib zexy;
-#X obj 17 12 cnv 15 320 40 empty empty La_Maison_Dieu 20 20 2 40 -233017
--66577 0;
+#N canvas 71 26 1848 984 12;
+#X declare -path zexy -lib zexy -path iemlib -lib iemlib;
+#X obj 17 12 cnv 15 320 40 empty empty La_Maison_Dieu 20 20 2 40 #e0e0e0
+#404040 0;
 #X obj 384 31 audioTest1;
 #X obj 384 8 rem RF/masterRF;
 #X obj 19 126 Arduino/sensor 1;
@@ -12,9 +12,8 @@
 #X obj 18 443 Arduino/sensor 6;
 #X obj 19 61 Arduino/driver ardDev;
 #X obj 175 328 modes/Note/main Note;
-#N canvas 1 81 688 300 Master 0;
+#N canvas 200 125 814 390 Master 0;
 #X obj 65 70 catch~ outL;
-#X obj 423 41 declare -path zexy -lib zexy;
 #X obj 64 130 z~ 64;
 #X obj 109 130 limiter~;
 #X obj 64 154 *~, f 7;
@@ -25,34 +24,43 @@
 #X obj 178 152 *~, f 7;
 #X obj 179 92 *~ 1;
 #X obj 179 68 catch~ outC;
-#X obj 179 271 dac~ 2;
 #X obj 292 126 z~ 64;
 #X obj 337 126 limiter~;
 #X obj 292 150 *~, f 7;
 #X obj 293 90 *~ 1;
 #X obj 293 66 catch~ outR;
-#X obj 293 228 dac~ 3;
 #X obj 178 176 *~ 0.7;
-#X connect 0 0 5 0;
-#X connect 2 0 4 0;
-#X connect 3 0 4 1;
-#X connect 4 0 6 0;
-#X connect 5 0 2 0;
-#X connect 5 0 3 0;
-#X connect 7 0 9 0;
-#X connect 8 0 9 1;
-#X connect 9 0 19 0;
-#X connect 10 0 7 0;
-#X connect 10 0 8 0;
-#X connect 11 0 10 0;
-#X connect 13 0 15 0;
-#X connect 14 0 15 1;
-#X connect 15 0 18 0;
-#X connect 16 0 13 0;
-#X connect 16 0 14 0;
-#X connect 17 0 16 0;
-#X connect 19 0 6 0;
-#X connect 19 0 18 0;
+#X obj 17 16 declare -path zexy -lib zexy -path iemlib -lib iemlib
+;
+#X obj 293 228 dac~ 2;
+#X obj 172 308 dac~ 3;
+#X obj 172 239 lop~ 200;
+#X obj 172 274 *~ 0.1;
+#X connect 0 0 4 0;
+#X connect 1 0 3 0;
+#X connect 2 0 3 1;
+#X connect 3 0 5 0;
+#X connect 3 0 20 0;
+#X connect 4 0 1 0;
+#X connect 4 0 2 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 1;
+#X connect 8 0 16 0;
+#X connect 9 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 9 0;
+#X connect 11 0 13 0;
+#X connect 12 0 13 1;
+#X connect 13 0 18 0;
+#X connect 13 0 20 0;
+#X connect 14 0 11 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 0;
+#X connect 16 0 5 0;
+#X connect 16 0 18 0;
+#X connect 16 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 19 0;
 #X restore 437 226 pd Master;
 #X obj 175 223 modes/Vertical/main Vertical;
 #X obj 175 160 Low;
@@ -64,9 +72,30 @@
 #X msg 275 260 Vertical;
 #X msg 233 260 RIEN;
 #X msg 392 259 Percu;
+#X text 63 134 Vertical: pb de sensibilité à la fin;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
 #X connect 4 0 1 0;
 #X connect 5 0 1 0;
 #X restore 437 253 pd notes:;
 #X text 198 80 fra:A mitch:B suki:C;
+#X text 607 43 Helene:1;
+#X text 606 91 Suki:4;
+#N canvas 423 170 641 576 Assign 1;
+#X obj 111 136 hradio 15 1 1 6 Assign1 Assign1 Hélène 95 8 0 10 #fcfcfc
+#000000 #000000 0;
+#X obj 111 155 hradio 15 1 1 6 Assign2 Assign2 Fra/Laure 95 8 0 10
+#fcfcfc #000000 #000000 1;
+#X obj 111 173 hradio 15 1 1 6 Assign3 Assign3 Mitch 95 8 0 10 #fcfcfc
+#000000 #000000 2;
+#X obj 111 192 hradio 15 1 1 6 Assign4 Assign4 Suki 95 8 0 10 #fcfcfc
+#000000 #000000 3;
+#X text 114 119 1 2 3 4 5 6;
+#X obj 111 211 hradio 15 1 1 6 Assign5 Assign5 empty 95 8 0 10 #fcfcfc
+#000000 #000000 4;
+#X obj 111 230 hradio 15 1 1 6 Assign6 Assign6 empty 95 8 0 10 #fcfcfc
+#000000 #000000 5;
+#X coords 0 -1 1 1 180 150 1 100 100;
+#X restore 398 286 pd Assign;
+#X text 607 75 Mitch:3;
+#X text 607 57 Fra/Laure:2/Laure;
