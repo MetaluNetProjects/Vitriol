@@ -1,4 +1,4 @@
-#N canvas 469 121 1433 830 10;
+#N canvas 117 130 1691 830 10;
 #X obj 666 129 r axlData;
 #X obj 666 175 unpack f f f;
 #X obj 669 237 hsl 128 15 -2 2 0 0 empty empty empty -2 -8 0 10 #fcfcfc
@@ -40,12 +40,12 @@
 #X obj 85 407 delread~ \$0-pdl 150;
 #X obj 85 474 rev3~ 100 92 4000 90;
 #X obj 85 449 bp~ 800 3;
-#X obj 108 179 hsl 150 30 0 1 0 0 empty empty VOLUME:8 5 15 0 16 #fc0400
+#X obj 108 179 hsl 150 30 0 1 0 0 empty empty VOLUME:22 5 15 0 16 #fc0400
 #000000 #f8fc00 0 1;
 #X obj 62 527 *~, f 31;
 #X obj 246 501 line~;
 #X msg 246 480 \$1 20;
-#X obj 246 441 pow 2;
+#X obj 246 417 pow 2;
 #X obj 105 7 loadbang;
 #X msg 105 28 0.4;
 #X msg 166 23 set 0;
@@ -80,8 +80,8 @@
 #000000 0 1;
 #X obj 764 54 switch~;
 #X obj 712 337 unpack f f f;
-#X floatatom 810 369 5 0 0 0 - - - 0;
-#X floatatom 835 327 5 0 0 0 - - - 0;
+#X floatatom 883 509 5 0 0 0 - - - 0;
+#X floatatom 921 368 5 0 0 0 - - - 0;
 #X obj 712 313 spigot, f 10;
 #X obj 772 291 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000 0 1;
@@ -89,7 +89,7 @@
 #X floatatom 828 552 5 0 0 0 - - - 0;
 #X obj 747 410 - 0;
 #X obj 746 452 - 180;
-#X floatatom 830 499 5 0 0 0 - - - 0;
+#X floatatom 868 536 5 0 0 0 - - - 0;
 #X obj 745 497 pack f f;
 #X obj 745 550 s axlData;
 #X obj 745 476 / 90;
@@ -120,6 +120,21 @@
 #X msg 211 292 label VOLUME:\$1;
 #X obj 242 347 *~ 6;
 #X obj 242 325 lop~ 150;
+#X obj 881 330 unpack f f f;
+#X obj 881 306 spigot, f 10;
+#X obj 941 284 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 881 267 r EULER;
+#X obj 940 261 + 1;
+#X obj 881 287 route 5;
+#X obj 871 424 sin;
+#X obj 873 365 / 180;
+#X obj 871 396 * 3.14159;
+#X obj 871 450 abs;
+#X obj 871 474 pow 2;
+#X obj 940 239 r Assign5;
+#X obj 288 417 * 0.2;
+#X obj 264 440 t b f;
 #X connect 0 0 5 0;
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
@@ -191,6 +206,7 @@
 #X connect 61 0 54 0;
 #X connect 62 0 63 0;
 #X connect 62 0 68 0;
+#X connect 62 0 106 0;
 #X connect 64 1 71 0;
 #X connect 64 2 77 0;
 #X connect 67 0 64 0;
@@ -222,4 +238,21 @@
 #X connect 101 0 31 0;
 #X connect 102 0 81 0;
 #X connect 103 0 102 0;
+#X connect 104 0 66 0;
+#X connect 104 0 111 0;
+#X connect 105 0 104 0;
+#X connect 106 0 105 1;
+#X connect 107 0 109 0;
+#X connect 108 0 109 1;
+#X connect 109 0 105 0;
+#X connect 110 0 113 0;
+#X connect 111 0 112 0;
+#X connect 112 0 110 0;
+#X connect 113 0 114 0;
+#X connect 114 0 65 0;
+#X connect 114 0 116 0;
+#X connect 115 0 108 0;
+#X connect 116 0 117 0;
+#X connect 117 0 79 0;
+#X connect 117 1 79 1;
 #X coords 0 -1 1 1 165 165 1 100 50;

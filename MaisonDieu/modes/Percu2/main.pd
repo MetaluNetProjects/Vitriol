@@ -50,7 +50,7 @@ filter 0 -8 0 14 #fcfcfc #000000 #000000 0 256;
 #X msg 755 24 2, f 2;
 #X obj 174 275 s \$1-props;
 #X obj 629 396 hsl 80 10 0 1 0 1 empty empty lfo -2 -8 0 10 #f8fc00
-#000000 #000000 4000 1;
+#000000 #000000 8000 1;
 #X obj 573 321 bng 15 250 50 0 empty empty sub 17 7 0 10 #fcfcfc #000000
 #000000;
 #X obj 619 361 tgl 15 1 empty empty continu 17 7 0 10 #fcfcfc #000000
@@ -165,9 +165,9 @@ filter 0 -8 0 14 #fcfcfc #000000 #000000 0 256;
 #X msg 335 206 0.1;
 #X msg 371 203 1;
 #X msg 299 206 0.05;
-#X obj 164 142 bng 15 250 50 0 empty empty h0.1 17 7 0 10 #fcfcfc #000000
+#X obj 259 175 bng 15 250 50 0 empty empty h0.1 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 215 142 bng 15 250 50 0 empty empty h1 17 7 0 10 #fcfcfc #000000
+#X obj 310 175 bng 15 250 50 0 empty empty h1 17 7 0 10 #fcfcfc #000000
 #000000;
 #X obj 88 462 hip~ 500;
 #X obj 55 271 s~ \$1-vol;

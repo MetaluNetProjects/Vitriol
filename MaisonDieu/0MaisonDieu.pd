@@ -81,7 +81,7 @@
 #X text 198 80 fra:A mitch:B suki:C;
 #X text 607 43 Helene:1;
 #X text 606 91 Suki:4;
-#N canvas 423 170 641 576 Assign 1;
+#N canvas 423 170 641 576 Assign 0;
 #X obj 111 136 hradio 15 1 1 6 Assign1 Assign1 Hélène 95 8 0 10 #fcfcfc
 #000000 #000000 0;
 #X obj 111 155 hradio 15 1 1 6 Assign2 Assign2 Fra/Laure 95 8 0 10
@@ -91,8 +91,8 @@
 #X obj 111 192 hradio 15 1 1 6 Assign4 Assign4 Suki 95 8 0 10 #fcfcfc
 #000000 #000000 3;
 #X text 114 119 1 2 3 4 5 6;
-#X obj 111 211 hradio 15 1 1 6 Assign5 Assign5 empty 95 8 0 10 #fcfcfc
-#000000 #000000 4;
+#X obj 111 211 hradio 15 1 1 6 Assign5 Assign5 VolHélène 95 8 0 10
+#fcfcfc #000000 #000000 4;
 #X obj 111 230 hradio 15 1 1 6 Assign6 Assign6 empty 95 8 0 10 #fcfcfc
 #000000 #000000 5;
 #X coords 0 -1 1 1 180 150 1 100 100;

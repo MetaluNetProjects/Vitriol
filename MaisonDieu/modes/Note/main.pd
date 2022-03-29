@@ -20,8 +20,8 @@
 #X msg 611 130 677;
 #X obj 611 151 s /G\$1;
 #X obj 625 251 s \$1-resetCenter-snd;
-#X obj 148 119 hsl 128 15 0 1 0 1 empty empty volume:28 10 8 0 12 #fc0400
-#000000 #faff00 7200 1;
+#X obj 148 119 hsl 128 15 0 1 0 1 empty empty volume:0 10 8 0 12 #fc0400
+#000000 #faff00 0 1;
 #X obj 91 218 pow 2;
 #X obj 91 239 pack f 10;
 #X obj 91 260 line~;
@@ -50,8 +50,8 @@ gainRot 0 -8 0 10 #fcfcfc #000000 #000000 0 256;
 #X obj 309 337 s \$1-props;
 #X obj 331 235 bng 15 250 50 0 empty empty la 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 109 153 hsl 80 10 0 1 0 1 empty empty lfo -2 -8 0 10 #f8fc00
-#000000 #000000 3200 1;
+#X obj 150 204 hsl 80 10 0 1 0 1 empty empty lfo -2 -8 0 10 #f8fc00
+#000000 #000000 500 1;
 #X msg 254 298 -1 lfoAmp \$1;
 #X obj 489 192 bng 15 250 50 0 empty empty sub 17 7 0 10 #fcfcfc #000000
 #000000;
@@ -174,7 +174,7 @@ gainRot 0 -8 0 10 #fcfcfc #000000 #000000 0 256;
 #X connect 12 0 3 0;
 #X connect 13 0 12 0;
 #X restore 511 470 pd filter;
-#X obj 199 150 bng 15 250 50 0 empty empty resetAngle 17 7 0 10 #fcfcfc
+#X obj 217 181 bng 15 250 50 0 empty empty resetAngle 17 7 0 10 #fcfcfc
 #000000 #000000;
 #X obj 319 102 r EULER;
 #X obj 319 123 route 2 3 4;
@@ -254,7 +254,6 @@ gainRot 0 -8 0 10 #fcfcfc #000000 #000000 0 256;
 #X connect 59 0 61 0;
 #X connect 60 0 62 0;
 #X connect 61 0 60 1;
-#X connect 61 0 63 0;
 #X connect 62 0 35 0;
 #X connect 64 0 35 0;
 #X connect 65 0 64 0;
