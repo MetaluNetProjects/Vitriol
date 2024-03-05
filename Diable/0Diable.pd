@@ -1,16 +1,12 @@
-#N canvas 586 84 698 528 10;
+#N canvas 901 148 947 544 10;
 #X declare -path Pof;
-#X declare -lib zexy -path ../tools/AutoPreset -path ggee -lib pof
-;
-#X obj 625 303 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8
-0 10 -258113 -1 -1;
-#X obj 16 183 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10
--262144 -1 -1 0;
+#X declare -lib zexy -path ../tools/AutoPreset -path ggee -lib pof;
+#X obj 621 282 bng 40 250 50 0 draw_clear draw_clear draw_clear 0 -8 0 14 #fc0400 #000000 #000000;
+#X obj 16 183 vradio 30 1 0 4 VIEWMODE VIEWMODE VIEWMODE 0 -8 0 10 #fcfcfc #000000 #000000 0;
 #X text 49 249 3d-cameras;
 #X text 48 278 3d-projs;
-#N canvas 79 220 893 406 CONFIG 0;
-#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan empty 2 53
-2 15 -233017 -45076 0;
+#N canvas 72 469 893 484 CONFIG 0;
+#X obj 101 34 cnv 15 200 60 empty \$0-configfile-namecan Chartreuse_biblio-2022 2 53 2 15 #e0e0e0 #2c004c 0;
 #X obj 321 17 apmaster CONFIG;
 #X obj 31 265 s CONFIG-apmaster-rcv;
 #X obj 254 372 s CONFIG-apmaster-rcv;
@@ -18,25 +14,19 @@
 #X obj 31 181 openpanel;
 #X obj 31 131 getdir;
 #X msg 31 155 symbol \$1/CONFIGS;
-#X obj 31 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 31 103 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 226 142 getdir;
 #X msg 226 166 symbol \$1/CONFIGS;
-#X obj 226 114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 226 114 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 226 192 savepanel;
 #X obj 45 211 s \$0-configfile;
 #X obj 293 297 r \$0-configfile;
 #X obj 254 322 symbol;
-#X obj 199 215 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 199 215 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X msg 254 346 savefile \$1;
-#X obj 103 46 bng 30 250 50 0 empty empty LOAD 0 -6 0 10 -4034 -1 -1
-;
-#X obj 178 46 bng 30 250 50 0 empty empty SAVE 0 -6 0 10 -258113 -1
--1;
-#X obj 257 46 bng 30 250 50 0 empty empty SAVE_AS 0 -6 0 10 -260097
--1 -1;
+#X obj 103 46 bng 30 250 50 0 empty empty LOAD 0 -6 0 10 #00fc04 #000000 #000000;
+#X obj 178 46 bng 30 250 50 0 empty empty SAVE 0 -6 0 10 #fc0400 #000000 #000000;
+#X obj 257 46 bng 30 250 50 0 empty empty SAVE_AS 0 -6 0 10 #fc8000 #000000 #000000;
 #X obj 65 370 s \$0-configfile-namecan;
 #X obj 31 319 hcs/split_path;
 #X msg 112 339 label \$1;
@@ -61,12 +51,15 @@
 #X obj 406 190 apf CONFIG screenPosition screenPosition 2;
 #X obj 407 117 apf CONFIG ADJUST_DRAWHEIGHT ADJUST_DRAWHEIGHT 2;
 #X obj 410 245 apf CONFIG previewscreenWidth previewscreenWidth 2;
-#X obj 410 264 apf CONFIG previewscreenHeight previewscreenHeight 2
-;
-#X obj 410 283 apf CONFIG previewscreenPosition previewscreenPosition
-2;
+#X obj 410 264 apf CONFIG previewscreenHeight previewscreenHeight 2;
+#X obj 410 283 apf CONFIG previewscreenPosition previewscreenPosition 2;
 #X obj 406 209 apf CONFIG screenScale screenScale 2;
 #X obj 410 302 apf CONFIG previewscreenScale previewscreenScale 2;
+#X msg 468 425 symbol /home/antoine/Bureau/Diable/CONFIGS/Chartreuse_biblio-2022;
+#X msg 656 329 label Qouoi;
+#X symbolatom 97 421 10 0 0 0 - - - 0;
+#X obj 468 376 loadbang;
+#X obj 468 399 del 2000;
 #X connect 5 0 13 0;
 #X connect 5 0 27 0;
 #X connect 6 0 7 0;
@@ -84,6 +77,7 @@
 #X connect 19 0 16 0;
 #X connect 20 0 11 0;
 #X connect 22 1 23 0;
+#X connect 22 1 51 0;
 #X connect 23 0 21 0;
 #X connect 24 0 22 0;
 #X connect 26 0 15 0;
@@ -99,19 +93,19 @@
 #X connect 37 0 33 0;
 #X connect 38 0 34 0;
 #X connect 39 0 35 0;
+#X connect 49 0 27 0;
+#X connect 49 0 13 0;
+#X connect 50 0 21 0;
+#X connect 52 0 53 0;
+#X connect 53 0 49 0;
 #X coords 0 -1 1 1 202 80 1 100 15;
 #X restore 207 19 pd CONFIG;
-#X obj 18 79 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL
-0 -8 0 10 -262144 -1 -1 49.7512 256;
-#X obj 424 30 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m)
-70 10 0 12 -228856 -1 -1 1 256;
-#X obj 424 54 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m)
-70 10 0 12 -228856 -1 -1 1 256;
-#X obj 424 78 nbx 5 20 1 20 0 0 roomHeight-snd roomHeight-rcv Height(m)
-70 10 0 12 -228856 -1 -1 1 256;
+#X obj 18 79 nbx 5 14 -1e+37 1e+37 0 0 empty FRAMERATE-REAL FRAMERATE-REAL 0 -8 0 10 #fcfcfc #000000 #000000 0 256;
+#X obj 424 30 nbx 5 20 1 20 0 0 roomLength-snd roomLength-rcv Length(m) 70 10 0 12 #dcdcdc #000000 #000000 0 256;
+#X obj 424 54 nbx 5 20 1 20 0 0 roomWidth-snd roomWidth-rcv Width(m) 70 10 0 12 #dcdcdc #000000 #000000 0 256;
+#X obj 424 78 nbx 5 20 1 20 0 0 roomHeight-snd roomHeight-rcv Height(m) 70 10 0 12 #dcdcdc #000000 #000000 0 256;
 #X text 424 12 ROOM SIZE:;
-#X obj 16 121 tgl 40 0 global-edit-mode global-edit-mode DEBUGVIEW
-0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 16 121 tgl 40 0 global-edit-mode global-edit-mode DEBUGVIEW 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 239 181 projector FRONT 1;
 #X obj 132 181 projector LEFT 1;
 #X obj 460 181 projector RIGHT 1;
@@ -120,46 +114,31 @@
 #X obj 401 134 projector TOP 1;
 #X obj 350 229 projector FLOOR 2;
 #N canvas 1 81 564 281 cameras 0;
-#X obj 104 122 tgl 15 0 camera-FRONT-on-snd camera-FRONT-on-rcv FRONT
-17 7 0 10 -260097 -1 -1 0 1;
+#X obj 104 122 tgl 15 0 camera-FRONT-on-snd camera-FRONT-on-rcv FRONT 17 7 0 10 #fc8000 #000000 #000000 0 1;
 #X obj 203 109 apf CONFIG camera-FRONT-on camera-FRONT-on 2;
-#X obj 104 139 tgl 15 0 camera-BACK-on-snd camera-BACK-on-rcv BACK
-17 7 0 10 -260097 -1 -1 0 1;
+#X obj 104 139 tgl 15 0 camera-BACK-on-snd camera-BACK-on-rcv BACK 17 7 0 10 #fc8000 #000000 #000000 0 1;
 #X obj 204 130 apf CONFIG camera-BACK-on camera-BACK-on 2;
-#X obj 104 156 tgl 15 0 camera-LEFT-on-snd camera-LEFT-on-rcv LEFT
-17 7 0 10 -260097 -1 -1 0 1;
+#X obj 104 156 tgl 15 0 camera-LEFT-on-snd camera-LEFT-on-rcv LEFT 17 7 0 10 #fc8000 #000000 #000000 0 1;
 #X obj 205 151 apf CONFIG camera-LEFT-on camera-LEFT-on 2;
 #X obj 205 173 apf CONFIG camera-RIGHT-on camera-RIGHT-on 2;
 #X obj 206 194 apf CONFIG camera-TOP-on camera-TOP-on 2;
 #X obj 207 215 apf CONFIG camera-FLOOR-on camera-FLOOR-on 2;
-#X obj 104 173 tgl 15 0 camera-RIGHT-on-snd camera-RIGHT-on-rcv RIGHT
-17 7 0 10 -260097 -1 -1 0 1;
-#X obj 104 190 tgl 15 0 camera-TOP-on-snd camera-TOP-on-rcv TOP 17
-7 0 10 -260097 -1 -1 0 1;
-#X obj 104 207 tgl 15 0 camera-FLOOR-on-snd camera-FLOOR-on-rcv FLOOR
-17 7 0 10 -260097 -1 -1 0 1;
+#X obj 104 173 tgl 15 0 camera-RIGHT-on-snd camera-RIGHT-on-rcv RIGHT 17 7 0 10 #fc8000 #000000 #000000 0 1;
+#X obj 104 190 tgl 15 0 camera-TOP-on-snd camera-TOP-on-rcv TOP 17 7 0 10 #fc8000 #000000 #000000 0 1;
+#X obj 104 207 tgl 15 0 camera-FLOOR-on-snd camera-FLOOR-on-rcv FLOOR 17 7 0 10 #fc8000 #000000 #000000 0 1;
 #X coords 0 -1 1 1 60 125 1 100 100;
 #X restore 608 15 pd cameras;
-#X obj 157 11 tgl 15 0 head1-sig head1-sig sig1 17 7 0 10 -257985 -1
--1 0 1;
-#X obj 157 29 tgl 15 0 head2-sig head2-sig sig2 17 7 0 10 -257985 -1
--1 0 1;
-#X obj 81 122 tgl 40 0 ALL_WHITE ALL_WHITE ALL_WHITE 0 -8 0 10 -262144
--1 -1 0 1;
-#X obj 17 426 cnv 15 250 30 empty window_size_canvas window_size=600x300
-10 12 0 13 -99865 -257985 0;
-#X obj 171 332 nbx 5 20 100 60000 0 0 screenWidth-snd screenWidth-rcv
-Width 70 10 0 12 -204786 -1 -1 100 256;
-#X obj 171 356 nbx 5 20 100 60000 0 0 screenHeight-snd screenHeight-rcv
-Height 70 10 0 12 -204786 -1 -1 100 256;
-#X obj 171 380 nbx 5 20 0 60000 0 0 screenPosition-snd screenPosition-rcv
-Position 70 10 0 12 -204777 -1 -1 0 256;
+#X obj 157 11 tgl 15 0 head1-sig head1-sig sig1 17 7 0 10 #f8fc00 #000000 #000000 0 1;
+#X obj 157 29 tgl 15 0 head2-sig head2-sig sig2 17 7 0 10 #f8fc00 #000000 #000000 0 1;
+#X obj 81 122 tgl 40 0 ALL_WHITE ALL_WHITE ALL_WHITE 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 17 426 cnv 15 250 30 empty window_size_canvas window_size=1241x415 10 12 0 13 #606060 #f8fc00 0;
+#X obj 171 332 nbx 5 20 100 60000 0 0 screenWidth-snd screenWidth-rcv Width 70 10 0 12 #c4fcc4 #000000 #000000 0 256;
+#X obj 171 356 nbx 5 20 100 60000 0 0 screenHeight-snd screenHeight-rcv Height 70 10 0 12 #c4fcc4 #000000 #000000 0 256;
+#X obj 171 380 nbx 5 20 0 60000 0 0 screenPosition-snd screenPosition-rcv Position 70 10 0 12 #c4fca0 #000000 #000000 0 256;
 #X text 171 314 FULLSCREEN SETTING:;
-#X obj 355 284 nbx 5 20 -1e+06 1e+06 0 0 ADJUST_DRAWHEIGHT-snd ADJUST_DRAWHEIGHT-rcv
-ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
+#X obj 355 284 nbx 5 20 -1e+06 1e+06 0 1 ADJUST_DRAWHEIGHT-snd ADJUST_DRAWHEIGHT-rcv ADJUST_DRAWHEIGHT 70 10 0 12 #fce0c4 #000000 #000000 87 256;
 #N canvas 906 148 588 687 connect-server 0;
-#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 83 397 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 51 168 list fromsymbol;
 #X obj 51 192 list prepend 92;
 #X obj 51 216 list append 59;
@@ -172,8 +151,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X text 159 260 semi;
 #X obj 83 365 netsend -b;
 #X obj 51 287 list prepend send;
-#X obj 51 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 51 52 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 51 312 list trim;
 #X msg 51 144 symbol headsetId;
 #X msg 252 450 add2 \$1;
@@ -185,7 +163,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X obj 300 580 t b b;
 #X obj 300 604 timer;
 #X obj 300 628 mavg 10;
-#X floatatom 300 652 5 0 0 0 - - -;
+#X floatatom 300 652 5 0 0 0 - - - 0;
 #X obj 150 577 s headsets-data;
 #X obj 83 417 outlet;
 #X obj 188 28 inlet;
@@ -198,8 +176,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X obj 307 279 list append 59;
 #X text 415 276 semi;
 #X obj 398 61 metro 5000;
-#X obj 403 24 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 403 24 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X text 417 253 '0';
 #X obj 307 254 list append 48;
 #X msg 307 162 symbol erasedraw;
@@ -237,8 +214,7 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X msg 44 604 0;
 #X msg 339 375 disconnect \, connect localhost 8080;
 #X msg 83 101 disconnect \, connect 193.168.4.1 8080;
-#X obj 102 663 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 102 663 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X msg 188 326 disconnect;
 #X msg 196 351 0;
 #X obj 236 28 inlet disc;
@@ -298,37 +274,28 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X connect 57 1 54 0;
 #X connect 58 0 43 0;
 #X restore 18 25 pd connect-server;
-#X obj 18 6 bng 15 250 50 0 empty empty connect 17 7 0 10 -257985 -1
--1;
-#X obj 18 48 tgl 15 0 empty empty connected 17 7 0 10 -4034 -1 -1 0
-1;
-#N canvas 160 504 636 438 STUFF 1;
+#X obj 18 6 bng 15 250 50 0 empty empty connect 17 7 0 10 #f8fc00 #000000 #000000;
+#X obj 18 48 tgl 15 0 empty empty connected 17 7 0 10 #00fc04 #000000 #000000 0 1;
+#N canvas 72 569 636 438 STUFF 1;
 #X obj 24 42 list prepend testGem/testGem;
-#X obj 267 49 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit
-0 -8 0 10 -262144 -1 -1 0 1;
-#X obj 267 113 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres
-0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 267 49 tgl 40 0 draw-quads-edit draw-quads-edit draw-quads-edit 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 267 113 tgl 40 0 draw_showspheres draw_showspheres draw_showspheres 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 25 65 l testPof-25juin/testPof;
 #X obj 25 125 testdrawer;
 #X obj 25 89 Pof/0main;
-#X obj 267 175 tgl 40 0 projectors_colored projectors_colored projectors_colored
-0 -8 0 10 -262144 -1 -1 0 1;
-#X obj 266 238 tgl 40 0 cameras-bg-on cameras-bg-on cameras-bg-on 0
--8 0 10 -262144 -1 -1 0 1;
+#X obj 267 175 tgl 40 0 projectors_colored projectors_colored projectors_colored 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 266 238 tgl 40 0 cameras-bg-on cameras-bg-on cameras-bg-on 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 446 121 r global-edit-mode;
 #X obj 461 155 s draw-quads-edit;
 #X obj 464 195 s draw_showspheres;
 #X obj 431 232 s projectors_colored;
 #X obj 394 268 s cameras-bg-on;
-#X obj 265 295 tgl 40 0 camera_draw_labels camera_draw_labels camera_draw_labels
-0 -8 0 10 -262144 -1 -1 0 1;
-#X obj 263 357 tgl 40 0 camera_draw_grid camera_draw_grid camera_draw_grid
-0 -8 0 10 -262144 -1 -1 0 1;
+#X obj 265 295 tgl 40 0 camera_draw_labels camera_draw_labels camera_draw_labels 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 263 357 tgl 40 0 camera_draw_grid camera_draw_grid camera_draw_grid 0 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 395 335 s camera_draw_grid;
 #X obj 406 365 s camera_draw_labels;
 #X obj 27 172 declare -path Pof;
-#X obj 24 4 declare -lib zexy -path ../tools/AutoPreset -path ggee
--lib pof;
+#X obj 24 4 declare -lib zexy -path ../tools/AutoPreset -path ggee -lib pof;
 #X connect 8 0 9 0;
 #X connect 8 0 11 0;
 #X connect 8 0 12 0;
@@ -336,26 +303,23 @@ ADJUST_DRAWHEIGHT 70 10 0 12 -261682 -1 -1 0 256;
 #X connect 8 0 10 0;
 #X connect 8 0 15 0;
 #X restore 82 4 pd STUFF;
-#N canvas 151 537 556 300 inverse 0;
-#X obj 106 131 nbx 3 30 0 180 0 1 cameras-inverse-time-snd cameras-inverse-time-rcv
-time(s) 0 -8 0 12 -262144 -1 -1 6 256;
-#X obj 167 131 tgl 30 1 cameras-inverse-snd cameras-inverse-rcv inverse
--10 -8 0 12 -262144 -1 -1 0 1;
+#N canvas 72 537 556 300 inverse 0;
+#X obj 106 131 nbx 3 30 0 180 0 1 cameras-inverse-time-snd cameras-inverse-time-rcv time(s) 0 -8 0 12 #fcfcfc #000000 #000000 3 256;
+#X obj 167 131 tgl 30 1 cameras-inverse-snd cameras-inverse-rcv inverse -10 -8 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 363 94 r cameras-inverse-time-snd;
 #X obj 295 67 r cameras-inverse-snd;
 #X obj 296 271 s cameras-inverse;
 #X obj 295 91 pack f f;
 #X obj 363 118 * 1000;
 #X obj 295 115 line;
-#X obj 216 131 tgl 30 1 empty empty clear 0 -8 0 12 -191407 -1 -1 0
-1;
+#X obj 216 131 tgl 30 1 empty empty clear 0 -8 0 12 #b8b8b8 #000000 #000000 0 1;
 #X obj 328 163 change;
 #X obj 328 184 b;
 #X obj 328 205 spigot;
 #X msg 328 226 0;
 #X obj 377 226 s draw_clear;
 #X msg 216 244 0.5;
-#X floatatom 210 197 5 0 0 0 - - -;
+#X floatatom 210 197 5 0 0 0 - - - 0;
 #X obj 328 142 > 0.62;
 #X connect 2 0 6 0;
 #X connect 3 0 5 0;
@@ -373,70 +337,114 @@ time(s) 0 -8 0 12 -262144 -1 -1 6 256;
 #X connect 15 0 4 0;
 #X connect 16 0 9 0;
 #X coords 0 -1 1 1 150 65 1 100 100;
-#X restore 330 350 pd inverse;
-#X obj 171 403 nbx 5 20 0.01 8 0 0 screenScale-snd screenScale-rcv
-Scale 70 10 0 12 -262130 -1 -1 0.01 256;
-#X obj 16 332 nbx 5 20 100 60000 0 0 previewscreenWidth-snd previewscreenWidth-rcv
-Width 70 10 0 12 -204786 -1 -1 100 256;
-#X obj 16 356 nbx 5 20 100 60000 0 0 previewscreenHeight-snd previewscreenHeight-rcv
-Height 70 10 0 12 -204786 -1 -1 100 256;
-#X obj 16 380 nbx 5 20 0 60000 0 0 previewscreenPosition-snd previewscreenPosition-rcv
-Position 70 10 0 12 -204777 -1 -1 0 256;
-#X obj 16 403 nbx 5 20 0.01 8 0 0 previewscreenScale-snd previewscreenScale-rcv
-Scale 70 10 0 12 -262130 -1 -1 0.01 256;
+#X restore 314 329 pd inverse;
+#X obj 171 403 nbx 5 20 0.01 8 0 0 screenScale-snd screenScale-rcv Scale 70 10 0 12 #fcfcc4 #000000 #000000 0 256;
+#X obj 16 332 nbx 5 20 100 60000 0 0 previewscreenWidth-snd previewscreenWidth-rcv Width 70 10 0 12 #c4fcc4 #000000 #000000 0 256;
+#X obj 16 356 nbx 5 20 100 60000 0 0 previewscreenHeight-snd previewscreenHeight-rcv Height 70 10 0 12 #c4fcc4 #000000 #000000 0 256;
+#X obj 16 380 nbx 5 20 0 60000 0 0 previewscreenPosition-snd previewscreenPosition-rcv Position 70 10 0 12 #c4fca0 #000000 #000000 0 256;
+#X obj 16 403 nbx 5 20 0.01 8 0 0 previewscreenScale-snd previewscreenScale-rcv Scale 70 10 0 12 #fcfcc4 #000000 #000000 0 256;
 #X text 16 314 PREVIEW SETTING:;
 #X text 48 187 fullscreen;
 #X text 49 218 projs-preview;
-#N canvas 78 721 418 238 automove 0;
-#X obj 106 131 nbx 3 30 0 180 0 1 automove-smoothtime-snd automove-smoothtime-rcv
-smooth 0 -8 0 12 -262144 -1 -1 84 256;
-#X obj 324 137 tgl 30 1 automove-swap-snd automove-swap-rcv swap_headsets
-0 -8 0 12 -262144 -1 -1 0 1;
-#X obj 164 131 hsl 128 30 0 1 0 0 automove-amount-snd automove-amount-rcv
-amount 0 -8 0 12 -262144 -1 -1 0 1;
+#N canvas 72 781 418 238 automove 0;
+#X obj 106 131 nbx 3 30 0 180 0 1 automove-smoothtime-snd automove-smoothtime-rcv smooth 0 -8 0 12 #fcfcfc #000000 #000000 84 256;
+#X obj 324 137 tgl 30 1 automove-swap-snd automove-swap-rcv swap_headsets 0 -8 0 12 #fcfcfc #000000 #000000 0 1;
+#X obj 164 131 hsl 128 30 0 1 0 0 automove-amount-snd automove-amount-rcv amount 0 -8 0 12 #fcfcfc #000000 #000000 0 1;
 #X coords 0 -1 1 1 200 65 1 100 100;
-#X restore 485 350 pd automove;
-#N canvas 73 449 578 469 subsample 0;
-#X obj 106 131 nbx 3 30 0 180 0 1 subsample-smoothtime-snd subsample-smoothtime-rcv
-smooth 0 -8 0 12 -262144 -1 -1 0 256;
-#X obj 164 131 hsl 128 30 0 1 0 0 subsample-amount-snd subsample-amount-rcv
-amount 0 -8 0 12 -262144 -1 -1 0 1;
+#X restore 518 402 pd automove;
+#N canvas 72 449 578 469 subsample 0;
+#X obj 106 131 nbx 3 30 0 180 0 1 subsample-smoothtime-snd subsample-smoothtime-rcv smooth 0 -8 0 12 #fcfcfc #000000 #000000 0 256;
+#X obj 164 131 hsl 128 30 0 1 0 0 subsample-amount-snd subsample-amount-rcv amount 0 -8 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 107 186 r subsample-amount-snd;
 #X obj 176 217 r subsample-smoothtime-snd;
 #X obj 107 242 pack f f;
 #X obj 107 266 line;
 #X obj 107 347 s cameras-subsample;
-#X obj 176 242 * 10;
-#X floatatom 170 323 5 0 0 0 - - -;
+#X floatatom 170 323 5 0 0 0 - - - 0;
 #X obj 107 318 * 0.98;
 #X obj 107 291 pow 0.4;
+#X obj 176 242 * 100;
 #X connect 2 0 4 0;
-#X connect 3 0 7 0;
+#X connect 3 0 10 0;
 #X connect 4 0 5 0;
-#X connect 5 0 10 0;
-#X connect 7 0 4 1;
-#X connect 9 0 6 0;
-#X connect 10 0 9 0;
+#X connect 5 0 9 0;
+#X connect 8 0 6 0;
+#X connect 9 0 8 0;
+#X connect 10 0 4 1;
 #X coords 0 -1 1 1 200 65 1 100 100;
-#X restore 330 421 pd subsample;
+#X restore 314 400 pd subsample;
 #X obj 21 507 s cameras-fbosubsample;
 #X msg 21 487 0;
 #X msg 58 487 2;
 #X msg 86 487 4;
 #X obj 349 181 projector FRONT 2;
 #X obj 58 466 loadbang;
-#X obj 563 489 s 2pofVGpath;
-#X msg 563 465 segmented \$1;
-#X obj 563 441 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 130 26 bng 15 250 50 0 empty empty stop -5 22 0 10 -262144 -1
--1;
+#X obj 130 26 bng 15 250 50 0 empty empty stop -5 22 0 10 #fcfcfc #000000 #000000;
+#N canvas 72 96 946 523 gotoBlack 0;
+#X obj 231 315 s width-smoothtime-rcv;
+#X obj 76 258 s width-amount-rcv;
+#X obj 285 288 s cameras-inverse-time-rcv;
+#X obj 40 293 s cameras-inverse-rcv;
+#X msg 54 220 0;
+#X obj 123 183 t b b;
+#X obj 106 126 bng 30 250 50 0 empty empty empty 17 7 0 10 #7c7c7c #fcfcfc #000000;
+#X msg 231 250 120;
+#X msg 285 263 8;
+#X connect 4 0 3 0;
+#X connect 4 0 1 0;
+#X connect 5 0 4 0;
+#X connect 5 1 7 0;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;
+#X connect 7 0 8 0;
+#X connect 8 0 2 0;
+#X coords 0 -1 1 1 85 60 1 100 100;
+#X restore 718 331 pd gotoBlack;
+#N canvas 72 355 847 517 width 0;
+#X obj 106 131 nbx 3 30 0 180 0 1 width-smoothtime-snd width-smoothtime-rcv smooth 0 -8 0 12 #fcfcfc #000000 #000000 0 256;
+#X obj 164 131 hsl 128 30 0 1 0 0 width-amount-snd width-amount-rcv width 0 -8 0 12 #fcfcfc #000000 #000000 0 1;
+#X obj 107 242 pack f f;
+#X obj 107 266 line;
+#X obj 107 186 r width-amount-snd;
+#X obj 176 217 r width-smoothtime-snd;
+#X obj 170 375 s 2pofVGpath;
+#X msg 170 351 segmented \$1;
+#X obj 170 327 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X msg 107 341 fat \$1;
+#X msg 286 305 strokeWidth \$1;
+#X floatatom 286 284 5 0 0 0 - - - 0;
+#X msg 283 262 10;
+#X msg 316 263 15;
+#X obj 107 289 pow 2;
+#X msg 70 223 10;
+#X obj 176 242 * 100;
+#X obj 301 131 tgl 30 0 segmented-snd segmented-rcv segment -15 -10 0 12 #fcfcfc #000000 #000000 0 1;
+#X obj 156 286 r segmented-snd;
+#X obj 107 312 * 50;
+#X connect 2 0 3 0;
+#X connect 3 0 14 0;
+#X connect 4 0 2 0;
+#X connect 5 0 16 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
+#X connect 9 0 6 0;
+#X connect 10 0 6 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 13 0 11 0;
+#X connect 14 0 19 0;
+#X connect 15 0 9 0;
+#X connect 16 0 2 1;
+#X connect 18 0 8 0;
+#X connect 19 0 9 0;
+#X coords 0 -1 1 1 240 65 1 100 100;
+#X restore 470 329 pd width;
+#X text 686 149 les filles se rencontrent : negatif;
+#X obj 155 121 teledraw/teledraw;
 #X connect 28 0 30 0;
 #X connect 29 0 28 0;
 #X connect 44 0 43 0;
 #X connect 45 0 43 0;
 #X connect 46 0 43 0;
 #X connect 48 0 45 0;
-#X connect 50 0 49 0;
-#X connect 51 0 50 0;
-#X connect 52 0 28 1;
+#X connect 49 0 28 1;

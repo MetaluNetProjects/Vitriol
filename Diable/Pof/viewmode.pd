@@ -13,8 +13,8 @@
 #X obj 570 14 r #pofkey;
 #X obj 570 35 route 267;
 #X obj 570 56 sel 1;
-#X obj 570 77 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 570 77 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
 #X obj 570 211 pofwin;
 #X obj 570 232 route window;
 #X obj 570 253 spigot 1;
@@ -23,8 +23,8 @@
 #X obj 570 99 t f f;
 #X obj 600 118 == 0;
 #X obj 570 187 list trim;
-#X obj 643 210 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 643 210 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
 #X obj 25 369 route window;
 #X msg 187 413 window 3840 1200 \, pos 0 0;
 #X obj 25 390 unpack f f;
@@ -47,8 +47,8 @@
 #X obj 204 246 list;
 #X obj 158 221 del 100;
 #X obj 158 245 list;
-#X obj 213 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 213 65 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
 #X obj 412 467 t b f;
 #X obj 412 488 del 10;
 #X obj 412 509 f;
@@ -157,7 +157,6 @@
 #X connect 54 0 55 0;
 #X connect 54 1 55 1;
 #X connect 55 0 56 0;
-#X connect 58 0 59 0;
 #X connect 59 0 57 0;
 #X connect 60 0 40 0;
 #X connect 61 0 53 0;
