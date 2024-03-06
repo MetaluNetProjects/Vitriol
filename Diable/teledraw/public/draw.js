@@ -17,12 +17,11 @@ import { LuminosityShader } from './jsm/shaders/LuminosityShader.js';
 import { SobelOperatorShader } from './jsm/shaders/SobelOperatorShader.js';
 
 const segments= [[], []];
-const pen_position = [[0, 0, 0], [0, 0, 0]];
-const head_position = [[0, 0, 0], [0, 0, 0]];
 const lines = [[], []];
 const update_requested = [new Set(), new Set()];
 let pen = Array(2);
 let head = Array(2);
+let debugSphere;
 const room_size = [7, 7, 3.5];
 let line1;
 let matLine, matLineBasic, matLineDashed;
@@ -32,11 +31,12 @@ let line = false;
 let insetWidth;
 let insetHeight;
 let floor_zscale = 0.5;
+let camera_mode = -1;
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set( 0, 2, 4 );
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.001, 1000);
+camera.position.set( 0, 2, 3 );
 
 const renderer = new THREE.WebGLRenderer({antialias: true /*, alpha: true*/});
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -55,6 +55,11 @@ controls.target.set(0, 1.5, -3);
 controls.maxTargetRadius = 20;
 controls.update();
 
+const raycaster = new THREE.Raycaster();
+//raycaster.params.Line2 = {};
+//raycaster.params.Line2.threshold = 0;
+const pointer = new THREE.Vector2();
+
 window.addEventListener(
     'resize',
     function () {
@@ -64,6 +69,28 @@ window.addEventListener(
         render()
     },
     false
+)
+
+window.addEventListener(
+	'pointerdown',
+	function (event) {
+		pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+		pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		raycaster.setFromCamera( pointer, camera );
+		const intersects = raycaster.intersectObjects( scene.children );
+		camera_mode = -1;
+		intersects.forEach((inter) => {
+			if(inter.object === head[0]) {
+				console.log("head 0 casted");
+				camera_mode = 0;
+				return;
+			} else if(inter.object === head[1]) {
+				console.log("head 1 casted");
+				camera_mode = 1;
+				return;
+			}
+		});
+	}
 )
 
 let composer, effectSobel, finalcomposer;
@@ -115,7 +142,8 @@ export function init(/*_renderer, _scene, camera*/) {
 	matLine = new LineMaterial( {
 
 		color: 0xffffff,
-		linewidth: 0.035, // in world units with size attenuation, pixels otherwise
+		//linewidth: 0.035, // in world units with size attenuation, pixels otherwise
+		linewidth: 0.015, // in world units with size attenuation, pixels otherwise
 		worldUnits: true,
 		vertexColors: true,
 
@@ -129,7 +157,7 @@ export function init(/*_renderer, _scene, camera*/) {
 	//onWindowResize();
 	const plane_geom = new THREE.PlaneGeometry();
 	const plane_mat = new THREE.MeshBasicMaterial({
-		color: 0x404040,
+		color: 0x202025,
 		transparent: true,
 		opacity: 0.8,
 		wireframe: false,
@@ -138,7 +166,7 @@ export function init(/*_renderer, _scene, camera*/) {
 	// front
 	let plane = new THREE.Mesh(plane_geom, plane_mat);
 	plane.scale.set(room_size[0], room_size[2]);
-	plane.position.set(0, room_size[2] / 2.0, -room_size[1] / 2.0);
+	plane.position.set(0, room_size[2] / 2.0, -room_size[1] / 2.0 - 0.05);
 	scene.add(plane);
 
 	plane = new THREE.GridHelper(1, 10);
@@ -150,7 +178,7 @@ export function init(/*_renderer, _scene, camera*/) {
 	// floor
 	plane = new THREE.Mesh(plane_geom, plane_mat);
 	plane.scale.set(room_size[0], room_size[1] * floor_zscale);
-	plane.position.set(0, 0, -room_size[1] * (1.0 - floor_zscale) / 2.0);
+	plane.position.set(0, -0.05, -room_size[1] * (1.0 - floor_zscale) / 2.0);
 	plane.rotateX(-Math.PI / 2.0);
 	scene.add(plane);
 
@@ -167,38 +195,55 @@ export function init(/*_renderer, _scene, camera*/) {
 	plane.rotateY(Math.PI / 2.0);
 	//scene.add(plane);
 
-
-
-	const sphere_geom = new THREE.SphereGeometry(1, 8, 8);
+	const sphere_geom = new THREE.SphereGeometry(/*1, 5, 5*/);
 	const sphere_mat = Array(2);
-	sphere_mat[0] = new THREE.MeshBasicMaterial({
+	sphere_mat[0] = new THREE.MeshPhongMaterial({
 		color: 0xF07090,
-		//transparent: true,
-		//opacity: 0.5,
-		wireframe: true,
+		transparent: true,
+		opacity: 0.9,
+		//wireframe: true,
+		//metalness: 0.5,
+		//roughness: 100.0,
+		shininess:100.0,
+		specular: 0xffffff,
+		//flatShading: true, 
 	});
-	sphere_mat[1] = new THREE.MeshBasicMaterial({
+	/*sphere_mat[1] = new THREE.MeshBasicMaterial({
 		color: 0x7070F0,
 		//transparent: true,
 		//opacity: 0.5,
 		wireframe: true,
-	});
+	});*/
+	sphere_mat[1] = sphere_mat[0].clone();
+	sphere_mat[1].color.set(0x7070F0);
 
-	let pen_size = 0.1;
+	let pen_size = 0.03;
 	let head_size = 0.2;
 	for(let i = 0; i < 2; i++) {
 		pen[i] = new THREE.Mesh(sphere_geom, sphere_mat[i]);
 		pen[i].scale.set(pen_size, pen_size, pen_size);
 		scene.add(pen[i]);
 		head[i] = new THREE.Mesh(sphere_geom, sphere_mat[i]);
-		head[i].scale.set(head_size, head_size, head_size);
+		head[i].scale.set(head_size, head_size * 1.3, head_size);
 		scene.add(head[i]);
 	}
+	
+	const dsphere_mat = new THREE.MeshBasicMaterial({
+		color: 0xFFFF00,
+		//transparent: true,
+		//opacity: 0.5,
+		wireframe: true,
+	});
+	debugSphere = new THREE.Mesh(sphere_geom, dsphere_mat);
+	debugSphere.scale.set(pen_size, pen_size, pen_size);
+	//scene.add(debugSphere);
+
 	//setup_post(camera);
 	
-	/*const ambient = new THREE.HemisphereLight( 0xffffff, 0x8d8d8d, 0.5 );
+	const ambient = new THREE.HemisphereLight( 0xffffff, 0x000000, 5 );
+	ambient.position.set(20.0, 20.0, 10.0);
 	scene.add( ambient );
-	renderer.shadowMap.enabled = true;*/
+	//renderer.shadowMap.enabled = true;
 }
 
 export function render()
@@ -214,6 +259,26 @@ export function render()
 		new THREE.Vector3(-room_size[0] / 2.0, 0.0, -room_size[1] / 2.0),
 		new THREE.Vector3(room_size[0] / 2.0, room_size[2], (floor_zscale - 0.5) * room_size[1])
 	);
+	
+	head[0].visible = head[1].visible = true;
+	pen[0].visible = pen[1].visible = true;
+	if(camera_mode >= 0) {
+		controls.target.lerp(pen[camera_mode].position, 0.008);
+		let headpos = head[camera_mode].position.clone();
+		let pen2head = headpos.clone().sub(pen[camera_mode].position).multiplyScalar(2.0);
+		headpos.add(pen2head);
+		camera.position.lerp(headpos, 0.003);
+		//debugSphere.position.lerp(headpos, 0.5);
+		head[camera_mode].visible = false;
+		//pen[camera_mode].visible = false;
+	}
+
+	/*camera.position.clamp(
+		new THREE.Vector3(-room_size[0] * 2.0, 0.0, -room_size[1] / 2.0),
+		new THREE.Vector3(room_size[0] * 2.0, room_size[2], (floor_zscale - 0.5) * room_size[1] + 8.0)
+	);*/
+	camera.position.clampScalar( -20.0, 20.0);
+
 	controls.update();
 	renderer.render(scene, camera);
 	//composer.render();

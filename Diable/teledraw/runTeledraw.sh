@@ -1,4 +1,6 @@
 #!/bin/bash
 cd $(dirname $0)
 
-node teledraw_server.js
+pkill -f teledraw_server
+screen -d -m node teledraw_server.js
+
