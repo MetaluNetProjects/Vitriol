@@ -19,8 +19,9 @@ function animate() {
 }
 
 // Create WebSocket connection.
-console.log(`ws://${window.location.hostname}:41235`);
+//console.log(`ws://${window.location.hostname}:41235`);
 const socket = new WebSocket(`ws://${window.location.hostname}:41235`);
+//const socket = new WebSocket(`wss://${window.location.hostname}:443`);
 
 // Connection opened
 socket.addEventListener("open", (event) => {

@@ -1,5 +1,3 @@
-// https://github.com/mrdoob/three.js/blob/master/examples/webgl_lines_fat.html
-
 import * as THREE from 'three'
 import { OrbitControls } from './jsm/controls/OrbitControls.js'
 
@@ -111,10 +109,10 @@ function setup_post(camera) {
 
 	// Sobel operator
 
-	effectSobel = new ShaderPass( SobelOperatorShader );
+	/*effectSobel = new ShaderPass( SobelOperatorShader );
 	effectSobel.uniforms[ 'resolution' ].value.x = window.innerWidth * window.devicePixelRatio;
 	effectSobel.uniforms[ 'resolution' ].value.y = window.innerHeight * window.devicePixelRatio;
-	composer.addPass( effectSobel );
+	composer.addPass( effectSobel );*/
 
 	/*const renderPass2 = new RenderPass( scene, camera );
 	const finalPass = new ShaderPass(

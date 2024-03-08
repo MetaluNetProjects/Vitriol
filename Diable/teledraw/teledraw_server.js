@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const ws = require('ws')
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
 
 //const draw_data = [];
 const segments= [[], []];
@@ -15,11 +18,43 @@ app.use(express.static(__dirname + '/public'))
 app.use('/build/', express.static(path.join(__dirname, 'node_modules/three/build')))
 app.use('/jsm/', express.static(path.join(__dirname, 'node_modules/three/examples/jsm')))
 
-app.listen(3000, () => console.log('Visit http://127.0.0.1:3000'))
+let hostName = "vitriol"
+
+app.use((req, res, next) => {
+    //console.log("request: ", req.get('host'))
+    if (req.get('host') != hostName) {
+        //return res.redirect(`http://${hostName}/connection.html`);
+        return res.redirect(`http://${hostName}`);
+    }
+    next();
+})
+
+app.get('/', (req, res, next) => {
+    res.send('Vitriol - Captive Portal');
+})
+
+for(let num = 0; num < 2; num++) {
+	app.get(`/seg${num}/*`, function (req, res) {
+		let num_seg = parseInt(path.basename(req.url));
+		//console.log(`Requested pen ${num} segment ${num_seg}`);
+		if(num_seg < segments[num].length)
+			res.send(`segment ${num} ${num_seg} ${segments[num][num_seg].join(" ")}`);
+		else res.send(`none`);
+	});
+}
+
+http.createServer(app).listen(80, () => console.log('Visit http://127.0.0.1:80'));
+// create self-signed https server to help mobile to redirect to app
+const options = {
+  key: fs.readFileSync('keys/vitriol.key'),
+  cert: fs.readFileSync('keys/vitriol.pem')
+};
+let server = https.createServer(options, app).listen(443);
 
 /* setup WebSocket */
-//import { WebSocketServer } from 'ws';
+
 const wss = new ws.WebSocketServer({ port: 41235 });
+//const wss = new ws.WebSocketServer({server});
 
 wss.on('connection', function connection(ws) {
 	ws.on('error', console.error);
@@ -36,9 +71,6 @@ wss.on('connection', function connection(ws) {
 function sendAllClients(message)
 {
 	wss.clients.forEach(function each(ws) {
-		/*if (ws.isAlive === false) return ws.terminate();
-		ws.isAlive = false;
-		ws.ping();*/
 		ws.send(message);
 	});
 }
@@ -57,7 +89,6 @@ udpserver.on('message', (msg, rinfo) => {
 	const message = String(msg).slice(0, -2);
 	const words = message.split(' ');
 	if(words[0] == "draw_clear") {
-		//draw_data.length = 0;
 		segments[0].length = 0;
 		segments[1].length = 0;
 		is_drawing[0] = is_drawing[1] = 0;
@@ -78,24 +109,12 @@ udpserver.on('message', (msg, rinfo) => {
 		}
 		if(drawing) {
 			segments[num][segments[num].length - 1].push(pen_pos[num]);
-			/*console.log("pen ", num, " segment ", segments[num].length - 1,
-			" add pos num:",  segments[num][segments[num].length - 1].length - 1, ": ", pen_pos);*/
 		}
 		let num_seg = segments[num].length - 1;
 		let num_point = drawing ? segments[num][segments[num].length - 1].length - 1 : -1;
-		//let message = String(draw_data.length) + " " + words.join(" ");
 		let message = num + " " + num_seg + " " + num_point + " " + pen_pos[num].join(" ") + " " + head_pos[num].join(" ");
-		//console.log(words.join(" "));
-		//if(parseInt(words[4]) == 1) draw_data.push(message);
 		sendAllClients("data " + message);
 	}
-	/*else if(words[0] == "get_datalen") {
-		console.log(`datalen: ${draw_data.length}`);
-	}
-	else if(words[0] == "get_data") {
-		let line = draw_data[parseFloat(words[1])];
-		console.log(`data: ${line}`);
-	}*/
 	else if(words[0] == "get_segment") {
 		let pen = parseInt(words[1]);
 		let seg = parseInt(words[2]);
@@ -114,24 +133,4 @@ udpserver.on('listening', () => {
 });
 
 udpserver.bind(31234);
-// Prints: udpserver listening 0.0.0.0:31234
-
-
-
-/* setup GET routing */
-//const router = express.Router();
-app.get("/truc/*", function (req, res) {
-  console.log(`Got a GET request ${path.basename(req.url)}`);
-  res.send(`Réponse à la requête GET. x = ${x}`);
-});
-
-for(let num = 0; num < 2; num++) {
-	app.get(`/seg${num}/*`, function (req, res) {
-		let num_seg = parseInt(path.basename(req.url));
-		//console.log(`Requested pen ${num} segment ${num_seg}`);
-		if(num_seg < segments[num].length)
-			res.send(`segment ${num} ${num_seg} ${segments[num][num_seg].join(" ")}`);
-		else res.send(`none`);
-	});
-}
 

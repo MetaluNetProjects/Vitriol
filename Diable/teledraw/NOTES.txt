@@ -1,0 +1,21 @@
+
+Oculus network: pi Diable 193.168.4.1
+
+Teledraw network: 
+	- routeur tplink 192.168.5.254
+	- pc serveur 192.168.5.1 
+		sudo route add default gw 192.168.5.1
+
+		# allow user to use port 80:
+		#sudo apt-get install libcap2-bin
+		sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
+
+		sudo dnsmasq -C dnsmasq.conf
+		sudo route add -net 192.168.5.0 netmask 255.255.255.0 gw 192.168.5.1
+
+	cert:
+	openssl req -new -newkey rsa:4096 -nodes -keyout vitriol.key -out vitriol.csr
+	openssl x509 -req -sha256 -days 365 -in vitriol.csr -signkey vitriol.key -out vitriol.pem
+	
+https://github.com/TomHumphries/RaspberryPiHotspot/blob/master/dnsmasq.conf
+https://gist.github.com/theprojectsomething/a8406ba6be3ed3335fb3a2e5efea4b41
